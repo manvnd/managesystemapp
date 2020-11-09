@@ -7,5 +7,5 @@ import org.springframework.ui.Model;
 import javax.servlet.http.HttpSession;
 
 public interface AdminService {
-    public String login(AUser aUser, HttpSession session, Model model);
+    public String adminLogin(AUser aUser, HttpSession session, Model model);
 }

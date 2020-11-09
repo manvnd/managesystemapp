@@ -1,4 +1,5 @@
 package com.managesystem.managesystempackage.entity;
+
 public class AUser {
 	private String aname;
 	private String apwd;

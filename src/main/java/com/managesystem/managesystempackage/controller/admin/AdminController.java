@@ -22,6 +22,6 @@ public class AdminController {
     }
     @RequestMapping("/login")
     public String login(@ModelAttribute("aUser") AUser aUser, HttpSession session, Model model) {
-        return adminService.login(aUser, session, model);
+        return adminService.adminLogin(aUser, session, model);
     }
 }

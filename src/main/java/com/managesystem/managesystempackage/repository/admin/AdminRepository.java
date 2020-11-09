@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface AdminRepository {
-    List<AUser> login(AUser aUser);
+    List<AUser> adminLogin(AUser aUser);
 }

@@ -4,20 +4,19 @@
 <base th:href="@{/}"><!-- 不用base就使用th:src="@{/js/jquery.min.js} -->
 <meta charset="UTF-8">
 <title>登录页面</title>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
 <body>
 	<div class="container">
 		<div class="bg-primary"  style="width:70%; height: 60px;padding-top: 1px;">
 	       <h3 align="center">用户登录</h3>
 	   </div>
 		<br><br>
-		<form action="before/login" name="myform" method="post" th:object="${bUser}"  class="form-horizontal" role="form" >
+		<form action="before/teacher/login" name="myform" method="post" th:object="${teacher}"  class="form-horizontal" role="form" >
 			<div class="form-group has-success">
-				<label class="col-sm-2 col-md-2 control-label">邮箱</label>
+				<label class="col-sm-2 col-md-2 control-label">用户名</label>
 				<div class="col-sm-4 col-md-4">
 					<input type="text" class="form-control"
 					 placeholder="请输入用户名"
-					th:field="*{bname}"/>
+					th:field="*{teacherName}"/>
 				</div>
 			</div>
 		
@@ -25,8 +24,8 @@
 				  <label class="col-sm-2 col-md-2 control-label">密码</label>
 				  <div class="col-sm-4 col-md-4">
 		  				<input type="password" class="form-control"
-					 placeholder="请输入您的密码" th:field="*{bpwd}"/>
-					 <span th:errors="*{bpwd}"></span>
+					 placeholder="请输入您的密码" th:field="*{teacherPwd}"/>
+					 <span th:errors="*{teacherPwd}"></span>
 				  </div>
 			 </div>
 			<div class="form-group">
@@ -39,12 +38,12 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<font size="6" color="red">
-						<span th:text="${errorMessage }"></span>
+						<span th:text="${loginMessage}"></span>
 					</font>
 				</div>
 			</div>
 		</form>
-		<a th:href="@{before/toRegister}">没有账号？点此注册</a>
+		<a th:href="@{before/teacher/toRegister}">没有账号？点此注册</a>
 	</div>
 </body>
 </html>

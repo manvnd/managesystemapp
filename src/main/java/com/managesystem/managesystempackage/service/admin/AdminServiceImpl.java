@@ -14,8 +14,8 @@ public class AdminServiceImpl implements AdminService{
     @Autowired
     private AdminRepository adminRepository;
     @Override
-    public String login(AUser aUser, HttpSession session, Model model) {
-        List<AUser> list = adminRepository.login(aUser);
+    public String adminLogin(AUser aUser, HttpSession session, Model model) {
+        List<AUser> list = adminRepository.adminLogin(aUser);
         if(list.size() > 0) {//登录成功
             session.setAttribute("auser", aUser);
             return "forward:/goods/selectAllGoodsByPage?currentPage=1&act=select";

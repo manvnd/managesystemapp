@@ -3,7 +3,7 @@ package com.managesystem.managesystempackage.util;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpSession;
-import com.managesystem.managesystempackage.entity.BUser;
+import com.managesystem.managesystempackage.entity.Student;
 
 public class MYUtil {
     //将实际的文件名重命名
@@ -17,8 +17,8 @@ public class MYUtil {
         return newFileName;
     }
     //获得用户信息
-    public static BUser getUser(HttpSession session) {
-        BUser bUser = (BUser)session.getAttribute("bUser");
-        return bUser;
+    public static Student getStudent(HttpSession session) {
+        Student student = (Student)session.getAttribute("student");
+        return student;
     }
 }
