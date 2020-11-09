@@ -1,17 +1,9 @@
 package com.managesystem.managesystempackage.entity;
 
-import javax.validation.constraints.NotBlank;
-
-import org.hibernate.validator.constraints.Length;
-
 public class Student {
     private Integer id;
-    @NotBlank(message = "姓名必须输入！")
     private String studentName;
-    @NotBlank(message = "学号必须输入！")
     private String studentNumber;
-    @NotBlank(message="密码必须输入！")
-    @Length(min=6, max=20, message="密码长度在6到20之间！")
     private String studentPwd;
     private String studentRebpwd;
     private String code;

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.managesystem.managesystempackage.repository.admin.AdminRepository">
-    <select id="adminLogin" parameterType="AUser" resultType="AUser">
+    <select id="adminLogin" parameterType="com.managesystem.managesystempackage.entity.AUser" resultType="com.managesystem.managesystempackage.entity.AUser">
         select * from ausertable where aname = #{aname} and apwd = #{apwd}
     </select>
 </mapper>

@@ -10,7 +10,7 @@
 	       <h3 align="center">用户登录</h3>
 	   </div>
 		<br><br>
-		<form action="before/teacher/login" name="myform" method="post" th:object="${teacher}"  class="form-horizontal" role="form" >
+		<form th:action="@{/before/teacher/login}" name="myform" method="post" th:object="${teacher}"  class="form-horizontal" role="form" >
 			<div class="form-group has-success">
 				<label class="col-sm-2 col-md-2 control-label">用户名</label>
 				<div class="col-sm-4 col-md-4">
@@ -43,7 +43,7 @@
 				</div>
 			</div>
 		</form>
-		<a th:href="@{before/teacher/toRegister}">没有账号？点此注册</a>
+		<a th:href="@{/before/teacher/toRegister}">没有账号？点此注册</a>
 	</div>
 </body>
 </html>

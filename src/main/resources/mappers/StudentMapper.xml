@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.managesystem.managesystempackage.repository.before.student.StudentRepository">
+    <select id="studentLogin" parameterType="com.managesystem.managesystempackage.entity.Student" resultType="com.managesystem.managesystempackage.entity.Student">
+        select * from ausertable where aname = #{studentName} and apwd = #{studentPwd}
+    </select>
+    <insert id="studentSave" parameterType="com.managesystem.managesystempackage.entity.Student">
+        insert into ausertable(aname, apwd) values (#{studentName}, #{studentPwd})
+    </insert>
+</mapper>

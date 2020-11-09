@@ -18,9 +18,9 @@ public class AdminServiceImpl implements AdminService{
         List<AUser> list = adminRepository.adminLogin(aUser);
         if(list.size() > 0) {//登录成功
             session.setAttribute("auser", aUser);
-            return "forward:/goods/selectAllGoodsByPage?currentPage=1&act=select";
+            return "admin/home";
         }else {//登录失败
-            model.addAttribute("errorMessage", "用户名或密码错误！");
+            model.addAttribute("loginMessage", "测试");
             return "admin/login";
         }
     }

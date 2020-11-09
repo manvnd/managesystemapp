@@ -6,7 +6,7 @@
 <body>
 		<h3 align="center">学生登录</h3>
 		<br><br>
-		<form action="before/student/login" method="post" th:object="${student}">
+		<form th:action="@{/before/student/login}" method="post" th:object="${student}">
 			<label class="col-sm-2 col-md-2 control-label">邮箱</label>
 					<input type="text" class="form-control"
 					 placeholder="请输入用户名"
@@ -22,6 +22,6 @@
 						<span th:text="${loginMessage}"></span>
 					</font>
 		</form>
-		<a th:href="@{before/student/toRegister}">没有账号？点此注册</a>
+		<a th:href="@{/before/student/toRegister}">没有账号？点此注册</a>
 </body>
 </html>

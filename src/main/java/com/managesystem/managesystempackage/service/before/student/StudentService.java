@@ -7,5 +7,5 @@ import javax.servlet.http.HttpSession;
 
 public interface StudentService {
     public String studentLogin(Student student, HttpSession session, Model model);
-    public void studentSave(Student student, Model model);
+    public String studentSave(Student student);
 }

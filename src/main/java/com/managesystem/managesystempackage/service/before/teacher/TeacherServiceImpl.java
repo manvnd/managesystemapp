@@ -2,6 +2,7 @@ package com.managesystem.managesystempackage.service.before.teacher;
 
 import com.managesystem.managesystempackage.entity.Teacher;
 import com.managesystem.managesystempackage.repository.before.teacher.TeacherRepository;
+import com.managesystem.managesystempackage.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -29,6 +30,9 @@ public class TeacherServiceImpl implements TeacherService {
     }
     @Override
     public void teacherSave(Teacher teacher, Model model) {
-        teacherRepository.teacherSave(teacher);
+        if (teacher.getTeacherName() != null && teacher.getTeacherPwd() != null) {
+            teacher.setTeacherPwd(MD5Util.MD5(teacher.getTeacherPwd()));//对教师密码进行加密
+            teacherRepository.teacherSave(teacher);
+        }
     }
 }

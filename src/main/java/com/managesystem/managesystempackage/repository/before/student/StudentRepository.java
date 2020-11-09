@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface StudentRepository {
     List<Student> studentLogin(Student student);
-    void studentSave(Student student);
+    Integer studentSave(Student student);
 }
