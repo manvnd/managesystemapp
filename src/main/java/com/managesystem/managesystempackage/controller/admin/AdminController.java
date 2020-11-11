@@ -24,4 +24,8 @@ public class AdminController {
     public String login(@ModelAttribute("aUser") AUser aUser, HttpSession session, Model model) {
         return adminService.adminLogin(aUser, session, model);
     }
+    @RequestMapping("/allTeacherInfo")
+    public String allTeacherInfo() {
+        return "admin/allTeacherInfo";
+    }
 }

@@ -20,7 +20,7 @@ public class StudentServiceImpl implements StudentService {
         student.setStudentPwd(MD5Util.MD5(student.getStudentPwd()));
         List<Student> list = studentRepository.studentLogin(student);
         if(list.size() > 0) {//登录成功
-//            session.setAttribute("buser", bUser);
+            session.setAttribute("student", student);
 //            if (bUser.getIsTeacher())
             return "before/student/home";
 //            else

@@ -18,7 +18,7 @@ public class TeacherServiceImpl implements TeacherService {
     public String teacherLogin(Teacher teacher, HttpSession session, Model model) {
         List<Teacher> list = teacherRepository.teacherLogin(teacher);
         if(list.size() > 0) {//登录成功
-//            session.setAttribute("buser", bUser);
+            session.setAttribute("teacher", teacher);
 //            if (bUser.getIsTeacher())
             return "before/teacher/home";
 //            else

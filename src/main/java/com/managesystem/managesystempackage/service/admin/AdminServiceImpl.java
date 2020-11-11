@@ -20,7 +20,7 @@ public class AdminServiceImpl implements AdminService{
             session.setAttribute("auser", aUser);
             return "admin/home";
         }else {//登录失败
-            model.addAttribute("loginMessage", "测试");
+            model.addAttribute("loginMessage", "用户名或密码错误");
             return "admin/login";
         }
     }

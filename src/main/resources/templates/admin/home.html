@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>主页</title>
+    <title>管理员主页</title>
 </head>
 <body>
-    管理员
+    <a th:href="/admin/allStudentInfo">管理学生信息</a>
+    <br>
+    <a th:href="/admin/allTeacherInfo">管理老师信息</a>
 </body>
 </html>
