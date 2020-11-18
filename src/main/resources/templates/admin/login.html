@@ -8,13 +8,12 @@
 	<h3 align="center">管理员登录</h3>
 		<br>
 		<br>
-		<form th:action="@{/admin/login}" name="myform" method="post" th:object="${aUser}"  class="form-horizontal" role="form" >
+		<form th:action="@{/admin/login}" name="myform" method="post" th:object="${admin}"  class="form-horizontal" role="form" >
 				<label class="col-sm-2 col-md-2 control-label">用户名</label>
-				<input type="text" class="form-control" placeholder="请输入管理员名" th:field="*{aname}"/>
-				<span th:errors="*{aname}"></span>
+				<input type="text" class="form-control" placeholder="请输入管理员名" th:field="*{name}"/>
+				<span th:errors="*{name}"></span>
 			<input type="password" class="form-control"
-					 placeholder="请输入您的密码" th:field="*{apwd}"/>
-			<span th:errors="*{apwd}"></span>
+					 placeholder="请输入您的密码" th:field="*{pwd}"/>
 
 			<button type="submit"class="btn btn-success" >登录</button>
 			<button type="reset" class="btn btn-primary" >重置</button>

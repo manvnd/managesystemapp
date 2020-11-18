@@ -18,7 +18,6 @@ public class MYUtil {
     }
     //获得用户信息
     public static Student getStudent(HttpSession session) {
-        Student student = (Student)session.getAttribute("student");
-        return student;
+        return (Student)session.getAttribute("student");
     }
 }

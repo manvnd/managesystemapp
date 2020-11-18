@@ -1,11 +1,10 @@
 package com.managesystem.managesystempackage.service.admin;
 
-import com.managesystem.managesystempackage.entity.AUser;
-import org.springframework.stereotype.Service;
+import com.managesystem.managesystempackage.entity.Admin;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
 
 public interface AdminService {
-    public String adminLogin(AUser aUser, HttpSession session, Model model);
+    public String adminLogin(Admin admin, HttpSession session, Model model);
 }

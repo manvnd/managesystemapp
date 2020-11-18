@@ -2,11 +2,28 @@ package com.managesystem.managesystempackage.entity;
 
 public class Student {
     private Integer id;
-    private String studentName;
-    private String studentNumber;
-    private String studentPwd;
-    private String studentRebpwd;
-    private String code;
+    private String name;
+    private String number;
+    private String pwd;
+    private int groupId;
+
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
+    }
+
+    public boolean isLeader() {
+        return isLeader;
+    }
+
+    public void setLeader(boolean leader) {
+        isLeader = leader;
+    }
+
+    private boolean isLeader;
 
     public Integer getId() {
         return id;
@@ -16,43 +33,27 @@ public class Student {
         this.id = id;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getName() {
+        return name;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getStudentNumber() {
-        return studentNumber;
+    public String getNumber() {
+        return number;
     }
 
-    public void setStudentNumber(String studentNumber) {
-        this.studentNumber = studentNumber;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public String getStudentPwd() {
-        return studentPwd;
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setStudentPwd(String studentPwd) {
-        this.studentPwd = studentPwd;
-    }
-
-    public String getStudentRebpwd() {
-        return studentRebpwd;
-    }
-
-    public void setStudentRebpwd(String studentRebpwd) {
-        this.studentRebpwd = studentRebpwd;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 }

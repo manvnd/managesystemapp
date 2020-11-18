@@ -7,20 +7,17 @@
 		<h3 align="center">学生登录</h3>
 		<br><br>
 		<form th:action="@{/before/student/login}" method="post" th:object="${student}">
-			<label class="col-sm-2 col-md-2 control-label">邮箱</label>
-					<input type="text" class="form-control"
-					 placeholder="请输入用户名"
-					th:field="*{studentName}"/>
-			<label class="col-sm-2 col-md-2 control-label">密码</label>
-		  				<input type="password" class="form-control"
-					 placeholder="请输入您的密码" th:field="*{studentPwd}"/>
-					 <span th:errors="*{studentPwd}"></span>
-					<button type="submit"class="btn btn-success" >登录</button>
-					<button type="reset" class="btn btn-primary" >重置</button>
+			<label>学号</label>
+			<input type="text" placeholder="请输入用户名" th:field="*{number}"/>
+			<label>密码</label>
+			<input type="password" placeholder="请输入您的密码" th:field="*{pwd}"/>
 
-					<font size="6" color="red">
-						<span th:text="${loginMessage}"></span>
-					</font>
+			<button type="submit"class="btn btn-success" >登录</button>
+			<button type="reset" class="btn btn-primary" >重置</button>
+
+			<font size="6" color="red">
+				<span th:text="${loginMessage}"></span>
+			</font>
 		</form>
 		<a th:href="@{/before/student/toRegister}">没有账号？点此注册</a>
 </body>

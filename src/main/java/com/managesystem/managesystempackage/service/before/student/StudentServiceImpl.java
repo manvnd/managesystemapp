@@ -3,7 +3,9 @@ package com.managesystem.managesystempackage.service.before.student;
 import com.managesystem.managesystempackage.entity.Student;
 import com.managesystem.managesystempackage.repository.before.student.StudentRepository;
 import com.managesystem.managesystempackage.util.MD5Util;
+import com.managesystem.managesystempackage.util.MYUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ReactiveAdapterRegistry;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -17,14 +19,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public String studentLogin(Student student, HttpSession session, Model model) {
         //对密码进行加密
-        student.setStudentPwd(MD5Util.MD5(student.getStudentPwd()));
+        student.setPwd(MD5Util.MD5(student.getPwd()));
         List<Student> list = studentRepository.studentLogin(student);
         if(list.size() > 0) {//登录成功
-            session.setAttribute("student", student);
-//            if (bUser.getIsTeacher())
-            return "before/student/home";
-//            else
-//                return "forward:/";
+            session.setAttribute("student", list.get(0));
+            return "redirect:/before/student/home";
         }else {//登录失败
             model.addAttribute("loginMessage", "用户名或密码错误！");
             return "before/student/login";
@@ -32,8 +31,8 @@ public class StudentServiceImpl implements StudentService {
     }
     @Override
     public String studentSave(Student student) {
-        if (student.getStudentName() != null && student.getStudentPwd() != null) {
-            student.setStudentPwd(MD5Util.MD5(student.getStudentPwd()));//对学生密码进行加密
+        if (student.getNumber() != null && student.getPwd() != null) {
+            student.setPwd(MD5Util.MD5(student.getPwd()));//对学生密码进行加密
             if (studentRepository.studentSave(student) > 0) {
                 return "before/student/login";
             }

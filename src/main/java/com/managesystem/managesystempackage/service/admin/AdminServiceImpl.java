@@ -1,6 +1,6 @@
 package com.managesystem.managesystempackage.service.admin;
 
-import com.managesystem.managesystempackage.entity.AUser;
+import com.managesystem.managesystempackage.entity.Admin;
 import com.managesystem.managesystempackage.repository.admin.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,10 @@ public class AdminServiceImpl implements AdminService{
     @Autowired
     private AdminRepository adminRepository;
     @Override
-    public String adminLogin(AUser aUser, HttpSession session, Model model) {
-        List<AUser> list = adminRepository.adminLogin(aUser);
+    public String adminLogin(Admin admin, HttpSession session, Model model) {
+        List<Admin> list = adminRepository.adminLogin(admin);
         if(list.size() > 0) {//登录成功
-            session.setAttribute("auser", aUser);
+            session.setAttribute("admin", admin);
             return "admin/home";
         }else {//登录失败
             model.addAttribute("loginMessage", "用户名或密码错误");

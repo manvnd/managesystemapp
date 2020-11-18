@@ -11,7 +11,7 @@ public class AdminBaseController {
     //登录权限控制，处理方法执行前执行该方法
     @ModelAttribute
     public void isLogin(HttpSession session) throws NoLoginException {
-        if(session.getAttribute("auser") == null) {
+        if(session.getAttribute("admin") == null) {
             throw new NoLoginException("没有登录");
         }
     }

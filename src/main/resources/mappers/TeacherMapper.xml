@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.managesystem.managesystempackage.repository.before.student.StudentRepository">
     <select id="teacherLogin" parameterType="com.managesystem.managesystempackage.entity.Teacher" resultType="com.managesystem.managesystempackage.entity.Teacher">
-        select * from ausertable where aname = #{teacherName} and apwd = #{teacherPwd}
+        select * from teacher where number = #{teacherName} and pwd = #{teacherPwd}
     </select>
     <insert id="teacherSave" parameterType="com.managesystem.managesystempackage.entity.Teacher">
-        insert into ausertable(aname, apwd) values (#{teacherName}, #{teacherPwd})
+        insert into teacher(number, pwd) values (#{teacherName}, #{teacherPwd})
     </insert>
 </mapper>
