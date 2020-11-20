@@ -6,6 +6,15 @@ public class Student {
     private String number;
     private String pwd;
     private int groupId;
+    private String isLeader;
+
+    public String getIsLeader() {
+        return isLeader;
+    }
+
+    public void setIsLeader(String isLeader) {
+        this.isLeader = isLeader;
+    }
 
     public int getGroupId() {
         return groupId;
@@ -14,16 +23,6 @@ public class Student {
     public void setGroupId(int groupId) {
         this.groupId = groupId;
     }
-
-    public boolean isLeader() {
-        return isLeader;
-    }
-
-    public void setLeader(boolean leader) {
-        isLeader = leader;
-    }
-
-    private boolean isLeader;
 
     public Integer getId() {
         return id;

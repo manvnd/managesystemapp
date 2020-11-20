@@ -6,4 +6,13 @@
     <select id="adminLogin" parameterType="com.managesystem.managesystempackage.entity.Admin" resultType="com.managesystem.managesystempackage.entity.Admin">
         select * from admin where name = #{name} and pwd = #{pwd}
     </select>
+    <select id="selectStudentsByPage" parameterType="int" resultType="com.managesystem.managesystempackage.entity.Student">
+        select id, name, number, pwd, groupId, isLeader from student limit #{perPageSize} offset #{startIndex}
+    </select>
+    <delete id="studentDelete" parameterType="int">
+        delete from student where id = #{id}
+    </delete>
+    <select id="selectAllStudents" resultType="int">
+        select count(*) from student
+    </select>
 </mapper>

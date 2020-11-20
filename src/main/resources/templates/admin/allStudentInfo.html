@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>学生信息</title>
 </head>
 <body>
+<br/>
+<h1>学生列表</h1>
+<br/><br/>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>姓名</th>
+            <th>学号</th>
+            <th>小组序号</th>
+            <th>是否为组长</th>
+            <th>编辑</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="student : ${students}">
+            <th scope="row" th:text="${student.id}"></th>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.number}"></td>
+            <td th:text="${student.groupId}"></td>
+            <td th:text="${student.isLeader}"></td>
+<!--            <td><a th:href="@{/toEdit(id=${user.id})}">edit</a></td>-->
+            <td><a th:href="@{/admin/studentDelete(id=${student.getId()})}">删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <li><a>第<span th:text="${currentPage}"></span>页</a></li>
+    <li><a>共<span th:text="${totalPage}"></span>页</a></li>
+    <li>
+        <span th:if="${currentPage} != 1">
+            <a th:href="'/admin/allStudentInfo?currentPage=' + ${currentPage - 1}">上一页</a>
+        </span>
+        <span th:if="${currentPage} != ${totalPage}">
+            <a th:href="'/admin/allStudentInfo?currentPage=' + ${currentPage + 1}">下一页</a>
+        </span>
+    </li>
+</div>
+
+<!--    <a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info">add</a>-->
 
 </body>
 </html>

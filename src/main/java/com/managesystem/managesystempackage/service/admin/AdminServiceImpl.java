@@ -1,6 +1,7 @@
 package com.managesystem.managesystempackage.service.admin;
 
 import com.managesystem.managesystempackage.entity.Admin;
+import com.managesystem.managesystempackage.entity.Student;
 import com.managesystem.managesystempackage.repository.admin.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,23 @@ public class AdminServiceImpl implements AdminService{
             model.addAttribute("loginMessage", "用户名或密码错误");
             return "admin/login";
         }
+    }
+    @Override
+    public String getStudentsInfo(Model model, Integer currentPage) {
+        //共多少个学生
+        int totalCount = adminRepository.selectAllStudents();
+        //计算共多少页
+        int pageSize = 5;
+        int totalPage = (int)Math.ceil(totalCount * 1.0 / pageSize);
+        List<Student> studentsByPage = adminRepository.selectStudentsByPage((currentPage - 1) * pageSize, pageSize);
+        model.addAttribute("students", studentsByPage);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("currentPage", currentPage);
+        return "/admin/allStudentInfo";
+    }
+    @Override
+    public String studentDelete(int id) {
+        adminRepository.studentDelete(id);
+        return "redirect:/admin/allStudentInfo";
     }
 }
