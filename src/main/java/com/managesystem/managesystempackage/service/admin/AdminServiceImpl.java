@@ -3,6 +3,7 @@ package com.managesystem.managesystempackage.service.admin;
 import com.managesystem.managesystempackage.entity.Admin;
 import com.managesystem.managesystempackage.entity.Student;
 import com.managesystem.managesystempackage.repository.admin.AdminRepository;
+import com.managesystem.managesystempackage.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -41,6 +42,21 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public String studentDelete(int id) {
         adminRepository.studentDelete(id);
-        return "redirect:/admin/allStudentInfo";
+        return "redirect:/admin/allStudentInfo?currentPage=1";
+    }
+    @Override
+    public String studentAdd(Student student) {
+        student.setPwd(MD5Util.MD5("123456"));
+        adminRepository.studentAdd(student);
+        return "redirect:/admin/allStudentInfo?currentPage=1";
+    }
+    @Override
+    public String studentUpdate(Student student) {
+        adminRepository.studentUpdate(student);
+        return "redirect:/admin/allStudentInfo?currentPage=1";
+    }
+    @Override
+    public Student selectOneStudent(Integer id) {
+        return adminRepository.selectOneStudent(id);
     }
 }

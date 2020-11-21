@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.Id;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -39,5 +41,24 @@ public class AdminController {
     @RequestMapping("/studentDelete")
     public String studentDelete(int id) {
         return adminService.studentDelete(id);
+    }
+    @RequestMapping("/toStudentAdd")
+    public String toStudentAdd(@ModelAttribute("student") Student student) {
+        return "admin/studentAdd";
+    }
+    @RequestMapping("/studentAdd")
+    public String studentAdd(@ModelAttribute("student") Student student) {
+        return adminService.studentAdd(student);
+    }
+    @RequestMapping("/toStudentUpdate")
+    public String toStudentUpdate(Model model, Integer id) {
+        Student student = adminService.selectOneStudent(id);
+        model.addAttribute("student", student);
+        return "admin/studentUpdate";
+    }
+    @RequestMapping("/studentUpdate")
+    public String studentUpdate(@ModelAttribute("student") Student student) {
+        System.out.println(student.getIsLeader());
+        return adminService.studentUpdate(student);
     }
 }

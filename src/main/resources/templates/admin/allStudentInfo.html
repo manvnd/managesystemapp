@@ -28,7 +28,7 @@
             <td th:text="${student.number}"></td>
             <td th:text="${student.groupId}"></td>
             <td th:text="${student.isLeader}"></td>
-<!--            <td><a th:href="@{/toEdit(id=${user.id})}">edit</a></td>-->
+            <td><a th:href="@{/admin/toStudentUpdate(id=${student.getId()})}">编辑</a></td>
             <td><a th:href="@{/admin/studentDelete(id=${student.getId()})}">删除</a></td>
         </tr>
         </tbody>
@@ -45,7 +45,7 @@
     </li>
 </div>
 
-<!--    <a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info">add</a>-->
+    <a th:href="@{/admin/toStudentAdd}" class="btn btn-info">添加</a>
 
 </body>
 </html>

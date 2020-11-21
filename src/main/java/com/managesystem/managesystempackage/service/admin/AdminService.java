@@ -11,4 +11,7 @@ public interface AdminService {
     public String adminLogin(Admin admin, HttpSession session, Model model);
     public String getStudentsInfo(Model model, Integer currentPage);
     public String studentDelete(int id);
+    public String studentAdd(Student student);
+    public String studentUpdate(Student student);
+    public Student selectOneStudent(Integer id);
 }

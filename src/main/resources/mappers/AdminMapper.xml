@@ -15,4 +15,13 @@
     <select id="selectAllStudents" resultType="int">
         select count(*) from student
     </select>
+    <insert id="studentAdd" parameterType="Student">
+        insert into student (name, number, pwd) values (#{name}, #{number}, #{pwd})
+    </insert>
+    <update id="studentUpdate" parameterType="Student">
+        update student set(name, number, pwd, groupId, isLeader) = (#{name}, #{number}, #{pwd}, #{groupId}, #{isLeader}) where id = #{id}
+    </update>
+    <select id="selectOneStudent" resultType="Student">
+        select * from student where id = #{id}
+    </select>
 </mapper>

@@ -14,4 +14,7 @@ public interface AdminRepository {
     List<Student> selectStudentsByPage(int startIndex, int perPageSize);
     int selectAllStudents();
     void studentDelete(int id);
+    int studentAdd(Student student);
+    int studentUpdate(Student student);
+    Student selectOneStudent(int id);
 }

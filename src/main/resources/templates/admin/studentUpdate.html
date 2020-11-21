@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学生更新</title>
+</head>
+<body>
+    <form th:action="@{/admin/studentUpdate}" th:object="${student}">
+        学生序号: <input type="text" readonly="readonly" th:field="*{id}">
+        <br>
+        学生姓名: <input type="text" placeholder="请输入学生姓名" th:field="*{name}">
+        学生学号: <input type="text" placeholder="请输入学生学号" th:field="*{number}">
+        学生密码: <input type="password" placeholder="请输入学生密码" th:field="*{pwd}">
+        小组序号: <input type="text" placeholder="请输入学生小组序号" th:field="*{groupId}">
+        是否为组长: <input type="text" placeholder="是否为组长" th:field="*{isLeader}">
+        <button type="submit">修改</button>
+        <button type="reset">重置</button>
+    </form>
+
+</body>
+</html>
