@@ -8,5 +8,5 @@ import javax.servlet.http.HttpSession;
 
 public interface TeacherService {
     public String teacherLogin(Teacher teacher, HttpSession session, Model model);
-    public void teacherSave(Teacher teacher, Model model);
+    public String teacherSave(Teacher teacher, Model model);
 }

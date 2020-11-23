@@ -12,11 +12,11 @@
 		<br><br>
 		<form th:action="@{/before/teacher/login}" name="myform" method="post" th:object="${teacher}"  class="form-horizontal" role="form" >
 			<div class="form-group has-success">
-				<label class="col-sm-2 col-md-2 control-label">用户名</label>
+				<label class="col-sm-2 col-md-2 control-label">教职工号</label>
 				<div class="col-sm-4 col-md-4">
 					<input type="text" class="form-control"
-					 placeholder="请输入用户名"
-					th:field="*{teacherName}"/>
+					 placeholder="请输入教职工号"
+					th:field="*{number}"/>
 				</div>
 			</div>
 		
@@ -24,8 +24,7 @@
 				  <label class="col-sm-2 col-md-2 control-label">密码</label>
 				  <div class="col-sm-4 col-md-4">
 		  				<input type="password" class="form-control"
-					 placeholder="请输入您的密码" th:field="*{teacherPwd}"/>
-					 <span th:errors="*{teacherPwd}"></span>
+					 placeholder="请输入您的密码" th:field="*{pwd}"/>
 				  </div>
 			 </div>
 			<div class="form-group">

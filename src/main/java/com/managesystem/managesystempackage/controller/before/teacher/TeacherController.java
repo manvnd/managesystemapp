@@ -28,7 +28,8 @@ public class TeacherController {
         return "before/teacher/register";
     }
     @RequestMapping("/register")
-    public void register(@ModelAttribute("teacher") Teacher teacher, Model model) {
-        teacherService.teacherSave(teacher, model);
+    public String register(@ModelAttribute("teacher") Teacher teacher, Model model) {
+        return teacherService.teacherSave(teacher, model);
     }
+
 }

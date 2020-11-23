@@ -10,5 +10,5 @@ import java.util.List;
 @Mapper
 public interface TeacherRepository {
     List<Teacher> teacherLogin(Teacher teacher);
-    void teacherSave(Teacher teacher);
+    int teacherSave(Teacher teacher);
 }

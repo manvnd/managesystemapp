@@ -2,11 +2,9 @@ package com.managesystem.managesystempackage.entity;
 
 public class Teacher {
     private Integer id;
-    private String teacherName;
-    private String teacherNumber;
-    private String teacherPwd;
-    private String teachaerRepwd;
-    private String code;
+    private String name;
+    private String number;
+    private String pwd;
 
     public Integer getId() {
         return id;
@@ -16,43 +14,27 @@ public class Teacher {
         this.id = id;
     }
 
-    public String getTeacherName() {
-        return teacherName;
+    public String getName() {
+        return name;
     }
 
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTeacherNumber() {
-        return teacherNumber;
+    public String getNumber() {
+        return number;
     }
 
-    public void setTeacherNumber(String teacherNumber) {
-        this.teacherNumber = teacherNumber;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public String getTeacherPwd() {
-        return teacherPwd;
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setTeacherPwd(String teacherPwd) {
-        this.teacherPwd = teacherPwd;
-    }
-
-    public String getTeachaerRepwd() {
-        return teachaerRepwd;
-    }
-
-    public void setTeachaerRepwd(String teachaerRepwd) {
-        this.teachaerRepwd = teachaerRepwd;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 }

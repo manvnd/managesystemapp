@@ -16,6 +16,7 @@ public class TeacherServiceImpl implements TeacherService {
     private TeacherRepository teacherRepository;
     @Override
     public String teacherLogin(Teacher teacher, HttpSession session, Model model) {
+        teacher.setPwd(MD5Util.MD5(teacher.getPwd()));
         List<Teacher> list = teacherRepository.teacherLogin(teacher);
         if(list.size() > 0) {//登录成功
             session.setAttribute("teacher", teacher);
@@ -29,10 +30,13 @@ public class TeacherServiceImpl implements TeacherService {
         }
     }
     @Override
-    public void teacherSave(Teacher teacher, Model model) {
-        if (teacher.getTeacherName() != null && teacher.getTeacherPwd() != null) {
-            teacher.setTeacherPwd(MD5Util.MD5(teacher.getTeacherPwd()));//对教师密码进行加密
-            teacherRepository.teacherSave(teacher);
+    public String teacherSave(Teacher teacher, Model model) {
+        if (teacher.getName() != null && teacher.getPwd() != null) {
+            teacher.setPwd(MD5Util.MD5(teacher.getPwd()));//对教师密码进行加密
+            if (teacherRepository.teacherSave(teacher) > 0) {
+                return "before/teacher/login";
+            }
         }
+        return "no";
     }
 }

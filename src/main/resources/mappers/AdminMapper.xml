@@ -18,10 +18,35 @@
     <insert id="studentAdd" parameterType="Student">
         insert into student (name, number, pwd) values (#{name}, #{number}, #{pwd})
     </insert>
-    <update id="studentUpdate" parameterType="Student">
+    <update id="studentUpdateExceptPwd" parameterType="Student">
+        update student set(name, number, groupId, isLeader) = (#{name}, #{number}, #{groupId}, #{isLeader}) where id = #{id}
+    </update>
+    <update id="studentUpdateConcludePwd" parameterType="Student">
         update student set(name, number, pwd, groupId, isLeader) = (#{name}, #{number}, #{pwd}, #{groupId}, #{isLeader}) where id = #{id}
     </update>
     <select id="selectOneStudent" resultType="Student">
         select * from student where id = #{id}
+    </select>
+
+    <select id="selectTeachersByPage" parameterType="int" resultType="com.managesystem.managesystempackage.entity.Teacher">
+        select id, name, number, pwd from teacher limit #{perPageSize} offset #{startIndex}
+    </select>
+    <delete id="teacherDelete" parameterType="int">
+        delete from teacher where id = #{id}
+    </delete>
+    <select id="selectAllTeachers" resultType="int">
+        select count(*) from teacher
+    </select>
+    <insert id="teacherAdd" parameterType="Teacher">
+        insert into teacher (name, number, pwd) values (#{name}, #{number}, #{pwd})
+    </insert>
+    <update id="teacherUpdateExceptPwd" parameterType="Teacher">
+        update teacher set(name, number) = (#{name}, #{number}) where id = #{id}
+    </update>
+    <update id="teacherUpdateConcludePwd" parameterType="Teacher">
+        update teacher set(name, number, pwd) = (#{name}, #{number}, #{pwd}) where id = #{id}
+    </update>
+    <select id="selectOneTeacher" resultType="Teacher">
+        select * from teacher where id = #{id}
     </select>
 </mapper>

@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.managesystem.managesystempackage.entity.Admin;
 import com.managesystem.managesystempackage.entity.Student;
+import com.managesystem.managesystempackage.entity.Teacher;
 import com.managesystem.managesystempackage.service.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,9 +31,9 @@ public class AdminController {
     public String login(@ModelAttribute("admin") Admin admin, HttpSession session, Model model) {
         return adminService.adminLogin(admin, session, model);
     }
-    @RequestMapping("/allTeacherInfo")
-    public String allTeacherInfo(Model model) {
-        return "admin/allTeacherInfo";
+    @RequestMapping("/home")
+    public String home() {
+        return "admin/home";
     }
     @RequestMapping("/allStudentInfo")
     public String allStudentInfo(Model model, Integer currentPage) {
@@ -58,7 +59,32 @@ public class AdminController {
     }
     @RequestMapping("/studentUpdate")
     public String studentUpdate(@ModelAttribute("student") Student student) {
-        System.out.println(student.getIsLeader());
         return adminService.studentUpdate(student);
+    }
+    @RequestMapping("/allTeacherInfo")
+    public String allTeacherInfo(Model model, Integer currentPage) {
+        return adminService.getTeachersInfo(model, currentPage);
+    }
+    @RequestMapping("/teacherDelete")
+    public String teacherDelete(int id) {
+        return adminService.teacherDelete(id);
+    }
+    @RequestMapping("/toTeacherAdd")
+    public String toTeacherAdd(@ModelAttribute("teacher") Teacher teacher) {
+        return "admin/teacherAdd";
+    }
+    @RequestMapping("/teacherAdd")
+    public String teacherAdd(@ModelAttribute("teacher") Teacher teacher) {
+        return adminService.teacherAdd(teacher);
+    }
+    @RequestMapping("/toTeacherUpdate")
+    public String toTeacherUpdate(Model model, Integer id) {
+        Teacher teacher = adminService.selectOneTeacher(id);
+        model.addAttribute("teacher", teacher);
+        return "admin/teacherUpdate";
+    }
+    @RequestMapping("/teacherUpdate")
+    public String teacherUpdate(@ModelAttribute("teacher") Teacher teacher) {
+        return adminService.teacherUpdate(teacher);
     }
 }

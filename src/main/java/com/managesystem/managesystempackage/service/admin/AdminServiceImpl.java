@@ -2,6 +2,7 @@ package com.managesystem.managesystempackage.service.admin;
 
 import com.managesystem.managesystempackage.entity.Admin;
 import com.managesystem.managesystempackage.entity.Student;
+import com.managesystem.managesystempackage.entity.Teacher;
 import com.managesystem.managesystempackage.repository.admin.AdminRepository;
 import com.managesystem.managesystempackage.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,11 +53,57 @@ public class AdminServiceImpl implements AdminService{
     }
     @Override
     public String studentUpdate(Student student) {
-        adminRepository.studentUpdate(student);
+        System.out.println(student.getPwd());
+        if (student.getPwd().equals("")) {
+            adminRepository.studentUpdateExceptPwd(student);
+        }
+        else {
+            student.setPwd(MD5Util.MD5(student.getPwd()));
+            adminRepository.studentUpdateConcludePwd(student);
+        }
         return "redirect:/admin/allStudentInfo?currentPage=1";
     }
     @Override
     public Student selectOneStudent(Integer id) {
         return adminRepository.selectOneStudent(id);
+    }
+    @Override
+    public String getTeachersInfo(Model model, Integer currentPage) {
+        //共多少个老师
+        int totalCount = adminRepository.selectAllTeachers();
+        //计算共多少页
+        int pageSize = 5;
+        int totalPage = (int)Math.ceil(totalCount * 1.0 / pageSize);
+        List<Teacher> teachersByPage = adminRepository.selectTeachersByPage((currentPage - 1) * pageSize, pageSize);
+        model.addAttribute("teachers", teachersByPage);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("currentPage", currentPage);
+        return "/admin/allTeacherInfo";
+    }
+    @Override
+    public String teacherDelete(int id) {
+        adminRepository.teacherDelete(id);
+        return "redirect:/admin/allTeacherInfo?currentPage=1";
+    }
+    @Override
+    public String teacherAdd(Teacher teacher) {
+        teacher.setPwd(MD5Util.MD5("123456"));
+        adminRepository.teacherAdd(teacher);
+        return "redirect:/admin/allTeacherInfo?currentPage=1";
+    }
+    @Override
+    public String teacherUpdate(Teacher teacher) {
+        if (teacher.getPwd().equals("")) {
+            adminRepository.teacherUpdateExceptPwd(teacher);
+        }
+        else {
+            teacher.setPwd(MD5Util.MD5(teacher.getPwd()));
+            adminRepository.teacherUpdateConcludePwd(teacher);
+        }
+        return "redirect:/admin/allTeacherInfo?currentPage=1";
+    }
+    @Override
+    public Teacher selectOneTeacher(Integer id) {
+        return adminRepository.selectOneTeacher(id);
     }
 }
