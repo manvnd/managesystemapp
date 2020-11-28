@@ -5,6 +5,8 @@
     <title>学生主页</title>
 </head>
 <body>
-    <a th:text="${studentName}"></a>
+    <div th:object="${session.student}">
+        <a th:text="*{name}"></a>
+    </div>
 </body>
 </html>

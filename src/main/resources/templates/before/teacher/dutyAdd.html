@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>综设添加</title>
+</head>
+<body>
+    <form th:action="@{/before/teacher/dutyAdd}" method="post" th:Object="${duty}" enctype="multipart/form-data">
+        <label>名称</label>
+        <input type="text" placeholder="请输入综设名称" th:field="*{name}"/>
+        <label>简介</label>
+        <input type="text" placeholder="请输入综设简介" th:field="*{summary}"/>
+        <label>最多选课人数</label>
+        <input type="text" placeholder="最多选择此综设的人数" th:field="*{size}"/>
+        <label>上传描述文件</label>
+        <input type="file" placeholder="请选择综设描述文件" name="fileName" />
+        <br>
+        <button type="submit"class="btn btn-success" >添加</button>
+        <button type="reset" class="btn btn-primary" >重置</button>
+    </form>
+</body>
+</html>

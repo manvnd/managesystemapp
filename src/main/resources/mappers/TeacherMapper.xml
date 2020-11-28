@@ -9,4 +9,10 @@
     <insert id="teacherSave" parameterType="com.managesystem.managesystempackage.entity.Teacher">
         insert into teacher(name, number, pwd) values (#{name}, #{number}, #{pwd})
     </insert>
+    <insert id="dutyAdd" parameterType="Duty">
+        insert into duty(name, summary, descriptionFile, teacherId, size, selectedNumber) values (#{name}, #{summary}, #{descriptionFile} , #{teacherId}, #{size}, #{selectedNumber})
+    </insert>
+    <select id="getDutyByTeacherId" resultType="Duty">
+        select * from duty where teacherId = #{teacherId};
+    </select>
 </mapper>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br/>
+<h1>教师列表</h1>
+<br/><br/>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>综设名称</th>
+            <th>简介</th>
+            <th>描述文件</th>
+            <th>最多选择人数</th>
+            <th>已选人数</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="duty : ${duties}">
+            <th scope="row" th:text="${duty.id}"></th>
+            <td th:text="${duty.name}"></td>
+            <td th:text="${duty.summary}"></td>
+            <td>
+                <a th:href="@{/before/teacher/fileDownload(fileName = ${duty.descriptionFile})}">
+                    <span th:text="${duty.descriptionFile}"></span></a>
+            </td>
+            <td th:text="${duty.size}"></td>
+            <td th:text="${duty.selectedNumber}"></td>
+<!--            <td><a th:href="@{/admin/toTeacherUpdate(id=${teacher.getId()})}">编辑</a></td>-->
+<!--            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>-->
+        </tr>
+        </tbody>
+    </table>
+<!--    <li><a>第<span th:text="${currentPage}"></span>页</a></li>-->
+<!--    <li><a>共<span th:text="${totalPage}"></span>页</a></li>-->
+<!--    <li>-->
+<!--        <span th:if="${currentPage} != 1">-->
+<!--            <a th:href="'/admin/allTeacherInfo?currentPage=' + ${currentPage - 1}">上一页</a>-->
+<!--        </span>-->
+<!--        <span th:if="${currentPage} != ${totalPage}">-->
+<!--            <a th:href="'/admin/allTeacherInfo?currentPage=' + ${currentPage + 1}">下一页</a>-->
+<!--        </span>-->
+<!--    </li>-->
+</div>
+
+<!--<a th:href="@{/admin/toTeacherAdd}">添加</a>-->
+<!--<a th:href="@{/admin/home}">返回</a>-->
+</body>
+</html>

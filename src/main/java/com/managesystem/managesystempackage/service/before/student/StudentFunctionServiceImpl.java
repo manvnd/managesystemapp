@@ -11,11 +11,6 @@ import javax.servlet.http.HttpSession;
 public class StudentFunctionServiceImpl implements StudentFunctionService{
     @Override
     public String home(Model model, HttpSession session) {
-        model.addAttribute("studentName", MYUtil.getStudent(session).getName());
-        System.out.println(session.getAttribute("student"));
-        Student student = (Student)session.getAttribute("student");
-        System.out.println(student.getName());
-        System.out.println(MYUtil.getStudent(session).getName());
         return "before/student/home";
     }
 }

@@ -20,7 +20,7 @@ public class AdminServiceImpl implements AdminService{
     public String adminLogin(Admin admin, HttpSession session, Model model) {
         List<Admin> list = adminRepository.adminLogin(admin);
         if(list.size() > 0) {//登录成功
-            session.setAttribute("admin", admin);
+            session.setAttribute("admin", list.get(0));
             return "admin/home";
         }else {//登录失败
             model.addAttribute("loginMessage", "用户名或密码错误");
