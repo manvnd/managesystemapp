@@ -8,9 +8,9 @@
 		<br><br>
 		<form th:action="@{/before/student/login}" method="post" th:object="${student}">
 			<label>学号</label>
-			<input type="text" placeholder="请输入用户名" th:field="*{number}"/>
+			<input type="text" placeholder="请输入用户名" th:field="*{studentNumber}"/>
 			<label>密码</label>
-			<input type="password" placeholder="请输入您的密码" th:field="*{pwd}"/>
+			<input type="password" placeholder="请输入您的密码" th:field="*{studentPwd}"/>
 
 			<button type="submit"class="btn btn-success" >登录</button>
 			<button type="reset" class="btn btn-primary" >重置</button>

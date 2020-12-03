@@ -6,7 +6,8 @@
 </head>
 <body>
     <div th:object="${session.student}">
-        <a th:text="*{name}"></a>
+        <a th:text="*{studentName}"></a>
     </div>
+    <a th:href="@{/before/student/toDutyInfo(currentPage=1)}">选择综合设计</a>
 </body>
 </html>

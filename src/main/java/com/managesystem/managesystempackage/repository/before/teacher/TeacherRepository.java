@@ -13,5 +13,8 @@ public interface TeacherRepository {
     List<Teacher> teacherLogin(Teacher teacher);
     int teacherSave(Teacher teacher);
     int dutyAdd(Duty duty);
-    List<Duty> getDutyByTeacherId(Integer teacherId);
+    List<Duty> getDutyByTeacherIdByPage(Integer teacherId, int startIndex, int perPageSize);
+    int getAllDutyByTeacherId(Integer teacherId);
+    List<Duty> getDutyByPage(int startIndex, int perPageSize);
+    int getAllDuty();
 }

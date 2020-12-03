@@ -21,11 +21,11 @@
         </thead>
         <tbody>
         <tr  th:each="teacher : ${teachers}">
-            <th scope="row" th:text="${teacher.id}"></th>
-            <td th:text="${teacher.name}"></td>
-            <td th:text="${teacher.number}"></td>
-            <td><a th:href="@{/admin/toTeacherUpdate(id=${teacher.getId()})}">编辑</a></td>
-            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>
+            <th scope="row" th:text="${teacher.teacherId}"></th>
+            <td th:text="${teacher.teacherName}"></td>
+            <td th:text="${teacher.teacherNumber}"></td>
+            <td><a th:href="@{/admin/toTeacherUpdate(id=${teacher.getTeacherId()})}">编辑</a></td>
+            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getTeacherId()})}">删除</a></td>
         </tr>
         </tbody>
     </table>

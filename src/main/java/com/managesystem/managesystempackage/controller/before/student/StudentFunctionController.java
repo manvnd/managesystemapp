@@ -1,6 +1,6 @@
 package com.managesystem.managesystempackage.controller.before.student;
 
-import com.managesystem.managesystempackage.service.before.student.StudentFunctionService;
+import com.managesystem.managesystempackage.service.before.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +12,13 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/before/student")
 public class StudentFunctionController extends StudentBaseController{
     @Autowired
-    StudentFunctionService studentFunctionService;
+    private StudentService studentService;
     @RequestMapping("/home")
     public String home(Model model, HttpSession session) {
-        return studentFunctionService.home(model, session);
+        return studentService.home(model, session);
+    }
+    @RequestMapping("/toDutyInfo")
+    public String toDutyInfo(Model model, Integer currentPage) {
+        return studentService.getDutyList(model, currentPage);
     }
 }

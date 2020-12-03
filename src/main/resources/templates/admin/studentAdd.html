@@ -6,8 +6,8 @@
 </head>
 <body>
     <form th:action="@{/admin/studentAdd}" th:object="${student}">
-    学生姓名: <input type="text" placeholder="请输入学生姓名" th:field="*{name}">
-    学生学号: <input type="text" placeholder="请输入学生学号" th:field="*{number}">
+    学生姓名: <input type="text" placeholder="请输入学生姓名" th:field="*{studentName}">
+    学生学号: <input type="text" placeholder="请输入学生学号" th:field="*{studentNumber}">
     <button type="submit">添加</button>
     <button type="reset">重置</button>
     </form>

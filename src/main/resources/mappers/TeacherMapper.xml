@@ -4,15 +4,41 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.managesystem.managesystempackage.repository.before.teacher.TeacherRepository">
     <select id="teacherLogin" parameterType="com.managesystem.managesystempackage.entity.Teacher" resultType="com.managesystem.managesystempackage.entity.Teacher">
-        select * from teacher where number = #{number} and pwd = #{pwd}
+        select * from teacher where teacherNumber = #{teacherNumber} and teacherPwd = #{teacherPwd}
     </select>
     <insert id="teacherSave" parameterType="com.managesystem.managesystempackage.entity.Teacher">
-        insert into teacher(name, number, pwd) values (#{name}, #{number}, #{pwd})
+        insert into teacher(teacherName, teacherNumber, teacherPwd) values (#{teacherName}, #{teacherNumber}, #{teacherPwd})
     </insert>
     <insert id="dutyAdd" parameterType="Duty">
-        insert into duty(name, summary, descriptionFile, teacherId, size, selectedNumber) values (#{name}, #{summary}, #{descriptionFile} , #{teacherId}, #{size}, #{selectedNumber})
+        insert into duty(dutyName, dutySummary, dutyDescriptionFile, teacherId, dutySize, dutySelectedNumber) values (#{dutyName}, #{dutySummary}, #{dutyDescriptionFile} , #{teacherId}, #{dutySize}, #{dutySelectedNumber})
     </insert>
-    <select id="getDutyByTeacherId" resultType="Duty">
-        select * from duty where teacherId = #{teacherId};
+    <select id="getDutyByTeacherIdByPage" resultType="Duty">
+        select * from duty where teacherId = #{teacherId} limit #{perPageSize} offset #{startIndex}
+    </select>
+
+    <select id="getAllDutyByTeacherId" resultType="int">
+        select count(*) from duty where teacherId = #{teacherId}
+    </select>
+    
+    <resultMap id="dutyWithTeacherName" type="Duty">
+        <id column="dutyId" property="dutyId"/>
+        <result column="dutyName" property="dutyName"/>
+        <result column="dutySummary" property="dutySummary"/>
+        <result column="dutyDescriptionFile" property="dutyDescriptionFile"/>
+        <result column="teacherId" property="teacherId"/>
+        <result column="dutySize" property="dutySize"/>
+        <result column="dutySelectedNumber" property="dutySelectedNumber"/>
+        <association property="teacher" javaType="com.managesystem.managesystempackage.entity.Teacher">
+            <id column="teacherId" property="teacherId"/>
+            <result column="teacherName" property="teacherName"/>
+        </association>
+    </resultMap>
+
+    <select id="getDutyByPage" resultMap="dutyWithTeacherName">
+        select a.*, b.teacherName from duty as a left join teacher as b on a.teacherId = b.teacherId limit #{perPageSize} offset #{startIndex}
+    </select>
+
+    <select id="getAllDuty" resultType="int">
+        select count(*) from duty
     </select>
 </mapper>

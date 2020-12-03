@@ -12,5 +12,5 @@ public interface TeacherService {
     public String teacherLogin(Teacher teacher, HttpSession session, Model model);
     public String teacherSave(Teacher teacher, Model model);
     public String dutyAdd(Duty duty, HttpSession session, Model model) throws IOException;
-    public String toDutyInfo(Model model, Integer teacherId);
+    public String toDutyInfo(Model model, Integer teacherId, Integer currentPage);
 }

@@ -4,49 +4,49 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.managesystem.managesystempackage.repository.admin.AdminRepository">
     <select id="adminLogin" parameterType="com.managesystem.managesystempackage.entity.Admin" resultType="com.managesystem.managesystempackage.entity.Admin">
-        select * from admin where name = #{name} and pwd = #{pwd}
+        select * from admin where adminName = #{adminName} and adminPwd = #{adminPwd}
     </select>
     <select id="selectStudentsByPage" parameterType="int" resultType="com.managesystem.managesystempackage.entity.Student">
-        select id, name, number, pwd, groupId, isLeader from student limit #{perPageSize} offset #{startIndex}
+        select adminId, adminName, adminNumber, adminPwd, studentGroupId, isLeader from student limit #{perPageSize} offset #{startIndex}
     </select>
     <delete id="studentDelete" parameterType="int">
-        delete from student where id = #{id}
+        delete from student where studentId = #{studentId}
     </delete>
     <select id="selectAllStudents" resultType="int">
         select count(*) from student
     </select>
     <insert id="studentAdd" parameterType="Student">
-        insert into student (name, number, pwd) values (#{name}, #{number}, #{pwd})
+        insert into student (studentName, studentNumber, studentPwd) values (#{studentName}, #{studentNumber}, #{studentPwd})
     </insert>
     <update id="studentUpdateExceptPwd" parameterType="Student">
-        update student set(name, number, groupId, isLeader) = (#{name}, #{number}, #{groupId}, #{isLeader}) where id = #{id}
+        update student set(studentName, studentNumber, studentGroupId, isLeader) = (#{studentName}, #{studentNumber}, #{studentGroupId}, #{isLeader}) where studentId = #{studentId}
     </update>
     <update id="studentUpdateConcludePwd" parameterType="Student">
-        update student set(name, number, pwd, groupId, isLeader) = (#{name}, #{number}, #{pwd}, #{groupId}, #{isLeader}) where id = #{id}
+        update student set(studentName, studentNumber, studentPwd, studentGroupId, isLeader) = (#{studentName}, #{studentNumber}, #{studentPwd}, #{studentGroupId}, #{isLeader}) where studentId = #{studentId}
     </update>
     <select id="selectOneStudent" resultType="Student">
-        select * from student where id = #{id}
+        select * from student where studentId = #{studentId}
     </select>
 
     <select id="selectTeachersByPage" parameterType="int" resultType="com.managesystem.managesystempackage.entity.Teacher">
-        select id, name, number, pwd from teacher limit #{perPageSize} offset #{startIndex}
+        select teacherId, teacherName, teacherNumber, teacherPwd from teacher limit #{perPageSize} offset #{startIndex}
     </select>
     <delete id="teacherDelete" parameterType="int">
-        delete from teacher where id = #{id}
+        delete from teacher where teacherId = #{teacherId}
     </delete>
     <select id="selectAllTeachers" resultType="int">
         select count(*) from teacher
     </select>
     <insert id="teacherAdd" parameterType="Teacher">
-        insert into teacher (name, number, pwd) values (#{name}, #{number}, #{pwd})
+        insert into teacher (teacherName, teacherNumber, teacherPwd) values (#{teacherName}, #{teacherNumber}, #{teacherPwd})
     </insert>
     <update id="teacherUpdateExceptPwd" parameterType="Teacher">
-        update teacher set(name, number) = (#{name}, #{number}) where id = #{id}
+        update teacher set(teacherName, teacherNumber) = (#{teacherName}, #{teacherNumber}) where teacherId = #{teacherId}
     </update>
     <update id="teacherUpdateConcludePwd" parameterType="Teacher">
-        update teacher set(name, number, pwd) = (#{name}, #{number}, #{pwd}) where id = #{id}
+        update teacher set(teacherName, teacherNumber, teacherPwd) = (#{teacherName}, #{teacherNumber}, #{teacherPwd}) where teacherId = #{teacherId}
     </update>
     <select id="selectOneTeacher" resultType="Teacher">
-        select * from teacher where id = #{id}
+        select * from teacher where teacherId = #{teacherId}
     </select>
 </mapper>

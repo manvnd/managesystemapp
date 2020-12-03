@@ -3,54 +3,56 @@ package com.managesystem.managesystempackage.entity;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Duty {
-    private int id;
-    private String name;
-    private String summary;
-    private String descriptionFile;
+    private int dutyId;
+    private String dutyName;
+    private String dutySummary;
+    private String dutyDescriptionFile;
 
     private int teacherId;
-    private int size;
-    private int selectedNumber;
-    private MultipartFile fileName;
+    private int dutySize;
+    private int dutySelectedNumber;
+    private MultipartFile dutyFileName;
 
-    public MultipartFile getFileName() {
-        return fileName;
+    private Teacher teacher;
+
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setFileName(MultipartFile fileName) {
-        this.fileName = fileName;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
-    public int getId() {
-        return id;
+    public int getDutyId() {
+        return dutyId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDutyId(int dutyId) {
+        this.dutyId = dutyId;
     }
 
-    public String getName() {
-        return name;
+    public String getDutyName() {
+        return dutyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDutyName(String dutyName) {
+        this.dutyName = dutyName;
     }
 
-    public String getSummary() {
-        return summary;
+    public String getDutySummary() {
+        return dutySummary;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setDutySummary(String dutySummary) {
+        this.dutySummary = dutySummary;
     }
 
-    public String getDescriptionFile() {
-        return descriptionFile;
+    public String getDutyDescriptionFile() {
+        return dutyDescriptionFile;
     }
 
-    public void setDescriptionFile(String descriptionFile) {
-        this.descriptionFile = descriptionFile;
+    public void setDutyDescriptionFile(String dutyDescriptionFile) {
+        this.dutyDescriptionFile = dutyDescriptionFile;
     }
 
     public int getTeacherId() {
@@ -61,19 +63,27 @@ public class Duty {
         this.teacherId = teacherId;
     }
 
-    public int getSize() {
-        return size;
+    public int getDutySize() {
+        return dutySize;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public void setDutySize(int dutySize) {
+        this.dutySize = dutySize;
     }
 
-    public int getSelectedNumber() {
-        return selectedNumber;
+    public int getDutySelectedNumber() {
+        return dutySelectedNumber;
     }
 
-    public void setSelectedNumber(int selectedNumber) {
-        this.selectedNumber = selectedNumber;
+    public void setDutySelectedNumber(int dutySelectedNumber) {
+        this.dutySelectedNumber = dutySelectedNumber;
+    }
+
+    public MultipartFile getDutyFileName() {
+        return dutyFileName;
+    }
+
+    public void setDutyFileName(MultipartFile dutyFileName) {
+        this.dutyFileName = dutyFileName;
     }
 }

@@ -10,10 +10,9 @@
 		<br>
 		<form th:action="@{/admin/login}" name="myform" method="post" th:object="${admin}"  class="form-horizontal" role="form" >
 				<label class="col-sm-2 col-md-2 control-label">用户名</label>
-				<input type="text" class="form-control" placeholder="请输入管理员名" th:field="*{name}"/>
-				<span th:errors="*{name}"></span>
+				<input type="text" class="form-control" placeholder="请输入管理员名" th:field="*{adminName}"/>
 			<input type="password" class="form-control"
-					 placeholder="请输入您的密码" th:field="*{pwd}"/>
+					 placeholder="请输入您的密码" th:field="*{adminPwd}"/>
 
 			<button type="submit"class="btn btn-success" >登录</button>
 			<button type="reset" class="btn btn-primary" >重置</button>

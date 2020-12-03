@@ -1,22 +1,22 @@
 package com.managesystem.managesystempackage.entity;
 
 public class Admin {
-	private String name;
-	private String pwd;
+	private String adminName;
+	private String adminPwd;
 
-	public String getName() {
-		return name;
+	public String getAdminName() {
+		return adminName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
 	}
 
-	public String getPwd() {
-		return pwd;
+	public String getAdminPwd() {
+		return adminPwd;
 	}
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setAdminPwd(String adminPwd) {
+		this.adminPwd = adminPwd;
 	}
 }

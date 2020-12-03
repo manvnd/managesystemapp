@@ -6,9 +6,9 @@
 </head>
 <body>
 <form action="/before/teacher/register" method="post" th:object="${teacher}">
-    用户名：<input type="text" th:field="*{name}"><br>
-    教职工号: <input type="text" th:field="*{number}"><br>
-    密码：<input type="password" th:field="*{pwd}"><br>
+    用户名：<input type="text" th:field="*{teacherName}"><br>
+    教职工号: <input type="text" th:field="*{teacherNumber}"><br>
+    密码：<input type="password" th:field="*{teacherPwd}"><br>
     <input type="submit" value="注册">
 </form>
 </body>

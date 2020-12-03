@@ -6,11 +6,11 @@
 </head>
 <body>
 <form th:action="@{/admin/teacherUpdate}" th:object="${teacher}">
-    教师序号: <input type="text" readonly="readonly" th:field="*{id}">
+    教师序号: <input type="text" readonly="readonly" th:field="*{teacherId}">
     <br>
-    教师姓名: <input type="text" placeholder="请输入学生姓名" th:field="*{name}">
-    教师学号: <input type="text" placeholder="请输入学生学号" th:field="*{number}">
-    教师密码: <input type="password" placeholder="请输入学生密码" th:field="*{pwd}">
+    教师姓名: <input type="text" placeholder="请输入学生姓名" th:field="*{teacherName}">
+    教师学号: <input type="text" placeholder="请输入学生学号" th:field="*{teacherNumber}">
+    教师密码: <input type="password" placeholder="请输入学生密码" th:field="*{teacherPwd}">
     <button type="submit">修改</button>
     <button type="reset">重置</button>
 </form>

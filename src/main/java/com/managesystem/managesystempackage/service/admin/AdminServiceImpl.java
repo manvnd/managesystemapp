@@ -47,18 +47,18 @@ public class AdminServiceImpl implements AdminService{
     }
     @Override
     public String studentAdd(Student student) {
-        student.setPwd(MD5Util.MD5("123456"));
+        student.setStudentPwd(MD5Util.MD5("123456"));
         adminRepository.studentAdd(student);
         return "redirect:/admin/allStudentInfo?currentPage=1";
     }
     @Override
     public String studentUpdate(Student student) {
-        System.out.println(student.getPwd());
-        if (student.getPwd().equals("")) {
+        System.out.println(student.getStudentPwd());
+        if (student.getStudentPwd().equals("")) {
             adminRepository.studentUpdateExceptPwd(student);
         }
         else {
-            student.setPwd(MD5Util.MD5(student.getPwd()));
+            student.setStudentPwd(MD5Util.MD5(student.getStudentPwd()));
             adminRepository.studentUpdateConcludePwd(student);
         }
         return "redirect:/admin/allStudentInfo?currentPage=1";
@@ -87,17 +87,17 @@ public class AdminServiceImpl implements AdminService{
     }
     @Override
     public String teacherAdd(Teacher teacher) {
-        teacher.setPwd(MD5Util.MD5("123456"));
+        teacher.setTeacherPwd(MD5Util.MD5("123456"));
         adminRepository.teacherAdd(teacher);
         return "redirect:/admin/allTeacherInfo?currentPage=1";
     }
     @Override
     public String teacherUpdate(Teacher teacher) {
-        if (teacher.getPwd().equals("")) {
+        if (teacher.getTeacherPwd().equals("")) {
             adminRepository.teacherUpdateExceptPwd(teacher);
         }
         else {
-            teacher.setPwd(MD5Util.MD5(teacher.getPwd()));
+            teacher.setTeacherPwd(MD5Util.MD5(teacher.getTeacherPwd()));
             adminRepository.teacherUpdateConcludePwd(teacher);
         }
         return "redirect:/admin/allTeacherInfo?currentPage=1";

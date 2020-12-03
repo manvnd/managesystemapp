@@ -6,9 +6,9 @@
 </head>
 <body>
 <form action="/before/student/register" method="post" th:object="${student}">
-    你的名字：<input type="text" th:field="*{name}"><br>
-    你的学号：<input type="text" th:field="*{number}"><br>
-    密码：<input type="password" th:field="*{pwd}"><br>
+    你的名字：<input type="text" th:field="*{studentName}"><br>
+    你的学号：<input type="text" th:field="*{studentNumber}"><br>
+    密码：<input type="password" th:field="*{studentPwd}"><br>
     <input type="submit" value="注册">
     <br>
     <a th:href="@{/before/teacher/toRegister}">如果你是老师，点此注册</a>

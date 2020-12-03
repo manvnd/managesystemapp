@@ -1,6 +1,7 @@
 package com.managesystem.managesystempackage.service.before.teacher;
 
 import com.managesystem.managesystempackage.entity.Duty;
+import com.managesystem.managesystempackage.entity.Student;
 import com.managesystem.managesystempackage.entity.Teacher;
 import com.managesystem.managesystempackage.repository.before.teacher.TeacherRepository;
 import com.managesystem.managesystempackage.util.MD5Util;
@@ -21,7 +22,7 @@ public class TeacherServiceImpl implements TeacherService {
     private TeacherRepository teacherRepository;
     @Override
     public String teacherLogin(Teacher teacher, HttpSession session, Model model) {
-        teacher.setPwd(MD5Util.MD5(teacher.getPwd()));
+        teacher.setTeacherPwd(MD5Util.MD5(teacher.getTeacherPwd()));
         List<Teacher> list = teacherRepository.teacherLogin(teacher);
         if(list.size() > 0) {//登录成功
             session.setAttribute("teacher", list.get(0));
@@ -33,8 +34,8 @@ public class TeacherServiceImpl implements TeacherService {
     }
     @Override
     public String teacherSave(Teacher teacher, Model model) {
-        if (teacher.getName() != null && teacher.getPwd() != null) {
-            teacher.setPwd(MD5Util.MD5(teacher.getPwd()));//对教师密码进行加密
+        if (teacher.getTeacherName() != null && teacher.getTeacherPwd() != null) {
+            teacher.setTeacherPwd(MD5Util.MD5(teacher.getTeacherPwd()));//对教师密码进行加密
             if (teacherRepository.teacherSave(teacher) > 0) {
                 return "before/teacher/login";
             }
@@ -43,7 +44,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
     @Override
     public String dutyAdd(Duty duty, HttpSession session, Model model) throws IOException {
-        MultipartFile dutyFile = duty.getFileName();
+        MultipartFile dutyFile = duty.getDutyFileName();
         if (!dutyFile.isEmpty()) {
             //上传文件路径
             String path = "/Users/yucan/Downloads/Code/04/Project/managesystemapp/src/main/resources/files";
@@ -60,17 +61,25 @@ public class TeacherServiceImpl implements TeacherService {
                 //将上传文件保存到另一个目标文件中
                 dutyFile.transferTo(filePath);
             }
-            duty.setDescriptionFile(fileNewName);
+            duty.setDutyDescriptionFile(fileNewName);
         }
-        duty.setTeacherId(MYUtil.getTeacher(session).getId());
-        duty.setSelectedNumber(0);
+        duty.setTeacherId(MYUtil.getTeacher(session).getTeacherId());
+        duty.setDutySelectedNumber(0);
         teacherRepository.dutyAdd(duty);
         return "before/teacher/home";
     }
     @Override
-    public String toDutyInfo(Model model, Integer teacherId) {
-        List<Duty> duties = teacherRepository.getDutyByTeacherId(teacherId);
-        model.addAttribute("duties", duties);
+    public String toDutyInfo(Model model, Integer teacherId, Integer currentPage) {
+
+        //共多少个学生
+        int totalCount = teacherRepository.getAllDutyByTeacherId(teacherId);
+        //计算共多少页
+        int pageSize = 5;
+        int totalPage = (int)Math.ceil(totalCount * 1.0 / pageSize);
+        List<Duty> dutiesByPage = teacherRepository.getDutyByTeacherIdByPage(teacherId, (currentPage - 1) * pageSize, pageSize);
+        model.addAttribute("duties", dutiesByPage);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("currentPage", currentPage);
         return "before/teacher/myDutyInfo";
     }
 

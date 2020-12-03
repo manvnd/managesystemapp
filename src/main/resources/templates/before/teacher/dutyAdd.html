@@ -7,13 +7,13 @@
 <body>
     <form th:action="@{/before/teacher/dutyAdd}" method="post" th:Object="${duty}" enctype="multipart/form-data">
         <label>名称</label>
-        <input type="text" placeholder="请输入综设名称" th:field="*{name}"/>
+        <input type="text" placeholder="请输入综设名称" th:field="*{dutyName}"/>
         <label>简介</label>
-        <input type="text" placeholder="请输入综设简介" th:field="*{summary}"/>
+        <input type="text" placeholder="请输入综设简介" th:field="*{dutySummary}"/>
         <label>最多选课人数</label>
-        <input type="text" placeholder="最多选择此综设的人数" th:field="*{size}"/>
+        <input type="text" placeholder="最多选择此综设的人数" th:field="*{dutySize}"/>
         <label>上传描述文件</label>
-        <input type="file" placeholder="请选择综设描述文件" name="fileName" />
+        <input type="file" placeholder="请选择综设描述文件" name="dutyFileName" />
         <br>
         <button type="submit"class="btn btn-success" >添加</button>
         <button type="reset" class="btn btn-primary" >重置</button>

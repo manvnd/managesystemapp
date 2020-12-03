@@ -1,40 +1,40 @@
 package com.managesystem.managesystempackage.entity;
 
 public class Teacher {
-    private Integer id;
-    private String name;
-    private String number;
-    private String pwd;
+    private Integer teacherId;
+    private String teacherName;
+    private String teacherNumber;
+    private String teacherPwd;
 
-    public Integer getId() {
-        return id;
+    public Integer getTeacherId() {
+        return teacherId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 
-    public String getName() {
-        return name;
+    public String getTeacherName() {
+        return teacherName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
-    public String getNumber() {
-        return number;
+    public String getTeacherNumber() {
+        return teacherNumber;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setTeacherNumber(String teacherNumber) {
+        this.teacherNumber = teacherNumber;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getTeacherPwd() {
+        return teacherPwd;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setTeacherPwd(String teacherPwd) {
+        this.teacherPwd = teacherPwd;
     }
 }
