@@ -2,6 +2,7 @@ package com.managesystem.managesystempackage.service.before.teacher;
 
 import com.managesystem.managesystempackage.entity.Duty;
 import com.managesystem.managesystempackage.entity.Student;
+import com.managesystem.managesystempackage.entity.StudentGroup;
 import com.managesystem.managesystempackage.entity.Teacher;
 import com.managesystem.managesystempackage.repository.before.teacher.TeacherRepository;
 import com.managesystem.managesystempackage.util.MD5Util;
@@ -70,7 +71,6 @@ public class TeacherServiceImpl implements TeacherService {
     }
     @Override
     public String toDutyInfo(Model model, Integer teacherId, Integer currentPage) {
-
         //共多少个学生
         int totalCount = teacherRepository.getAllDutyByTeacherId(teacherId);
         //计算共多少页
@@ -81,6 +81,12 @@ public class TeacherServiceImpl implements TeacherService {
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
         return "before/teacher/myDutyInfo";
+    }
+    @Override
+    public String toCheckStudentGroupProcess(Model model, Integer dutyId) {
+        StudentGroup studentGroupList = teacherRepository.getStudentGroupProcessByDutyId(dutyId);
+        model.addAttribute("studentGroupProcess", studentGroupList);
+        return "before/teacher/studentGroupProcess";
     }
 
 }

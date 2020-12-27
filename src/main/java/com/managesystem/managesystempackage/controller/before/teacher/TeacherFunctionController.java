@@ -33,7 +33,7 @@ public class TeacherFunctionController extends TeacherBaseController {
         return "/before/teacher/dutyAdd";
     }
     @RequestMapping("dutyAdd")
-    public String dutyAdd(HttpServletRequest request, @ModelAttribute("duty") Duty duty, HttpSession session, Model model) throws IOException {
+    public String dutyAdd(@ModelAttribute("duty") Duty duty, HttpSession session, Model model) throws IOException {
         return teacherService.dutyAdd(duty, session, model);
     }
     @RequestMapping("/toDutyInfo")
@@ -62,6 +62,10 @@ public class TeacherFunctionController extends TeacherBaseController {
             builder.header("Content-Disposition", "attachment; filename* = UTF-8''" + fileName);
         }
         return builder.body(FileUtils.readFileToByteArray(downFile));
+    }
+    @RequestMapping("/toCheckStudentGroupProcess")
+    public String toCheckStudentGroupProcess(Model model, Integer dutyId) {
+        return teacherService.toCheckStudentGroupProcess(model, dutyId);
     }
 
 }

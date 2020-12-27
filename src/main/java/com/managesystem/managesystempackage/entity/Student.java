@@ -5,8 +5,16 @@ public class Student {
     private String studentName;
     private String studentNumber;
     private String studentPwd;
-    private int studentGroupId;
+    private int studentGroupNumber;
     private String isLeader;
+
+    public int getStudentGroupNumber() {
+        return studentGroupNumber;
+    }
+
+    public void setStudentGroupNumber(int studentGroupNumber) {
+        this.studentGroupNumber = studentGroupNumber;
+    }
 
     public Integer getStudentId() {
         return studentId;
@@ -38,14 +46,6 @@ public class Student {
 
     public void setStudentPwd(String studentPwd) {
         this.studentPwd = studentPwd;
-    }
-
-    public int getStudentGroupId() {
-        return studentGroupId;
-    }
-
-    public void setStudentGroupId(int studentGroupId) {
-        this.studentGroupId = studentGroupId;
     }
 
     public String getIsLeader() {

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>小组进度</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>小组序号</th>
+        <th>项目序号</th>
+        <th>第一次报告</th>
+        <th>第二次报告</th>
+        <th>第三次报告</th>
+        <th>最终分数</th>
+    </tr>
+    </thead>
+    <tbody>
+        <th scope="row" th:text="${studentGroupDutyInfo.studentGroupNumber}"></th>
+        <td th:text="${studentGroupDutyInfo.dutyId}"></td>
+        <td>
+            <span th:if="${studentGroupDutyInfo.studentGroupReportOneFile} != null">
+                <a th:href="@{/before/student/fileDownload(fileName = ${studentGroupDutyInfo.studentGroupReportOneFile})}">
+                    <b th:text="${studentGroupDutyInfo.studentGroupReportOneFile}"></b>
+                    <b th:href="@{/before/student/toUploadReportFile(fileName = one)}">更新</b>
+                </a>
+            </span>
+            <span th:unless="${studentGroupDutyInfo.studentGroupReportOneFile} != null">
+                <a th:href="@{/before/student/toUploadReportFile(fileName = one)}">上传</a>
+            </span>
+        </td>
+        <td>
+            <span th:if="${studentGroupDutyInfo.studentGroupReportTwoFile} != null">
+                <a th:href="@{/before/student/fileDownload(fileName = ${studentGroupDutyInfo.studentGroupReportTwoFile})}">
+                    <b th:text="${studentGroupDutyInfo.studentGroupReportTwoFile}"></b>
+                    <b th:href="@{/before/student/toUploadReportFile(fileName = two)}">更新</b>
+                </a>
+            </span>
+            <span th:unless="${studentGroupDutyInfo.studentGroupReportTwoFile} != null">
+                <a th:href="@{/before/student/toUploadReportFile(fileName = two)}">上传</a>
+            </span>
+        </td>
+<!--        <td>-->
+<!--            <a th:href="@{/before/teacher/fileDownload(fileName = ${duty.dutyDescriptionFile})}">-->
+<!--                <span th:text="${duty.dutyDescriptionFile}"></span></a>-->
+<!--        </td>-->
+        <td>
+            <span th:if="${studentGroupDutyInfo.studentGroupReportThreeFile} != null">
+                <a th:href="@{/before/student/fileDownload(fileName = ${studentGroupDutyInfo.studentGroupReportThreeFile})}">
+                    <b th:text="${studentGroupDutyInfo.studentGroupReportThreeFile}"></b>
+                    <b th:href="@{/before/student/toUploadReportFile(fileName = three)}">更新</b>
+                </a>
+            </span>
+            <span th:unless="${studentGroupDutyInfo.studentGroupReportThreeFile} != null">
+                <a th:href="@{/before/student/toUploadReportFile(fileName = three)}">上传</a>
+            </span>
+        </td>
+        <td th:text="${studentGroupDutyInfo.studentGroupScore}"></td>
+<!--        <td><a th:href="@{/before/student/dutyChoose(dutyId=${duty.dutyId}, studentId=${session.student.getStudentId()})}">选课</a></td>-->
+        <!--            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>-->
+    </tbody>
+</table>
+<a th:href="@{/before/student/home}">返回</a>
+</body>
+</html>

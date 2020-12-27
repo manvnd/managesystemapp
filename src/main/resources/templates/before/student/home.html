@@ -9,5 +9,9 @@
         <a th:text="*{studentName}"></a>
     </div>
     <a th:href="@{/before/student/toDutyInfo(currentPage=1)}">选择综合设计</a>
+    <br>
+    <a th:href="@{/before/student/toMyStudentGroup(studentId=${session.student.getStudentId()})}">查看小组成员</a>
+    <a th:href="@{/before/student/toMyDutyProcess(studentId=${session.student.getStudentId()})}">查看综设进度</a>
+<!--    <a th:href="@{/before/student/toMyStudentGroup(studentId=${session.student.getStudentId()})}"></a>-->
 </body>
 </html>

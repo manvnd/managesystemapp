@@ -41,4 +41,22 @@
     <select id="getAllDuty" resultType="int">
         select count(*) from duty
     </select>
+
+    <resultMap id="studentGroupWithLeader" type="StudentGroup">
+        <id column="studentGroupId" property="studentGroupId"/>
+        <result column="studentGroupNumber" property="studentGroupNumber"/>
+        <result column="leaderStudentId" property="leaderStudentId"/>
+        <result column="dutyId" property="dutyId"/>
+        <result column="studentGroupReportOneFile" property="studentGroupReportOneFile"/>
+        <result column="studentGroupReportTwoFile" property="studentGroupReportTwoFile"/>
+        <result column="studentGroupReportThreeFile" property="studentGroupReportThreeFile"/>
+        <association property="student" javaType="com.managesystem.managesystempackage.entity.Student">
+            <id column="studentId" property="studentId"/>
+            <result column="studentName" property="studentName"/>
+        </association>
+    </resultMap>
+
+    <select id="getStudentGroupProcessByDutyId" resultMap="studentGroupWithLeader">
+        select a.*, b.studentName from studentGroup as a left join student as b on a.leaderStudentId = b.studentId where dutyId = #{dutyId}
+    </select>
 </mapper>

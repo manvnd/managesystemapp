@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+</head>
+<body>
+<form th:action="@{/before/student/uploadReportFileOne}" method="post" th:Object="${studentGroup}" enctype="multipart/form-data">
+    <input type="file" placeholder="请选择第一次报告" name="studentGroupReportOneFileName" />
+    <button type="submit">提交</button>
+</form>
+</body>
+</html>

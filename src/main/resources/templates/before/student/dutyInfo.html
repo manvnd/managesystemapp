@@ -18,7 +18,8 @@
             <th>描述文件</th>
             <th>最多选择人数</th>
             <th>已选人数</th>
-            <th>老师</th>
+            <th>指导老师</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -33,7 +34,7 @@
             <td th:text="${duty.dutySize}"></td>
             <td th:text="${duty.dutySelectedNumber}"></td>
             <td th:text="${duty.teacher.teacherName}"></td>
-            <!--            <td><a th:href="@{/admin/toTeacherUpdate(id=${teacher.getId()})}">编辑</a></td>-->
+            <td><a th:href="@{/before/student/dutyChoose(dutyId=${duty.dutyId}, studentId=${session.student.getStudentId()})}">选课</a></td>
             <!--            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>-->
         </tr>
         </tbody>
@@ -50,7 +51,6 @@
     </li>
 </div>
 
-<!--<a th:href="@{/admin/toTeacherAdd}">添加</a>-->
-<!--<a th:href="@{/admin/home}">返回</a>-->
+<a th:href="@{/before/student/home}">返回</a>
 </body>
 </html>

@@ -13,4 +13,5 @@ public interface TeacherService {
     public String teacherSave(Teacher teacher, Model model);
     public String dutyAdd(Duty duty, HttpSession session, Model model) throws IOException;
     public String toDutyInfo(Model model, Integer teacherId, Integer currentPage);
+    public String toCheckStudentGroupProcess(Model model, Integer dutyId);
 }

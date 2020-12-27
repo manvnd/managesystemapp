@@ -4,9 +4,39 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.managesystem.managesystempackage.repository.before.student.StudentRepository">
     <select id="studentLogin" parameterType="Student" resultType="Student">
-        select studentId, studentName, studentNumber, studentGroupId, isLeader from student where studentNumber = #{studentNumber} and studentPwd = #{studentPwd}
+        select studentId, studentName, studentNumber, studentGroupNumber, isLeader from student where studentNumber = #{studentNumber} and studentPwd = #{studentPwd}
     </select>
     <insert id="studentSave" parameterType="Student">
         insert into student(studentName, studentNumber, studentPwd) values (#{studentName}, #{studentNumber}, #{studentPwd})
     </insert>
+    <select id="getDutySelectedStudentNumber" resultType="int">
+        select count(*) from studentGroupMember where studentGroupNumber = #{dutyId}
+    </select>
+    <insert id="studentGroupInsert">
+        insert into studentGroup(studentGroupNumber, dutyId) values (#{dutyId}, #{dutyId});
+        insert into studentGroupMember(studentGroupNumber, studentId, studentName) values (#{dutyId}, #{studentId}, #{studentName});
+        update duty set dutySelectedNumber = #{dutySelectedStudentNumber} where dutyId = #{dutyId};
+        update student set studentGroupNumber = #{dutyId} where studentId = #{studentId}
+    </insert>
+    <select id="getStudentGroupNumberByStudentId" resultType="int">
+        select studentGroupNumber from studentGroupMember where studentId = #{studentId}
+    </select>
+    <select id="getStudentGroupByStudentGroupNumber" resultType="StudentGroupMember">
+        select * from studentGroupMember where studentGroupNumber = #{studentGroupNumber}
+    </select>
+    <select id="getStudentGroupDutyByStudentGroupNumber" resultType="StudentGroup">
+        select * from studentGroup where studentGroupNumber = #{studentGroupNumber}
+    </select>
+    <select id="studentGroupReportFileOneSave" resultType="int">
+        update studentGroup set studentGroupReportOneFile = #{fileName} where studentGroupNumber = #{studentGroupNumber}
+    </select>
+    <select id="studentGroupReportFileTwoSave" resultType="int">
+        update studentGroup set studentGroupReportTwoFile = #{fileName} where studentGroupNumber = #{studentGroupNumber}
+    </select>
+    <select id="studentGroupReportFileThreeSave" resultType="int">
+        update studentGroup set studentGroupReportThreeFile = #{fileName} where studentGroupNumber = #{studentGroupNumber}
+    </select>
+    <select id="checkStudentNumber" resultType="int">
+        select * from student where studentNumber = #{studentNumber}
+    </select>
 </mapper>

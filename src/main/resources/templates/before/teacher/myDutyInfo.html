@@ -18,6 +18,7 @@
             <th>描述文件</th>
             <th>最多选择人数</th>
             <th>已选人数</th>
+            <th>查看小组进度</th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,11 @@
             </td>
             <td th:text="${duty.dutySize}"></td>
             <td th:text="${duty.dutySelectedNumber}"></td>
+            <td>
+                <a th:href="@{/before/teacher/toCheckStudentGroupProcess(dutyId = ${duty.dutyId})}">
+                    <span>查看小组进度</span>
+                </a>
+            </td>
 <!--            <td><a th:href="@{/admin/toTeacherUpdate(id=${teacher.getId()})}">编辑</a></td>-->
 <!--            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>-->
         </tr>

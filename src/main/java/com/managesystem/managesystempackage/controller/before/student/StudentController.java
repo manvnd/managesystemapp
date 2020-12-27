@@ -2,18 +2,14 @@ package com.managesystem.managesystempackage.controller.before.student;
 
 import com.managesystem.managesystempackage.entity.Student;
 import com.managesystem.managesystempackage.service.before.student.StudentService;
-import com.managesystem.managesystempackage.util.MYUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 @RequestMapping("/before/student")
@@ -33,8 +29,8 @@ public class StudentController {
         return "before/student/register";
     }
     @RequestMapping("/register")
-    public String register(@ModelAttribute("student") Student student) {
-        return studentService.studentSave(student);
+    public String register(@ModelAttribute("student") Student student, Model model) {
+        return studentService.studentSave(student, model);
     }
 
 }

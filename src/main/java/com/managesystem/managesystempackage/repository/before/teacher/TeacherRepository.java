@@ -1,6 +1,7 @@
 package com.managesystem.managesystempackage.repository.before.teacher;
 
 import com.managesystem.managesystempackage.entity.Duty;
+import com.managesystem.managesystempackage.entity.StudentGroup;
 import com.managesystem.managesystempackage.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -17,4 +18,6 @@ public interface TeacherRepository {
     int getAllDutyByTeacherId(Integer teacherId);
     List<Duty> getDutyByPage(int startIndex, int perPageSize);
     int getAllDuty();
+    StudentGroup getStudentGroupProcessByDutyId(Integer dutyId);
+
 }

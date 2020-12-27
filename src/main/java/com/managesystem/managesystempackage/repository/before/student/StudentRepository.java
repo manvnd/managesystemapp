@@ -3,6 +3,8 @@ package com.managesystem.managesystempackage.repository.before.student;
 import java.util.List;
 
 import com.managesystem.managesystempackage.entity.Student;
+import com.managesystem.managesystempackage.entity.StudentGroup;
+import com.managesystem.managesystempackage.entity.StudentGroupMember;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +13,13 @@ import org.springframework.stereotype.Repository;
 public interface StudentRepository {
     List<Student> studentLogin(Student student);
     Integer studentSave(Student student);
+    Integer studentGroupInsert(Integer dutyId, Integer studentId, Integer dutySelectedStudentNumber, String studentName);
+    Integer getDutySelectedStudentNumber(Integer dutyId);
+    Integer getStudentGroupNumberByStudentId(Integer studentId);
+    List<StudentGroupMember> getStudentGroupByStudentGroupNumber(Integer studentId);
+    StudentGroup getStudentGroupDutyByStudentGroupNumber(Integer studentId);
+    Integer studentGroupReportFileOneSave(Integer studentGroupNumber, String fileName);
+    Integer studentGroupReportFileTwoSave(Integer studentGroupNumber, String fileName);
+    Integer studentGroupReportFileThreeSave(Integer studentGroupNumber, String fileName);
+    Integer checkStudentNumber(String studentNumber);
 }
