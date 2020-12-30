@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>打分</title>
+</head>
+<body>
+<form th:action="@{/before/teacher/gradeSet}" method="post" th:Object="${studentGroup}">
+    <input type="hidden" th:field="*{studentGroupNumber}"/>
+    <label>分数</label>
+    <input type="text" placeholder="请输入分数" th:field="*{studentGroupScore}"/>
+    <br>
+    <button type="submit">确定</button>
+    <button type="reset">重置</button>
+</form>
+</body>
+</html>

@@ -6,7 +6,7 @@
 </head>
 <body>
 <br/>
-<h1>教师列表</h1>
+<h1>综设课程列表</h1>
 <br/><br/>
 <div>
     <table>
@@ -19,6 +19,7 @@
             <th>最多选择人数</th>
             <th>已选人数</th>
             <th>查看小组进度</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -37,11 +38,17 @@
                     <span>查看小组进度</span>
                 </a>
             </td>
+            <td>
+                <a th:href="@{/before/teacher/toUpdateDuty(dutyId = ${duty.dutyId})}">更新</a>
+            </td>
 <!--            <td><a th:href="@{/admin/toTeacherUpdate(id=${teacher.getId()})}">编辑</a></td>-->
 <!--            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>-->
         </tr>
         </tbody>
     </table>
+    <br>
+    <a th:text="${message}"></a>
+    <br>
     <li><a>第<span th:text="${currentPage}"></span>页</a></li>
     <li><a>共<span th:text="${totalPage}"></span>页</a></li>
     <li>
@@ -54,7 +61,6 @@
     </li>
 </div>
 
-<!--<a th:href="@{/admin/toTeacherAdd}">添加</a>-->
-<!--<a th:href="@{/admin/home}">返回</a>-->
+<a th:href="@{/before/teacher/home}">返回</a>
 </body>
 </html>

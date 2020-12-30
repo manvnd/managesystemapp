@@ -12,6 +12,10 @@
     <br>
     <a th:href="@{/before/student/toMyStudentGroup(studentId=${session.student.getStudentId()})}">查看小组成员</a>
     <a th:href="@{/before/student/toMyDutyProcess(studentId=${session.student.getStudentId()})}">查看综设进度</a>
+    <br>
+    <a th:text="${message}"/>
+    <br>
+    <a th:href="@{/before/student/logout}">登出</a>
 <!--    <a th:href="@{/before/student/toMyStudentGroup(studentId=${session.student.getStudentId()})}"></a>-->
 </body>
 </html>

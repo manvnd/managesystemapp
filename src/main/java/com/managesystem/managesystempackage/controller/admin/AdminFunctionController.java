@@ -4,10 +4,13 @@ import com.managesystem.managesystempackage.entity.Student;
 import com.managesystem.managesystempackage.entity.Teacher;
 import com.managesystem.managesystempackage.service.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
+@RequestMapping("/admin")
 public class AdminFunctionController {
     @Autowired
     private AdminService adminService;

@@ -59,7 +59,11 @@ public class StudentServiceImpl implements StudentService {
         return "before/student/home";
     }
     @Override
-    public String getDutyList(Model model, Integer currentPage) {
+    public String getDutyList(Model model, HttpSession session, Integer currentPage) {
+        if (teacherRepository.getAllDuty() == 0) {
+            model.addAttribute("message", "暂无老师发布综合设计");
+            return "/before/student/home";
+        }
         int totalCount = teacherRepository.getAllDuty();
         int pageSize = 5;
         int totalPage = (int)Math.ceil(totalCount * 1.0 / pageSize);
@@ -67,6 +71,11 @@ public class StudentServiceImpl implements StudentService {
         model.addAttribute("duties", dutiesByPage);
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("currentPage", currentPage);
+        if (studentRepository.checkStudentGroupNumberByStudentId(MYUtil.getStudent(session).getStudentId()) == 0) {
+            model.addAttribute("studentSelected", false);
+        } else {
+            model.addAttribute("studentSelected", true);
+        }
         return "before/student/dutyInfo";
     }
     @Override
@@ -82,6 +91,10 @@ public class StudentServiceImpl implements StudentService {
     }
     @Override
     public String studentGroupSelectByStudentId(Model model, Integer studentId) {
+        if (studentRepository.checkStudentGroupNumberByStudentId(studentId) == 0) {
+            model.addAttribute("message", "您还未选择综设课程");
+            return "/before/student/home";
+        }
         int studentGroupNumber = studentRepository.getStudentGroupNumberByStudentId(studentId);
         List<StudentGroupMember> studentGroups = studentRepository.getStudentGroupByStudentGroupNumber(studentGroupNumber);
         model.addAttribute("studentGroupInfo", studentGroups);
@@ -89,19 +102,45 @@ public class StudentServiceImpl implements StudentService {
     }
     @Override
     public String studentGroupDutySelectByStudentId(Model model, Integer studentId) {
+        if (studentRepository.checkStudentGroupNumberByStudentId(studentId) == 0) {
+            model.addAttribute("message", "您还未选择综设课程");
+            return "/before/student/home";
+        }
         int studentGroupNumber = studentRepository.getStudentGroupNumberByStudentId(studentId);
         StudentGroup studentGroup = studentRepository.getStudentGroupDutyByStudentGroupNumber(studentGroupNumber);
+        if (studentRepository.checkStudentLeader(studentId).equals("是")) {
+            model.addAttribute("isLeader", true);
+        } else {
+            model.addAttribute("isLeader", false);
+        }
         model.addAttribute("studentGroupDutyInfo", studentGroup);
         return "/before/student/dutyProcessInfo";
     }
     @Override
-    public String toUploadReportFile(StudentGroup studentGroup, Model model, String fileName) {
+    public String toUploadReportFile(Integer studentGroupNumber, HttpSession session, Model model, String fileName) {
+        StudentGroup studentGroup = teacherRepository.getStudentGroupInfoByStudentNumber(studentGroupNumber);
         if (fileName.equals("one")) {
             return "/before/student/uploadReportFileOne";
         } else if (fileName.equals("two")) {
-            return "/before/student/uploadReportFileTwo";
+            if (studentGroup.getStudentGroupReportOneFile() != null) {
+                return "/before/student/uploadReportFileTwo";
+            } else {
+                model.addAttribute("message", "你们小组还未上传第一次报告");
+                return "forward:/before/student/toMyDutyProcess?studentId=" + MYUtil.getStudent(session).getStudentId();
+            }
         } else {
-            return "/before/student/uploadReportFileThree";
+            if (studentGroup.getStudentGroupReportOneFile() != null) {
+                if (studentGroup.getStudentGroupReportTwoFile() != null) {
+                    return "/before/student/uploadReportFileThree";
+                } else {
+                    model.addAttribute("message", "你们小组还未上传第二次报告");
+                    return "forward:/before/student/toMyDutyProcess?studentId=" + MYUtil.getStudent(session).getStudentId();
+                }
+            } else {
+                model.addAttribute("message", "你们小组还未上传第一次报告");
+                return "forward:/before/student/toMyDutyProcess?studentId=" + MYUtil.getStudent(session).getStudentId();
+            }
+
         }
     }
     @Override
@@ -174,6 +213,13 @@ public class StudentServiceImpl implements StudentService {
             int studentGroupNumber = MYUtil.getStudent(session).getStudentGroupNumber();
             studentRepository.studentGroupReportFileThreeSave(studentGroupNumber, fileNewName);
         }
-        return "redirect:/before/student/toMyDutyProcess?studentId=" + MYUtil.getStudent(session).getStudentId();
+        return "forward:/before/student/toMyDutyProcess?studentId=" + MYUtil.getStudent(session).getStudentId();
+    }
+    public StudentGroup getStudentGroupInfoByStudentNumber(Integer studentGroupNumber) {
+        return teacherRepository.getStudentGroupInfoByStudentNumber(studentGroupNumber);
+    }
+    public String commonSet(StudentGroup studentGroup, HttpSession session, Model model) {
+        studentRepository.saveStudentGroupCommon(studentGroup);
+        return "forward:/before/student/toMyDutyProcess?studentId=" + MYUtil.getStudent(session).getStudentId();
     }
 }

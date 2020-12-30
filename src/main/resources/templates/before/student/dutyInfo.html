@@ -34,7 +34,14 @@
             <td th:text="${duty.dutySize}"></td>
             <td th:text="${duty.dutySelectedNumber}"></td>
             <td th:text="${duty.teacher.teacherName}"></td>
-            <td><a th:href="@{/before/student/dutyChoose(dutyId=${duty.dutyId}, studentId=${session.student.getStudentId()})}">选课</a></td>
+            <td>
+                <span th:if="${studentSelected} != true">
+                    <a th:href="@{/before/student/dutyChoose(dutyId=${duty.dutyId}, studentId=${session.student.getStudentId()})}">选课</a>
+                </span>
+                <span th:unless="${studentSelected} != true">
+                    <a>你已选择课程</a>
+                </span>
+            </td>
             <!--            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>-->
         </tr>
         </tbody>

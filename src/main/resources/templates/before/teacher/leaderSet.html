@@ -2,15 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>小组成员信息</title>
+    <title>指定组长</title>
 </head>
 <body>
 <table>
     <thead>
     <tr>
-        <th>Id</th>
-        <th>姓名</th>
-        <th>是否为组长</th>
+        <th>#</th>
+        <th>学生姓名</th>
+        <th>操作</th>
     </tr>
     </thead>
     <tbody>
@@ -18,12 +18,10 @@
         <th scope="row" th:text="${studentInfo.studentId}"></th>
         <td th:text="${studentInfo.studentName}"></td>
         <td>
-            <span th:if="${studentInfo.leader}">是</span>
-            <span th:unless="${studentInfo.leader}">否</span>
+            <a th:href="@{/before/teacher/leaderSet(studentId = ${studentInfo.studentId})}">任命组长</a>
         </td>
     </tr>
     </tbody>
 </table>
 </body>
-<a th:href="@{/before/student/home}">返回</a>
 </html>

@@ -8,5 +8,7 @@
 
     <a th:href="@{/before/teacher/toDutyAdd}">发布综合设计</a>
     <a th:href="@{/before/teacher/toDutyInfo(teacherId=*{session.teacher.getTeacherId()}, currentPage=1)}">查看已发布的综设信息</a>
+    <br>
+    <a th:text="${message}"></a>
 </body>
 </html>

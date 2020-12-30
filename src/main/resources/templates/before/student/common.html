@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>评论</title>
+</head>
+<body>
+<form th:action="@{/before/student/common}" method="post" th:Object="${studentGroup}">
+    <input type="hidden" th:field="*{studentGroupNumber}"/>
+    <label>评价</label>
+    <input type="text" placeholder="请输入评价" th:field="*{studentGroupCommons}"/>
+    <br>
+    <button type="submit">确定</button>
+    <button type="reset">重置</button>
+</form>
+</body>
+</html>

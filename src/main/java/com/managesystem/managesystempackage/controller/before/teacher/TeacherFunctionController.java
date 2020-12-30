@@ -1,6 +1,7 @@
 package com.managesystem.managesystempackage.controller.before.teacher;
 
 import com.managesystem.managesystempackage.entity.Duty;
+import com.managesystem.managesystempackage.entity.StudentGroup;
 import com.managesystem.managesystempackage.entity.Teacher;
 import com.managesystem.managesystempackage.service.before.teacher.TeacherService;
 import org.apache.commons.io.FileUtils;
@@ -64,8 +65,41 @@ public class TeacherFunctionController extends TeacherBaseController {
         return builder.body(FileUtils.readFileToByteArray(downFile));
     }
     @RequestMapping("/toCheckStudentGroupProcess")
-    public String toCheckStudentGroupProcess(Model model, Integer dutyId) {
-        return teacherService.toCheckStudentGroupProcess(model, dutyId);
+    public String toCheckStudentGroupProcess(Model model, Integer dutyId, HttpSession session) {
+        return teacherService.toCheckStudentGroupProcess(model, dutyId, session);
     }
+    @RequestMapping("/toUpdateDuty")
+    public String toUpdateDuty(Model model, Integer dutyId) {
+        Duty duty = teacherService.selectOneDuty(dutyId);
+        model.addAttribute("duty", duty);
+        return "/before/teacher/dutyUpdate";
+    }
+    @RequestMapping("/updateDuty")
+    public String updateDuty(@ModelAttribute("duty") Duty duty, HttpSession session) throws IOException {
+        return teacherService.updateDuty(duty, session);
+    }
+    @RequestMapping("/toLeaderSet")
+    public String toLeaderSet(Model model, Integer studentGroupNumber) {
+        return teacherService.toLeaderSet(model, studentGroupNumber);
+    }
+    @RequestMapping("/leaderSet")
+    public String leaderSet(Model model, HttpSession session, Integer studentId) {
+        return teacherService.leaderSet(model, session, studentId);
+    }
+    @RequestMapping("/toSetGrade")
+    public String toSetGrade(Model model, Integer studentGroupNumber) {
+        if (!teacherService.checkFirstReport(studentGroupNumber) && !teacherService.checkSecondReport(studentGroupNumber) && !teacherService.checkThirdReport(studentGroupNumber)) {
+            StudentGroup studentGroup = teacherService.getStudentGroupInfoByStudentNumber(studentGroupNumber);
+            model.addAttribute("studentGroup", studentGroup);
+            return "/before/teacher/setGrade";
+        }
+        model.addAttribute("message", "学生还未完成课程");
+        return "forward:/before/teacher/toCheckStudentGroupProcess?dutyId=" + studentGroupNumber;
+    }
+    @RequestMapping("/gradeSet")
+    public String gradeSet(@ModelAttribute("studentGroup") StudentGroup studentGroup, Model model) {
+        return teacherService.gradeSet(studentGroup, model);
+    }
+
 
 }

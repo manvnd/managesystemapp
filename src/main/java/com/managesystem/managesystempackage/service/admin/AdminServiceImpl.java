@@ -53,7 +53,6 @@ public class AdminServiceImpl implements AdminService{
     }
     @Override
     public String studentUpdate(Student student) {
-        System.out.println(student.getStudentPwd());
         if (student.getStudentPwd().equals("")) {
             adminRepository.studentUpdateExceptPwd(student);
         }

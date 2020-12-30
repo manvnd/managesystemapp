@@ -7,7 +7,7 @@
         select * from admin where adminName = #{adminName} and adminPwd = #{adminPwd}
     </select>
     <select id="selectStudentsByPage" parameterType="int" resultType="com.managesystem.managesystempackage.entity.Student">
-        select adminId, adminName, adminNumber, adminPwd, studentGroupId, isLeader from student limit #{perPageSize} offset #{startIndex}
+        select studentId, studentName, studentNumber, studentPwd, studentGroupNumber, isLeader from student limit #{perPageSize} offset #{startIndex}
     </select>
     <delete id="studentDelete" parameterType="int">
         delete from student where studentId = #{studentId}
@@ -19,10 +19,10 @@
         insert into student (studentName, studentNumber, studentPwd) values (#{studentName}, #{studentNumber}, #{studentPwd})
     </insert>
     <update id="studentUpdateExceptPwd" parameterType="Student">
-        update student set(studentName, studentNumber, studentGroupId, isLeader) = (#{studentName}, #{studentNumber}, #{studentGroupId}, #{isLeader}) where studentId = #{studentId}
+        update student set(studentName, studentNumber, studentGroupNumber, isLeader) = (#{studentName}, #{studentNumber}, #{studentGroupNumber}, #{isLeader}) where studentId = #{studentId}
     </update>
     <update id="studentUpdateConcludePwd" parameterType="Student">
-        update student set(studentName, studentNumber, studentPwd, studentGroupId, isLeader) = (#{studentName}, #{studentNumber}, #{studentPwd}, #{studentGroupId}, #{isLeader}) where studentId = #{studentId}
+        update student set(studentName, studentNumber, studentPwd, studentGroupNumber, isLeader) = (#{studentName}, #{studentNumber}, #{studentPwd}, #{studentGroupNumber}, #{isLeader}) where studentId = #{studentId}
     </update>
     <select id="selectOneStudent" resultType="Student">
         select * from student where studentId = #{studentId}

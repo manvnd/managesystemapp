@@ -1,8 +1,9 @@
 package com.managesystem.managesystempackage.controller.before.student;
 
-import com.managesystem.managesystempackage.entity.Duty;
+import com.managesystem.managesystempackage.entity.Student;
 import com.managesystem.managesystempackage.entity.StudentGroup;
 import com.managesystem.managesystempackage.service.before.student.StudentService;
+import com.managesystem.managesystempackage.util.MYUtil;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
@@ -29,8 +29,8 @@ public class StudentFunctionController extends StudentBaseController{
         return studentService.home(model, session);
     }
     @RequestMapping("/toDutyInfo")
-    public String toDutyInfo(Model model, Integer currentPage) {
-        return studentService.getDutyList(model, currentPage);
+    public String toDutyInfo(Model model, HttpSession session, Integer currentPage) {
+        return studentService.getDutyList(model, session, currentPage);
     }
     @RequestMapping("/dutyChoose")
     public String dutyChoose(Integer dutyId, Integer studentId, HttpSession session) {
@@ -49,8 +49,8 @@ public class StudentFunctionController extends StudentBaseController{
 //
 //    }
     @RequestMapping("/toUploadReportFile")
-    public String toUploadReportFile(@ModelAttribute("studentGroup") StudentGroup studentGroup, Model model, String fileName) {
-        return studentService.toUploadReportFile(studentGroup, model, fileName);
+    public String toUploadReportFile(Integer studentGroupNumber, HttpSession session, Model model, String fileName) {
+        return studentService.toUploadReportFile(studentGroupNumber, session, model, fileName);
     }
     @RequestMapping("uploadReportFileOne")
     public String uploadReportFileOne(@ModelAttribute("studentGroup") StudentGroup studentGroup, HttpSession session, Model model) throws IOException {
@@ -86,4 +86,25 @@ public class StudentFunctionController extends StudentBaseController{
         }
         return builder.body(FileUtils.readFileToByteArray(downFile));
     }
+    @RequestMapping("/logout")
+    public String logout(@ModelAttribute("student") Student student, HttpSession session){
+        session.removeAttribute("student"); //退出登录则清除session中的用户信息
+        return "before/student/login";
+    }
+
+    @RequestMapping("/toCommon")
+    public String toCommon(Model model, HttpSession session, Integer studentGroupNumber) {
+        StudentGroup studentGroup = studentService.getStudentGroupInfoByStudentNumber(studentGroupNumber);
+        if (studentGroup.getStudentGroupScore() == 0.0) {
+            model.addAttribute("message", "老师还未评分，不能评价");
+            return "forward:/before/student/toMyDutyProcess?studentId=" + MYUtil.getStudent(session).getStudentId();
+        }
+        model.addAttribute("studentGroup", studentGroup);
+        return "/before/student/common";
+    }
+    @RequestMapping("/common")
+    public String common(@ModelAttribute("studentGroup") StudentGroup studentGroup, HttpSession session, Model model) {
+        return studentService.commonSet(studentGroup, session, model);
+    }
+
 }

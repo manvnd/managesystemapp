@@ -26,7 +26,7 @@
             <th scope="row" th:text="${student.studentId}"></th>
             <td th:text="${student.studentName}"></td>
             <td th:text="${student.studentNumber}"></td>
-            <td th:text="${student.studentGroupId}"></td>
+            <td th:text="${student.studentGroupNumber}"></td>
             <td th:text="${student.isLeader}"></td>
             <td><a th:href="@{/admin/toStudentUpdate(id=${student.getStudentId()})}">编辑</a></td>
             <td><a th:href="@{/admin/studentDelete(id=${student.getStudentId()})}">删除</a></td>

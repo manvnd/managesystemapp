@@ -50,6 +50,8 @@
         <result column="studentGroupReportOneFile" property="studentGroupReportOneFile"/>
         <result column="studentGroupReportTwoFile" property="studentGroupReportTwoFile"/>
         <result column="studentGroupReportThreeFile" property="studentGroupReportThreeFile"/>
+        <result column="studentGroupScore" property="studentGroupScore"/>
+        <result column="studentGroupCommons" property="studentGroupCommons"/>
         <association property="student" javaType="com.managesystem.managesystempackage.entity.Student">
             <id column="studentId" property="studentId"/>
             <result column="studentName" property="studentName"/>
@@ -58,5 +60,43 @@
 
     <select id="getStudentGroupProcessByDutyId" resultMap="studentGroupWithLeader">
         select a.*, b.studentName from studentGroup as a left join student as b on a.leaderStudentId = b.studentId where dutyId = #{dutyId}
+    </select>
+    <select id="checkDutyByTeacherId" resultType="int">
+        select count(*) from duty where teacherId = #{teacherId}
+    </select>
+    <select id="selectOneDuty" resultType="Duty">
+        select * from duty where dutyId = #{dutyId}
+    </select>
+    <update id="updateDutyByDutyConcludeFile" parameterType="Duty">
+        update duty set (dutyName, dutySummary, dutyDescriptionFile, dutySize) = (#{dutyName}, #{dutySummary}, #{dutyDescriptionFile}, #{dutySize}) where dutyId = #{dutyId}
+    </update>
+    <update id="updateDutyByDutyExceptFile" parameterType="Duty">
+        update duty set (dutyName, dutySummary, dutySize) = (#{dutyName}, #{dutySummary}, #{dutySize}) where dutyId = #{dutyId}
+    </update>
+    <select id="checkStudentSelectedDuty" resultType="int">
+        select count(*) from studentGroupMember where studentId = #{studentId}
+    </select>
+    <select id="getStudentNameAndIdByStudentGroupNumber" resultType="studentGroupMember">
+        select studentId, studentName from studentGroupMember where studentGroupNumber = #{studentGroupNumber}
+    </select>
+    <update id="setLeaderByStudentId" parameterType="int">
+        update studentGroupMember set leader = true where studentId = #{studentId};
+        update student set isLeader = '是' where studentId = #{studentId};
+        update studentGroup set leaderStudentId = #{studentId}
+    </update>
+    <update id="updateGrade">
+        update studentGroup set studentGroupScore = #{studentGroupScore} where studentGroupNumber = #{studentGroupNumber}
+    </update>
+    <select id="getStudentGroupInfoByStudentNumber" resultType="StudentGroup">
+        select * from studentGroup where studentGroupNumber = #{studentGroupNumber}
+    </select>
+    <select id="checkFirstReport" resultType="String">
+        select studentGroupReportOneFile from studentGroup where studentGroupNumber = #{studentGroupNumber}
+    </select>
+    <select id="checkSecondReport" resultType="String">
+        select studentGroupReportTwoFile from studentGroup where studentGroupNumber = #{studentGroupNumber}
+    </select>
+    <select id="checkThirdReport" resultType="String">
+        select studentGroupReportThreeFile from studentGroup where studentGroupNumber = #{studentGroupNumber}
     </select>
 </mapper>

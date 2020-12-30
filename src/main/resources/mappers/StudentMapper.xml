@@ -19,7 +19,10 @@
         update student set studentGroupNumber = #{dutyId} where studentId = #{studentId}
     </insert>
     <select id="getStudentGroupNumberByStudentId" resultType="int">
-        select studentGroupNumber from studentGroupMember where studentId = #{studentId}
+        select studentGroupNumber from student where studentId = #{studentId}
+    </select>
+    <select id="checkStudentGroupNumberByStudentId" resultType="int">
+        select count(*) from studentGroupMember where studentId = #{studentId}
     </select>
     <select id="getStudentGroupByStudentGroupNumber" resultType="StudentGroupMember">
         select * from studentGroupMember where studentGroupNumber = #{studentGroupNumber}
@@ -39,4 +42,10 @@
     <select id="checkStudentNumber" resultType="int">
         select * from student where studentNumber = #{studentNumber}
     </select>
+    <select id="checkStudentLeader" resultType="String">
+        select isLeader from student where studentId = #{studentId}
+    </select>
+    <update id="saveStudentGroupCommon" parameterType="StudentGroup">
+        update studentGroup set studentGroupCommons = #{studentGroupCommons} where studentGroupNumber = #{studentGroupNumber}
+    </update>
 </mapper>

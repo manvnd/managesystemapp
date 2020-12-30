@@ -26,7 +26,7 @@
                 <span th:text="${studentGroupProcess.student.studentName}"></span>
             </a>
             <a th:unless="${studentGroupProcess.leaderStudentId} != 0">
-                <span>暂无</span>
+                <a th:href="@{/before/teacher/toLeaderSet(studentGroupNumber = ${studentGroupProcess.studentGroupNumber})}">任命组长</a>
             </a>
         </td>
         <td>
@@ -61,7 +61,14 @@
                 暂未上传
             </span>
         </td>
-        <td th:text="${studentGroupProcess.studentGroupScore}"></td>
+        <td>
+            <span th:unless="${studentGroupProcess.studentGroupScore} != 0.0">
+                <a th:href="@{/before/teacher/toSetGrade(studentGroupNumber = ${studentGroupProcess.studentGroupNumber})}">评分</a>
+            </span>
+            <span th:if="${studentGroupProcess.studentGroupScore} != 0.0">
+                <a th:text="${studentGroupProcess.studentGroupScore}"></a>
+            </span>
+        </td>
         <td>
             <span th:if="${studentGroupProcess.studentGroupCommons} != null">
                 <a th:text="${studentGroupProcess.studentGroupCommons}"></a>
@@ -74,5 +81,8 @@
         <!--            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>-->
     </tbody>
 </table>
+<a th:text="${message}"></a>
+<br>
+<a th:href="@{/before/teacher/home}">返回</a>
 </body>
 </html>

@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class actionController {
     @RequestMapping("/")
     public String index() {
-        return "index";
+        return "/index";
     }
 }
