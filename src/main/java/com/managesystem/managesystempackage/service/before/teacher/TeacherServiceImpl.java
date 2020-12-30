@@ -49,7 +49,7 @@ public class TeacherServiceImpl implements TeacherService {
         MultipartFile dutyFile = duty.getDutyFileName();
         if (!dutyFile.isEmpty()) {
             //上传文件路径
-            String path = "/Users/yucan/Downloads/Code/04/Project/managesystemapp/src/main/resources/files";
+            String path = "C:\\Users\\WangTian\\Desktop\\managesystemapp\\src\\main\\resources\\files";
 //            String path = request.getServletContext().getRealPath("/files/");
             //获取上传文件原名
             String fileName = dutyFile.getOriginalFilename();

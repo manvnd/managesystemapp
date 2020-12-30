@@ -3,27 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>小组成员信息</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>姓名</th>
-        <th>是否为组长</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr  th:each="studentInfo : ${studentGroupInfo}">
-        <th scope="row" th:text="${studentInfo.studentId}"></th>
-        <td th:text="${studentInfo.studentName}"></td>
-        <td>
-            <span th:if="${studentInfo.leader}">是</span>
-            <span th:unless="${studentInfo.leader}">否</span>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div id="app">
+    <el-table
+            :data="studentGroupInfo"
+            style="width: 100%">
+        <el-table-column
+                prop="studentId"
+                label="日期"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                prop="studentName"
+                label="姓名"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                prop="leader"
+                label="地址">
+            <template slot-scope="scope">
+<!--                <i class="el-icon-time"></i>-->
+<!--                <span style="margin-left: 10px">{{ scope.row.date }}</span>-->
+<!--                <span>{{scope.row.leader}}</span>-->
+                <span v-if="scope.row.leader">是</span>
+                <span v-else>否</span>
+            </template>
+        </el-table-column>
+    </el-table>
+</div>
+
+
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>Id</th>-->
+<!--        <th>姓名</th>-->
+<!--        <th>是否为组长</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr  th:each="studentInfo : ${studentGroupInfo}">-->
+<!--        <th scope="row" th:text="${studentInfo.studentId}"></th>-->
+<!--        <td th:text="${studentInfo.studentName}"></td>-->
+<!--        <td>-->
+<!--            <span th:if="${studentInfo.leader}">是</span>-->
+<!--            <span th:unless="${studentInfo.leader}">否</span>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+<script   th:inline="javascript">
+    let studentGroupInfo = [[${studentGroupInfo}]];
+    // let
+    // console.log(studentGroupInfo);
+</script>
+<script>
+    new Vue({
+        el: "#app",
+        data(){
+            return{
+                studentGroupInfo
+            }
+        },
+        methods: {
+
+        }
+    })
+</script>
+
 </body>
 <a th:href="@{/before/student/home}">返回</a>
 </html>

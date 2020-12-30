@@ -98,6 +98,7 @@ public class StudentServiceImpl implements StudentService {
         int studentGroupNumber = studentRepository.getStudentGroupNumberByStudentId(studentId);
         List<StudentGroupMember> studentGroups = studentRepository.getStudentGroupByStudentGroupNumber(studentGroupNumber);
         model.addAttribute("studentGroupInfo", studentGroups);
+        model.addAttribute("test", "王天");
         return "/before/student/groupInfo";
     }
     @Override
@@ -148,7 +149,7 @@ public class StudentServiceImpl implements StudentService {
         MultipartFile dutyFile = studentGroup.getStudentGroupReportOneFileName();
         if (!dutyFile.isEmpty()) {
             //上传文件路径
-            String path = "/Users/yucan/Downloads/Code/04/Project/managesystemapp/src/main/resources/files";
+            String path = "C:\\Users\\WangTian\\Desktop\\managesystemapp\\src\\main\\resources\\files";
 //            String path = request.getServletContext().getRealPath("/files/");
             //获取上传文件原名
             String fileName = dutyFile.getOriginalFilename();
@@ -172,7 +173,7 @@ public class StudentServiceImpl implements StudentService {
         MultipartFile dutyFile = studentGroup.getStudentGroupReportTwoFileName();
         if (!dutyFile.isEmpty()) {
             //上传文件路径
-            String path = "/Users/yucan/Downloads/Code/04/Project/managesystemapp/src/main/resources/files";
+            String path = "C:\\Users\\WangTian\\Desktop\\managesystemapp\\src\\main\\resources\\files";
 //            String path = request.getServletContext().getRealPath("/files/");
             //获取上传文件原名
             String fileName = dutyFile.getOriginalFilename();
@@ -196,7 +197,7 @@ public class StudentServiceImpl implements StudentService {
         MultipartFile dutyFile = studentGroup.getStudentGroupReportThreeFileName();
         if (!dutyFile.isEmpty()) {
             //上传文件路径
-            String path = "/Users/yucan/Downloads/Code/04/Project/managesystemapp/src/main/resources/files";
+            String path = "C:\\Users\\WangTian\\Desktop\\managesystemapp\\src\\main\\resources\\files";
 //            String path = request.getServletContext().getRealPath("/files/");
             //获取上传文件原名
             String fileName = dutyFile.getOriginalFilename();

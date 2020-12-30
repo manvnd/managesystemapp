@@ -2,23 +2,107 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<link rel="stylesheet" href="../../../static/css/base.css">
+	<style>
+		.el-header, .el-footer {
+			background-color: #B3C0D1;
+			color: #333;
+			text-align: center;
+			line-height: 60px;
+			font-size: larger;
+		}
+		.el-main {
+			background-color: #E9EEF3;
+			color: #333;
+			text-align: center;
+			line-height: 160px;
+		}
+		body > .el-container {
+			margin-bottom: 40px;
+		}
+
+		.el-container:nth-child(5) .el-aside,
+		.el-container:nth-child(6) .el-aside {
+			line-height: 260px;
+		}
+
+		.el-container:nth-child(7) .el-aside {
+			line-height: 320px;
+		}
+
+		.text {
+			font-size: 14px;
+		}
+
+		.item {
+			padding: 18px 0;
+		}
+
+		a:hover{
+			text-decoration: none;
+			color: #B3C0D1;
+		}
+		a:visited{
+			text-decoration: none;
+			color: rgba(38,43,21,0.87);
+		}
+		a:link{
+			text-decoration: none;
+			color: rgba(38,43,21,0.87);
+		}
+		a:active{
+			text-decoration: none;
+			color: rgba(38,43,21,0.87);
+		}
+
+		.box-card {
+			display: block;
+			/*position: relative;*/
+			width: 480px;
+			height: 200px;
+			right: 50%;
+			margin: 40px auto;
+		}
+	</style>
 <title>登录页面</title>
 <body>
-		<h3 align="center">学生登录</h3>
-		<br><br>
-		<form th:action="@{/before/student/login}" method="post" th:object="${student}">
-			<label>学号</label>
-			<input type="text" placeholder="请输入用户名" th:field="*{studentNumber}"/>
-			<label>密码</label>
-			<input type="password" placeholder="请输入您的密码" th:field="*{studentPwd}"/>
 
-			<button type="submit"class="btn btn-success" >登录</button>
-			<button type="reset" class="btn btn-primary" >重置</button>
+<div id="app">
+	<el-container>
+		<el-header>电子科技大学综合课程设计管理系统</el-header>
+		<el-main>
+			<el-card class="box-card">
+				<img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/3/322eaafd48e8f9c0e9823021da4266fe1488526433.png" width="440px" height="160px">
+			</el-card>
 
-			<font size="6" color="red">
-				<span th:text="${loginMessage}"></span>
-			</font>
-		</form>
-		<a th:href="@{/before/student/toRegister}">没有账号？点此注册</a>
+			<form th:action="@{/before/student/login}" method="post" th:object="${student}">
+				<label>学号</label>
+				<input type="text" placeholder="请输入用户名" th:field="*{studentNumber}"/>
+				<label>密码</label>
+				<input type="password" placeholder="请输入您的密码" th:field="*{studentPwd}"/>
+
+				<button type="submit"class="btn btn-success" >登录</button>
+				<button type="reset" class="btn btn-primary" >重置</button>
+
+				<font size="6" color="red">
+					<span th:text="${loginMessage}"></span>
+				</font>
+			</form>
+
+			<div class="LogIn"><a th:href="@{/before/student/toRegister}">没有账号？点此注册</a></div>
+		</el-main>
+	</el-container>
+</div>
+<script   th:inline="javascript">
+</script>
+
 </body>
+<script>
+	new Vue({
+		el: "#app"
+	})
+</script>
 </html>

@@ -67,7 +67,7 @@ public class StudentFunctionController extends StudentBaseController{
     @RequestMapping("/fileDownload")
     public ResponseEntity<byte[]> fileDownload(String fileName, @RequestHeader("User-Agent") String userAgent) throws IOException {
         //下载文件路径
-        String path = "/Users/yucan/Downloads/Code/04/Project/managesystemapp/src/main/resources/files";
+        String path = "C:\\Users\\WangTian\\Desktop\\managesystemapp\\src\\main\\resources\\files";
         //构建将要下载的文件对象
         File downFile = new File(path + File.separator + fileName);
         //ok表示HTTP中的状态为200

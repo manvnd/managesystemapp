@@ -3,14 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <title>主页</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="css/base.css" type="text/css">
+    <style>
+        .el-header, .el-footer {
+            background-color: #B3C0D1;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+            font-size: larger;
+        }
+        .el-main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            line-height: 160px;
+        }
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        .el-container:nth-child(5) .el-aside,
+        .el-container:nth-child(6) .el-aside {
+            line-height: 260px;
+        }
+
+        .el-container:nth-child(7) .el-aside {
+            line-height: 320px;
+        }
+
+        .text {
+            font-size: 14px;
+        }
+
+        .item {
+            padding: 18px 0;
+        }
+
+        .box-card {
+            display: block;
+            width: 480px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .leftcard{
+            margin-left: 150px;
+        }
+        .rightcard{
+            float: right;
+            margin-right: 150px;
+        }
+
+        a{
+            font-size: large;
+        }
+    </style>
 </head>
 <body>
-    <a th:href="@{/before/student/toLogin}">学生登录</a>
-    <br>
-    <a th:href="@{/before/teacher/toLogin}">教师登录</a>
-    <br>
-    <a th:href="@{/before/student/register}">还没有账号？点此注册</a>
-    <br>
-    <a th:href="@{/admin/toLogin}">管理员登录</a>
+    <div id="app">
+        <el-container>
+            <el-header>电子科技大学综合课程设计管理系统</el-header>
+            <el-main>
+
+                    <div class="text item">
+                        <el-card class="box-card leftcard">
+                        <a th:href="@{/before/student/toLogin}" class="el-icon-s-check">学生登录</a>
+                        </el-card>
+                        <el-card class="box-card rightcard">
+                        <a th:href="@{/before/teacher/toLogin}" class="el-icon-user">教师登录</a>
+                        </el-card>
+                        <el-card class="box-card leftcard">
+                            <img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/3/322eaafd48e8f9c0e9823021da4266fe1488526433.png" width="440px" height="160px">
+                        </el-card>
+                        <el-card class="box-card rightcard">
+                            <img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/13/f11e6a1898e5ccab8ac5abec2c146acc1489397318.png" width="440px" height="160px">
+                        </el-card>
+                        <el-card class="box-card leftcard">
+                        <a th:href="@{/before/student/register}" class="el-icon-question">还没有账号？点此注册</a>
+                        </el-card>
+                        <el-card class="box-card rightcard">
+                        <a th:href="@{/admin/toLogin}" class="el-icon-user-solid">管理员登录</a>
+                        </el-card>
+                    </div>
+
+            </el-main>
+        </el-container>
+    </div>
+
 </body>
+
+<script   th:inline="javascript">
+</script>
+<script>
+    new Vue({
+        el: "#app"
+    })
+</script>
 </html>
