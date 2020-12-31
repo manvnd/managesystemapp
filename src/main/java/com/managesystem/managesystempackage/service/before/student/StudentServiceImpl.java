@@ -152,7 +152,7 @@ public class StudentServiceImpl implements StudentService {
         MultipartFile dutyFile = studentGroup.getStudentGroupReportOneFileName();
         if (!dutyFile.isEmpty()) {
             //上传文件路径
-            String path = "C:\\Users\\WangTian\\Desktop\\managesystemapp\\src\\main\\resources\\files";
+            String path = "D:\\GitHub\\managesystemapp\\src\\main\\resources\\files";
 //            String path = request.getServletContext().getRealPath("/files/");
             //获取上传文件原名
             String fileName = dutyFile.getOriginalFilename();
@@ -176,7 +176,7 @@ public class StudentServiceImpl implements StudentService {
         MultipartFile dutyFile = studentGroup.getStudentGroupReportTwoFileName();
         if (!dutyFile.isEmpty()) {
             //上传文件路径
-            String path = "C:\\Users\\WangTian\\Desktop\\managesystemapp\\src\\main\\resources\\files";
+            String path = "D:\\GitHub\\managesystemapp\\src\\main\\resources\\files";
 //            String path = request.getServletContext().getRealPath("/files/");
             //获取上传文件原名
             String fileName = dutyFile.getOriginalFilename();
@@ -200,7 +200,7 @@ public class StudentServiceImpl implements StudentService {
         MultipartFile dutyFile = studentGroup.getStudentGroupReportThreeFileName();
         if (!dutyFile.isEmpty()) {
             //上传文件路径
-            String path = "C:\\Users\\WangTian\\Desktop\\managesystemapp\\src\\main\\resources\\files";
+            String path = "D:\\GitHub\\managesystemapp\\src\\main\\resources\\files";
 //            String path = request.getServletContext().getRealPath("/files/");
             //获取上传文件原名
             String fileName = dutyFile.getOriginalFilename();
