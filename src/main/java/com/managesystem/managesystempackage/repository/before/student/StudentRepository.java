@@ -26,5 +26,5 @@ public interface StudentRepository {
     Integer checkStudentSelectedDuty(Integer studentId);
     String checkStudentLeader(Integer studentId);
     Integer saveStudentGroupCommon(StudentGroup studentGroup);
-
+    Integer getDutyIdByStudentGroupNumber(Integer studentGroupNumber);
 }

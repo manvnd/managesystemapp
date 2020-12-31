@@ -33,8 +33,8 @@ public class StudentFunctionController extends StudentBaseController{
         return studentService.getDutyList(model, session, currentPage);
     }
     @RequestMapping("/dutyChoose")
-    public String dutyChoose(Integer dutyId, Integer studentId, HttpSession session) {
-        return studentService.dutyChoose(dutyId, studentId, session);
+    public String dutyChoose(HttpSession session) {
+        return studentService.dutyChoose(session);
     }
     @RequestMapping("/toMyStudentGroup")
     public String toMyStudentGroup(Model model, Integer studentId) {

@@ -48,4 +48,7 @@
     <update id="saveStudentGroupCommon" parameterType="StudentGroup">
         update studentGroup set studentGroupCommons = #{studentGroupCommons} where studentGroupNumber = #{studentGroupNumber}
     </update>
+    <select id="getDutyIdByStudentGroupNumber" resultType="int">
+        select dutyId from studentGroup where studentGroupNumber = #{studentGroupNumber}
+    </select>
 </mapper>

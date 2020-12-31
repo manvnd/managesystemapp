@@ -13,7 +13,7 @@ public interface StudentService {
     public String studentSave(Student student, Model model);
     public String home(Model model, HttpSession session);
     public String getDutyList(Model model, HttpSession session, Integer currentPage);
-    public String dutyChoose(Integer dutyId, Integer studentId, HttpSession session);
+    public String dutyChoose(HttpSession session);
     public String studentGroupSelectByStudentId(Model model, Integer studentId);
     public String studentGroupDutySelectByStudentId(Model model, Integer studentId);
     public String toUploadReportFile(Integer studentGroupNumber, HttpSession session, Model model, String fileName);
