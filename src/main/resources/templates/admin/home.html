@@ -100,13 +100,25 @@
             align-items: center;
         }
         .link{
+            display: block;
             font-family: "Microsoft YaHei UI";
             font-size: 22px;
             font-weight: bold;
-
+            width: 480px;
+            height: 200px;
+            margin: 0 auto;
+            line-height: 200px;
+            background-color: whitesmoke;
+            border-radius: 20px;
+            box-shadow: #E3E4E5 5px 5px;
+            border: #e0e0e0 solid 1px;
         }
         .firstlink{
-            margin: 20px auto;
+            /*margin: 100px auto;*/
+        }
+        .welcom{
+            font-size: 27px;
+            font-family: Cambria;
         }
     </style>
 </head>
@@ -115,9 +127,12 @@
     <el-container class="container">
         <el-aside width="250px">
             <div class="asidewelcome">
-
-
                 管理员主页
+                <div>
+                    <p class="welcom">
+                        管理员,欢迎你!
+                    </p>
+                </div>
 
             </div>
         </el-aside>
@@ -140,14 +155,14 @@
             </el-header>
             <el-main>
 
-                <div class="firstlink">
-                    <a class="link" th:href="'/admin/allStudentInfo?currentPage=1'">管理学生信息</a>
+                <div class="firstlink ">
+                    <a class="link " th:href="'/admin/allStudentInfo?currentPage=1'">管理学生信息</a>
                 </div>
                 <!-- http://localhost:8080/admin/login -->
 
                 <br>
-                <div>
-                    <a class="link" th:href="'/admin/allTeacherInfo?currentPage=1'">管理老师信息</a>
+                <div class="">
+                    <a class="link " th:href="'/admin/allTeacherInfo?currentPage=1'">管理老师信息</a>
                 </div>
 <!--                <img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/3/322eaafd48e8f9c0e9823021da4266fe1488526433.png"-->
 <!--                width= 100%-->

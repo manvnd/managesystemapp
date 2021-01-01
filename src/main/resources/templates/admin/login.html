@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>管理员登录页面</title>
     <link href="../../static/css/login.css" rel="stylesheet"/>
+    <style>
+        input{
+            width: 276px;
+            height: 15px;
+        }
+    </style>
 </head>
 <body>
 <div id="bigBox">
@@ -30,8 +36,8 @@
         </form>
     </div>
 </div>
-<font size="6" color="red">
-    <span th:text="${loginMessage}"></span> <!-- 弹出一个错误界面 -->
-</font>
+<!--<font size="6" color="red">-->
+<!--    <span th:text="${loginMessage}"></span> &lt;!&ndash; 弹出一个错误界面 &ndash;&gt;-->
+<!--</font>-->
 </body>
 </html>

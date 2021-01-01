@@ -44,14 +44,15 @@ body {
 
 #bigBox h3 {
     color: white; /* LOGIN字体颜色 */
+    margin-bottom: 20px;
 }
 
 #bigBox .inputBox {
-    margin-top: 20px; /* 输入框顶部与LOGIN标题的间距 */
+    margin-top: -50px; /* 输入框顶部与LOGIN标题的间距 */
 }
 
 #bigBox .inputBox .inputText {
-    margin-top: 20px; /* 输入框之间的距离 */
+    margin-top: 40px; /* 输入框之间的距离 */
 }
 
 #bigBox .inputBox .inputText span {
