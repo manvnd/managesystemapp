@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>学生主页</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <link rel="stylesheet" href="../../../static/css/base.css">
+    <link rel="stylesheet" href="/static/css/base.css">
     <style>
+        *{
+            font-family: 宋体;
+        }
         a:hover{
             text-decoration: none;
             color: rgba(38,43,21,0.87);
@@ -21,6 +24,13 @@
         a:active{
             text-decoration: none;
             color: rgba(38,43,21,0.87);
+        }
+        .container{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
         }
         .el-header, .el-footer {
             background-color: #B3C0D1;
@@ -68,7 +78,12 @@
         }
         .dropdown{
             float: right;
+        }
 
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .dropdownimg{
@@ -99,18 +114,23 @@
         .centercard{
             margin: 20px auto;
         }
+
+        .textcard:hover{
+            background-color: rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <el-container>
+        <el-container class="container">
             <el-aside width="250px">
                 <div class="asidewelcome">
                     欢迎回来
                 </div>
             </el-aside>
             <el-container>
-                <el-header>
+                <el-header class="header">
                     <div><strong>电子科技大学综合课程设计管理系统</strong></div>
                     <el-dropdown class="dropdown">
                       <div class="el-dropdown-link">
@@ -129,13 +149,13 @@
                     <el-card class="box-card rightcard">
                         <img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/3/322eaafd48e8f9c0e9823021da4266fe1488526433.png" width="440px" height="160px">
                     </el-card>
-                    <el-card class="box-card leftcard">
+                    <el-card class="box-card leftcard textcard">
                         <a th:href="@{/before/student/toDutyInfo(currentPage=1)}">选择综合设计</a>
                     </el-card>
-                    <el-card class="box-card centercard">
+                    <el-card class="box-card centercard textcard">
                         <a th:href="@{/before/student/toMyDutyProcess(studentId=${session.student.getStudentId()})}">查看综设进度</a>
                     </el-card>
-                    <el-card class="box-card rightcard">
+                    <el-card class="box-card rightcard textcard">
                         <a th:href="@{/before/student/toMyStudentGroup(studentId=${session.student.getStudentId()})}">查看小组成员</a>
                     </el-card>
                     <el-card class="box-card leftcard">
@@ -149,19 +169,31 @@
             </el-container>
         </el-container>
     </div>
-<!--    <a th:href="@{/before/student/toMyStudentGroup(studentId=${session.student.getStudentId()})}"></a>-->
+    <a th:href="@{/before/student/toMyStudentGroup(studentId=${session.student.getStudentId()})}"></a>
 
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script   th:inline="javascript">
+    let mess = [[${message}]]
+    // console.log(mess);
 </script>
 <script>
     new Vue({
         el: "#app",
         data() {
             return {
-
+                mess
+            }
+        },
+        created(){
+          if (mess !== null){
+              this.me()
+          }
+        },
+        methods: {
+            me(){
+                this.$message(mess);
             }
         }
     })

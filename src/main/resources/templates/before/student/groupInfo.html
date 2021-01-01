@@ -6,15 +6,123 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        *{
+            font-family: 宋体;
+        }
+        a:hover{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:visited{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:link{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:active{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        .container{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .el-header, .el-footer {
+            background-color: #B3C0D1;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .el-main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            /*line-height: 160px;*/
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        /*.el-container:nth-child(5) .el-aside,*/
+        /*.el-container:nth-child(6) .el-aside {*/
+        /*    line-height: 260px;*/
+        /*}*/
+
+        /*.el-container:nth-child(7) .el-aside {*/
+        /*    line-height: 320px;*/
+        /*}*/
+
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .el-dropdown-link {
+            cursor: pointer;
+            color: #409EFF;
+        }
+        .el-icon-arrow-down {
+            font-size: 12px;
+        }
+        .dropdownimg{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+        .el-dropdown-link{
+            display: flex;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
+    <el-container class="container">
+        <el-aside width="250px">
+            <div class="asidewelcome">
+                小组成员信息
+            </div>
+        </el-aside>
+        <el-container>
+            <el-header class="header">
+                <div><strong>电子科技大学综合课程设计管理系统</strong></div>
+                <el-dropdown class="dropdown">
+                    <div class="el-dropdown-link">
+                        <img class="dropdownimg" src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1542881003,1817911166&fm=26&gp=0.jpg">
+                        <div th:object="${session.student}">
+                            <a th:text="*{studentName}" style="font-size: large"></a>
+                        </div>
+                        <i class="el-icon-arrow-down el-icon--right"></i>
+                    </div>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item><a th:href="@{/before/student/logout}">退出登录</a></el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </el-header>
+            <el-main>
+                <el-card>
     <el-table
             :data="studentGroupInfo"
             style="width: 100%">
         <el-table-column
                 prop="studentId"
-                label="日期"
+                label="ID"
                 width="180">
         </el-table-column>
         <el-table-column
@@ -24,7 +132,7 @@
         </el-table-column>
         <el-table-column
                 prop="leader"
-                label="地址">
+                label="是否为组长">
             <template slot-scope="scope">
 <!--                <i class="el-icon-time"></i>-->
 <!--                <span style="margin-left: 10px">{{ scope.row.date }}</span>-->
@@ -34,6 +142,11 @@
             </template>
         </el-table-column>
     </el-table>
+                </el-card>
+
+            </el-main>
+        </el-container>
+    </el-container>
 </div>
 
 
