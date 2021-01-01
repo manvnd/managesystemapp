@@ -36,7 +36,7 @@
             <td th:text="${duty.teacher.teacherName}"></td>
             <td>
                 <span th:if="${studentSelected} != true">
-                    <a th:href="@{/before/student/dutyChoose}">选课</a>
+                    <a th:href="@{/before/student/dutyChoose(dutyId = ${duty.dutyId})}">选课</a>
                 </span>
                 <span th:unless="${studentSelected} != true">
                     <a>你已选择课程</a>
