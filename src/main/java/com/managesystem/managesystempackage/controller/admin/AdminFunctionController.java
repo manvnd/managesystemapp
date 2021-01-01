@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminFunctionController {
+public class AdminFunctionController extends AdminBaseController {
     @Autowired
     private AdminService adminService;
     @RequestMapping("/home")

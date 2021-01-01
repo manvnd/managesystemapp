@@ -79,10 +79,8 @@ public class StudentServiceImpl implements StudentService {
         return "before/student/dutyInfo";
     }
     @Override
-    public String dutyChoose(HttpSession session) {
+    public String dutyChoose(Integer dutyId, HttpSession session) {
         int studentId = MYUtil.getStudent(session).getStudentId();
-        int studentGroupNumber = studentRepository.getStudentGroupNumberByStudentId(studentId);
-        int dutyId = studentRepository.getDutyIdByStudentGroupNumber(studentGroupNumber);
         int dutySelectedStudentNumber = studentRepository.getDutySelectedStudentNumber(dutyId) + 1;
 
         if (studentRepository.studentGroupInsert(dutyId, studentId, dutySelectedStudentNumber, MYUtil.getStudent(session).getStudentName()) > 0) {
