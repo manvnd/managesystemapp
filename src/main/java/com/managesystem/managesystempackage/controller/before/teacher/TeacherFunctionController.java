@@ -100,6 +100,11 @@ public class TeacherFunctionController extends TeacherBaseController {
     public String gradeSet(@ModelAttribute("studentGroup") StudentGroup studentGroup, Model model) {
         return teacherService.gradeSet(studentGroup, model);
     }
+    @RequestMapping("/logout")
+    public String logout(@ModelAttribute("teacher") Teacher teacher, HttpSession session){
+        session.removeAttribute("teacher"); //退出登录则清除session中的用户信息
+        return "/before/teacher/login";
+    }
 
 
 }

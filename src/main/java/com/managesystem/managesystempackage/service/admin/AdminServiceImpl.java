@@ -41,18 +41,20 @@ public class AdminServiceImpl implements AdminService{
         return "/admin/allStudentInfo";
     }
     @Override
-    public String studentDelete(int id) {
+    public String studentDelete(Model model, int id) {
         adminRepository.studentDelete(id);
+        model.addAttribute("message", "删除成功!");
         return "redirect:/admin/allStudentInfo?currentPage=1";
     }
     @Override
-    public String studentAdd(Student student) {
+    public String studentAdd(Model model, Student student) {
         student.setStudentPwd(MD5Util.MD5("123456"));
         adminRepository.studentAdd(student);
+        model.addAttribute("message", "添加成功!");
         return "redirect:/admin/allStudentInfo?currentPage=1";
     }
     @Override
-    public String studentUpdate(Student student) {
+    public String studentUpdate(Model model, Student student) {
         if (student.getStudentPwd().equals("")) {
             adminRepository.studentUpdateExceptPwd(student);
         }
@@ -60,6 +62,7 @@ public class AdminServiceImpl implements AdminService{
             student.setStudentPwd(MD5Util.MD5(student.getStudentPwd()));
             adminRepository.studentUpdateConcludePwd(student);
         }
+        model.addAttribute("message", "更新成功!");
         return "redirect:/admin/allStudentInfo?currentPage=1";
     }
     @Override
@@ -80,18 +83,20 @@ public class AdminServiceImpl implements AdminService{
         return "/admin/allTeacherInfo";
     }
     @Override
-    public String teacherDelete(int id) {
+    public String teacherDelete(Model model, int id) {
         adminRepository.teacherDelete(id);
+        model.addAttribute("message", "删除成功!");
         return "redirect:/admin/allTeacherInfo?currentPage=1";
     }
     @Override
-    public String teacherAdd(Teacher teacher) {
+    public String teacherAdd(Model model, Teacher teacher) {
         teacher.setTeacherPwd(MD5Util.MD5("123456"));
         adminRepository.teacherAdd(teacher);
+        model.addAttribute("message", "添加成功!");
         return "redirect:/admin/allTeacherInfo?currentPage=1";
     }
     @Override
-    public String teacherUpdate(Teacher teacher) {
+    public String teacherUpdate(Model model, Teacher teacher) {
         if (teacher.getTeacherPwd().equals("")) {
             adminRepository.teacherUpdateExceptPwd(teacher);
         }
@@ -99,6 +104,7 @@ public class AdminServiceImpl implements AdminService{
             teacher.setTeacherPwd(MD5Util.MD5(teacher.getTeacherPwd()));
             adminRepository.teacherUpdateConcludePwd(teacher);
         }
+        model.addAttribute("message", "更新成功!");
         return "redirect:/admin/allTeacherInfo?currentPage=1";
     }
     @Override
