@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>管理员登录页面
-</title>
-	<script type="text/javascript"  th:inline="javascript">
-		// th:inline="javascript" 必须写
-		window.onload = function(){
-			var msg =  [[${loginMessage}]]; //官方写法
-			if(msg){
-				alert(msg);
-						}
-		};
-	</script>
+    <meta charset="UTF-8">
+    <title>管理员登录页面</title>
+    <link href="../../static/css/login.css" rel="stylesheet"/>
 </head>
-
 <body>
-	<h3 align="center">管理员登录</h3>
-		<br>
-		<br>
-		<form th:action="@{/admin/login}" name="myform" method="post" th:object="${admin}"  class="form-horizontal" role="form" >
-				<label class="col-sm-2 col-md-2 control-label">用户名</label>
-				<input type="text" class="form-control" placeholder="请输入管理员名" th:field="*{adminName}"/>
-			<input type="password" class="form-control"
-					 placeholder="请输入您的密码" th:field="*{adminPwd}"/>
+<div id="bigBox">
+    <!--http://localhost:8080/admin/toLogin-->
+    <h3 align="center">管理员登录</h3>
+    <br>
+    <br>
+    <div class="inputBox">
+        <form th:action="@{/admin/login}" name="myform" method="post" th:object="${admin}" class="form-horizontal"
+              role="form">
+            <!--用户名输入-->
+            <div class="inputText">
+                <span class="iconfont icon-nickname"></span>
+                <input type="text" class="form-control" placeholder="请输入管理员名" th:field="*{adminName}"/>
+            </div>
+            <!--密码输入-->
+            <div class="inputText">
+                <span class="iconfont icon-visible"></span>
+                <input type="password" class="form-control" placeholder="请输入您的密码" th:field="*{adminPwd}"/>
+            </div>
 
-			<button type="submit">登录</button>
-			<button type="reset">重置</button>
-		</form>
-	<font size="6" color="red">
-<!--		<span th:text="${loginMessage}" th:hidden="true"></span> &lt;!&ndash; 弹出一个错误界面 &ndash;&gt;-->
-	</font>
+            <button type="submit" class="btn btn-success">登录</button>
+            <button type="reset" class="btn btn-primary">重置</button>
+        </form>
+    </div>
+</div>
+<font size="6" color="red">
+    <span th:text="${loginMessage}"></span> <!-- 弹出一个错误界面 -->
+</font>
 </body>
 </html>
