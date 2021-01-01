@@ -241,7 +241,7 @@
                         <tbody >
                         <th scope="row" th:text="${studentGroupDutyInfo.studentGroupNumber}"></th>
                         <td th:text="${studentGroupDutyInfo.dutyId}"></td>
-                        <td>
+                        <td onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
             <span th:if="${studentGroupDutyInfo.studentGroupReportOneFile} != null">
                 <a th:href="@{/before/student/fileDownload(fileName = ${studentGroupDutyInfo.studentGroupReportOneFile})}">
                     <b th:text="${studentGroupDutyInfo.studentGroupReportOneFile}"></b>
@@ -263,7 +263,7 @@
 
             </span>
                         </td>
-                        <td>
+                        <td onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
             <span th:if="${studentGroupDutyInfo.studentGroupReportTwoFile} != null">
                 <a th:href="@{/before/student/fileDownload(fileName = ${studentGroupDutyInfo.studentGroupReportTwoFile})}">
                     <b th:text="${studentGroupDutyInfo.studentGroupReportTwoFile}"></b>
@@ -288,7 +288,7 @@
                         <!--            <a th:href="@{/before/teacher/fileDownload(fileName = ${duty.dutyDescriptionFile})}">-->
                         <!--                <span th:text="${duty.dutyDescriptionFile}"></span></a>-->
                         <!--        </td>-->
-                        <td>
+                        <td onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
             <span th:if="${studentGroupDutyInfo.studentGroupReportThreeFile} != null">
                 <a th:href="@{/before/student/fileDownload(fileName = ${studentGroupDutyInfo.studentGroupReportThreeFile})}">
                     <b th:text="${studentGroupDutyInfo.studentGroupReportThreeFile}"></b>
@@ -310,7 +310,7 @@
             </span>
                         </td>
                         <td th:text="${studentGroupDutyInfo.studentGroupScore}"></td>
-                        <td>
+                        <td onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
             <span th:if="${studentGroupDutyInfo.studentGroupCommons} == null">
                 <a th:href="@{/before/student/toCommon(studentGroupNumber = ${studentGroupDutyInfo.studentGroupNumber})}">上传评价</a>
             </span>

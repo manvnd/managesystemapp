@@ -3,86 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <title>学生进度</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        *{
+            font-family: 宋体;
+        }
+        a:hover{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:visited{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:link{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:active{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        .container{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .el-header, .el-footer {
+            background-color: #B3C0D1;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .el-main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            /*line-height: 160px;*/
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        /*.el-container:nth-child(5) .el-aside,*/
+        /*.el-container:nth-child(6) .el-aside {*/
+        /*    line-height: 260px;*/
+        /*}*/
+
+        /*.el-container:nth-child(7) .el-aside {*/
+        /*    line-height: 320px;*/
+        /*}*/
+
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .el-dropdown-link {
+            cursor: pointer;
+            color: #409EFF;
+        }
+        .el-icon-arrow-down {
+            font-size: 12px;
+        }
+        .dropdownimg{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+        .el-dropdown-link{
+            display: flex;
+            align-items: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        td,th {
+            padding: 0;
+        }
+
+        .pure-table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            empty-cells: show;
+            border: 1px solid #cbcbcb;
+        }
+
+        .pure-table caption {
+            color: #000;
+            font: italic 85%/1 arial,sans-serif;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        .pure-table td,.pure-table th {
+            border-left: 1px solid #cbcbcb;
+            border-width: 0 0 0 1px;
+            font-size: inherit;
+            margin: 0;
+            overflow: visible;
+            padding: .5em 1em;
+        }
+
+        .pure-table thead {
+            background-color: #e0e0e0;
+            color: #000;
+            text-align: left;
+            vertical-align: bottom;
+        }
+
+        .pure-table td {
+            background-color: transparent;
+        }
+        .pure-table-horizontal td,.pure-table-horizontal th {
+            border-width: 0 0 1px 0;
+            border-bottom: 1px solid #cbcbcb;
+        }
+
+        .pure-table-horizontal tbody>tr:last-child>td {
+            border-bottom-width: 0;
+        }
+
+        .back{
+            display: flex;
+            width: 100px;
+            height: 50px;
+            margin: 30px auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .back:hover{
+            background-color: rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .el-main{
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .card{
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .back{
+            /*float: right;*/
+            position: absolute;
+            right: 50px;
+        }
+    </style>
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>小组编号</th>
-        <th>组长姓名</th>
-        <th>第一次报告</th>
-        <th>第二次报告</th>
-        <th>第三次报告</th>
-        <th>最终得分</th>
-        <th>学生评价</th>
-    </tr>
-    </thead>
-    <tbody>
-        <th scope="row" th:text="${studentGroupProcess.studentGroupId}"></th>
-        <td th:text="${studentGroupProcess.studentGroupNumber}"></td>
-        <td>
-            <a th:if="${studentGroupProcess.leaderStudentId} != 0">
-                <span th:text="${studentGroupProcess.student.studentName}"></span>
-            </a>
-            <a th:unless="${studentGroupProcess.leaderStudentId} != 0">
-                <a th:href="@{/before/teacher/toLeaderSet(studentGroupNumber = ${studentGroupProcess.studentGroupNumber})}">任命组长</a>
-            </a>
-        </td>
-        <td>
-<!--            <a th:href="@{/before/teacher/fileDownload(fileName = ${duty.dutyDescriptionFile})}">-->
-<!--                <span th:text="${duty.dutyDescriptionFile}"></span></a>-->
-            <span th:if="${studentGroupProcess.studentGroupReportOneFile} != null">
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>#</th>-->
+<!--        <th>小组编号</th>-->
+<!--        <th>组长姓名</th>-->
+<!--        <th>第一次报告</th>-->
+<!--        <th>第二次报告</th>-->
+<!--        <th>第三次报告</th>-->
+<!--        <th>最终得分</th>-->
+<!--        <th>学生评价</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--        <th scope="row" th:text="${studentGroupProcess.studentGroupId}"></th>-->
+<!--        <td th:text="${studentGroupProcess.studentGroupNumber}"></td>-->
+<!--        <td>-->
+<!--            <a th:if="${studentGroupProcess.leaderStudentId} != 0">-->
+<!--                <span th:text="${studentGroupProcess.student.studentName}"></span>-->
+<!--            </a>-->
+<!--            <a th:unless="${studentGroupProcess.leaderStudentId} != 0">-->
+<!--                <a th:href="@{/before/teacher/toLeaderSet(studentGroupNumber = ${studentGroupProcess.studentGroupNumber})}">任命组长</a>-->
+<!--            </a>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--&lt;!&ndash;            <a th:href="@{/before/teacher/fileDownload(fileName = ${duty.dutyDescriptionFile})}">&ndash;&gt;-->
+<!--&lt;!&ndash;                <span th:text="${duty.dutyDescriptionFile}"></span></a>&ndash;&gt;-->
+<!--            <span th:if="${studentGroupProcess.studentGroupReportOneFile} != null">-->
+<!--                <a th:href="@{/before/teacher/fileDownload(fileName = ${studentGroupProcess.studentGroupReportOneFile})}">-->
+<!--                    <b th:text="${studentGroupProcess.studentGroupReportOneFile}"></b>-->
+<!--                </a>-->
+<!--            </span>-->
+<!--            <span th:unless="${studentGroupProcess.studentGroupReportOneFile} != null">-->
+<!--                暂未上传-->
+<!--            </span>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <span th:if="${studentGroupProcess.studentGroupReportTwoFile} != null">-->
+<!--                <a th:href="@{/before/teacher/fileDownload(fileName = ${studentGroupProcess.studentGroupReportTwoFile})}">-->
+<!--                    <b th:text="${studentGroupProcess.studentGroupReportTwoFile}"></b>-->
+<!--                </a>-->
+<!--            </span>-->
+<!--            <span th:unless="${studentGroupProcess.studentGroupReportTwoFile} != null">-->
+<!--                暂未上传-->
+<!--            </span>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <span th:if="${studentGroupProcess.studentGroupReportThreeFile} != null">-->
+<!--                <a th:href="@{/before/teacher/fileDownload(fileName = ${studentGroupProcess.studentGroupReportThreeFile})}">-->
+<!--                    <b th:text="${studentGroupProcess.studentGroupReportThreeFile}"></b>-->
+<!--                </a>-->
+<!--            </span>-->
+<!--            <span th:unless="${studentGroupProcess.studentGroupReportThreeFile} != null">-->
+<!--                暂未上传-->
+<!--            </span>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <span th:unless="${studentGroupProcess.studentGroupScore} != 0.0">-->
+<!--                <a th:href="@{/before/teacher/toSetGrade(studentGroupNumber = ${studentGroupProcess.studentGroupNumber})}">评分</a>-->
+<!--            </span>-->
+<!--            <span th:if="${studentGroupProcess.studentGroupScore} != 0.0">-->
+<!--                <a th:text="${studentGroupProcess.studentGroupScore}"></a>-->
+<!--            </span>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <span th:if="${studentGroupProcess.studentGroupCommons} != null">-->
+<!--                <a th:text="${studentGroupProcess.studentGroupCommons}"></a>-->
+<!--            </span>-->
+<!--            <span th:unless="${studentGroupProcess.studentGroupCommons} != null">-->
+<!--                暂无评论-->
+<!--            </span>-->
+<!--        </td>-->
+<!--        &lt;!&ndash;            <td><a th:href="@{/admin/toTeacherUpdate(id=${teacher.getId()})}">编辑</a></td>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>&ndash;&gt;-->
+<!--    </tbody>-->
+<!--</table>-->
+<!--<a th:text="${message}"></a>-->
+<!--<br>-->
+<!--<a th:href="@{/before/teacher/home}">返回</a>-->
+
+
+
+<div id="app">
+    <el-container class="container">
+        <el-aside width="250px">
+            <div class="asidewelcome">
+                学生进度管理
+            </div>
+        </el-aside>
+        <el-container>
+            <el-header class="header">
+                <div><strong>电子科技大学综合课程设计管理系统</strong></div>
+                <el-dropdown class="dropdown">
+                    <div class="el-dropdown-link">
+                        <img class="dropdownimg" src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1542881003,1817911166&fm=26&gp=0.jpg">
+                        <div th:object="${session.teacher}">
+                            <a th:text="*{teacherName}" style="font-size: large"></a>
+                        </div>
+                        <i class="el-icon-arrow-down el-icon--right"></i>
+                    </div>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item><a th:href="@{/before/teacher/logout}">退出登录</a></el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </el-header>
+            <el-main class="el-main">
+                <el-card class="card">
+                    <table   class="pure-table pure-table-horizontal">
+                        <thead>
+                        <tr >
+                            <th>#</th>
+                            <th>小组编号</th>
+                            <th>组长姓名</th>
+                            <th>第一次报告</th>
+                            <th>第二次报告</th>
+                            <th>第三次报告</th>
+                            <th>最终得分</th>
+                            <th>学生评价</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+                        <th scope="row" th:text="${studentGroupProcess.studentGroupId}"></th>
+                        <td th:text="${studentGroupProcess.studentGroupNumber}"></td>
+                        <td  onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
+                            <a th:if="${studentGroupProcess.leaderStudentId} != 0">
+                                <span th:text="${studentGroupProcess.student.studentName}"></span>
+                            </a>
+                            <a th:unless="${studentGroupProcess.leaderStudentId} != 0">
+                                <a th:href="@{/before/teacher/toLeaderSet(studentGroupNumber = ${studentGroupProcess.studentGroupNumber})}">任命组长</a>
+                            </a>
+                        </td>
+                        <td>
+                            <!--            <a th:href="@{/before/teacher/fileDownload(fileName = ${duty.dutyDescriptionFile})}">-->
+                            <!--                <span th:text="${duty.dutyDescriptionFile}"></span></a>-->
+                            <span th:if="${studentGroupProcess.studentGroupReportOneFile} != null">
                 <a th:href="@{/before/teacher/fileDownload(fileName = ${studentGroupProcess.studentGroupReportOneFile})}">
                     <b th:text="${studentGroupProcess.studentGroupReportOneFile}"></b>
                 </a>
             </span>
-            <span th:unless="${studentGroupProcess.studentGroupReportOneFile} != null">
+                            <span th:unless="${studentGroupProcess.studentGroupReportOneFile} != null">
                 暂未上传
             </span>
-        </td>
-        <td>
+                        </td>
+                        <td>
             <span th:if="${studentGroupProcess.studentGroupReportTwoFile} != null">
                 <a th:href="@{/before/teacher/fileDownload(fileName = ${studentGroupProcess.studentGroupReportTwoFile})}">
                     <b th:text="${studentGroupProcess.studentGroupReportTwoFile}"></b>
                 </a>
             </span>
-            <span th:unless="${studentGroupProcess.studentGroupReportTwoFile} != null">
+                            <span th:unless="${studentGroupProcess.studentGroupReportTwoFile} != null">
                 暂未上传
             </span>
-        </td>
-        <td>
+                        </td>
+                        <td>
             <span th:if="${studentGroupProcess.studentGroupReportThreeFile} != null">
                 <a th:href="@{/before/teacher/fileDownload(fileName = ${studentGroupProcess.studentGroupReportThreeFile})}">
                     <b th:text="${studentGroupProcess.studentGroupReportThreeFile}"></b>
                 </a>
             </span>
-            <span th:unless="${studentGroupProcess.studentGroupReportThreeFile} != null">
+                            <span th:unless="${studentGroupProcess.studentGroupReportThreeFile} != null">
                 暂未上传
             </span>
-        </td>
-        <td>
+                        </td>
+                        <td onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
             <span th:unless="${studentGroupProcess.studentGroupScore} != 0.0">
                 <a th:href="@{/before/teacher/toSetGrade(studentGroupNumber = ${studentGroupProcess.studentGroupNumber})}">评分</a>
             </span>
-            <span th:if="${studentGroupProcess.studentGroupScore} != 0.0">
+                            <span th:if="${studentGroupProcess.studentGroupScore} != 0.0">
                 <a th:text="${studentGroupProcess.studentGroupScore}"></a>
             </span>
-        </td>
-        <td>
+                        </td>
+                        <td>
             <span th:if="${studentGroupProcess.studentGroupCommons} != null">
                 <a th:text="${studentGroupProcess.studentGroupCommons}"></a>
             </span>
-            <span th:unless="${studentGroupProcess.studentGroupCommons} != null">
+                            <span th:unless="${studentGroupProcess.studentGroupCommons} != null">
                 暂无评论
             </span>
-        </td>
-        <!--            <td><a th:href="@{/admin/toTeacherUpdate(id=${teacher.getId()})}">编辑</a></td>-->
-        <!--            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>-->
-    </tbody>
-</table>
-<a th:text="${message}"></a>
-<br>
-<a th:href="@{/before/teacher/home}">返回</a>
+                        </td>
+                        <!--            <td><a th:href="@{/admin/toTeacherUpdate(id=${teacher.getId()})}">编辑</a></td>-->
+                        <!--            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>-->
+
+                        </tbody>
+                    </table>
+                    <a th:text="${message}"></a>
+                    <br>
+                    <div class="back"><a th:href="@{/before/teacher/home}">返回</a></div>
+                    <div style="clear: both"></div>
+                </el-card>
+
+            </el-main>
+        </el-container>
+    </el-container>
+</div>
+
 </body>
+
+<script   th:inline="javascript">
+    // let studentGroupDutyInfo = [[${studentGroupDutyInfo}]];
+    // console.log(studentGroupDutyInfo);
+    // let
+    // console.log(studentGroupInfo);
+</script>
+<script>
+    new Vue({
+        el: "#app",
+        data(){
+            return{
+                // studentGroupDutyInfo
+            }
+        },
+        methods: {
+
+        }
+    })
+</script>
 </html>

@@ -93,6 +93,7 @@
         table {
             border-collapse: collapse;
             border-spacing: 0;
+            margin-bottom: 30px;
         }
 
         td,th {
@@ -127,10 +128,12 @@
             color: #000;
             text-align: left;
             vertical-align: bottom;
+            text-align: center;
         }
 
         .pure-table td {
             background-color: transparent;
+            text-align: center;
         }
         .pure-table-horizontal td,.pure-table-horizontal th {
             border-width: 0 0 1px 0;
@@ -139,6 +142,15 @@
 
         .pure-table-horizontal tbody>tr:last-child>td {
             border-bottom-width: 0;
+        }
+
+        .card{
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .asidewelcome{
+            font-size: 30px;
         }
     </style>
 </head>
@@ -227,7 +239,7 @@
                 </el-dropdown>
             </el-header>
             <el-main>
-                <el-card>
+                <el-card class="card">
                     <table  class="pure-table pure-table-horizontal">
                         <thead>
                         <tr>
@@ -247,7 +259,7 @@
                             <td th:text="${duty.dutyName}"></td>
                             <td th:text="${duty.dutySummary}"></td>
                             <td onmouseover="this.style.backgroundColor='rgba(66,0,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
-                                <a th:href="@{/before/teacher/fileDownload(fileName = ${duty.dutyDescriptionFile})}">
+                                <a style="font-weight: bold" th:href="@{/before/teacher/fileDownload(fileName = ${duty.dutyDescriptionFile})}">
                                     <span th:text="${duty.dutyDescriptionFile}"></span></a>
                             </td>
                             <td th:text="${duty.dutySize}"></td>
@@ -265,11 +277,27 @@
                         </tr>
                         </tbody>
                     </table>
+
+                    <span><a>第<span th:text="${currentPage}" style="font-weight: bold"></span>页</a></span>
+                    <span><a>共<span th:text="${totalPage}" style="font-weight: bold"></span>页</a></span>
+                    <span>
+        <span th:if="${currentPage} != 1">
+            <a onmouseover="this.style.backgroundColor='rgba(66,0,133,0.21)';"
+               onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';"
+               th:href="'/admin/allStudentInfo?currentPage=' + ${currentPage - 1}">上一页</a>
+        </span>
+                    <span th:if="${currentPage} != ${totalPage}">
+            <a onmouseover="this.style.backgroundColor='rgba(66,0,133,0.21)';"
+               onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';"
+               th:href="'/admin/allStudentInfo?currentPage=' + ${currentPage + 1}">下一页</a>
+        </span>
+                </span>
                 </el-card>
 
             </el-main>
         </el-container>
     </el-container>
+</div>
 </div>
 </body>
 

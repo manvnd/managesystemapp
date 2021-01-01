@@ -3,11 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <title>文件上传</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        *{
+            font-family: 宋体;
+        }
+        a:hover{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:visited{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:link{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:active{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        .container{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .el-header, .el-footer {
+            background-color: #B3C0D1;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .el-main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            /*line-height: 160px;*/
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        /*.el-container:nth-child(5) .el-aside,*/
+        /*.el-container:nth-child(6) .el-aside {*/
+        /*    line-height: 260px;*/
+        /*}*/
+
+        /*.el-container:nth-child(7) .el-aside {*/
+        /*    line-height: 320px;*/
+        /*}*/
+
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .el-dropdown-link {
+            cursor: pointer;
+            color: #409EFF;
+        }
+        .el-icon-arrow-down {
+            font-size: 12px;
+        }
+        .dropdownimg{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+        .el-dropdown-link{
+            display: flex;
+            align-items: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 30px;
+        }
+
+        td,th {
+            padding: 0;
+        }
+
+        .pure-table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            empty-cells: show;
+            border: 1px solid #cbcbcb;
+        }
+
+        .pure-table caption {
+            color: #000;
+            font: italic 85%/1 arial,sans-serif;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        .pure-table td,.pure-table th {
+            border-left: 1px solid #cbcbcb;
+            border-width: 0 0 0 1px;
+            font-size: inherit;
+            margin: 0;
+            overflow: visible;
+            padding: .5em 1em;
+        }
+
+        .pure-table thead {
+            background-color: #e0e0e0;
+            color: #000;
+            text-align: left;
+            vertical-align: bottom;
+            text-align: center;
+        }
+
+        .pure-table td {
+            background-color: transparent;
+            text-align: center;
+        }
+        .pure-table-horizontal td,.pure-table-horizontal th {
+            border-width: 0 0 1px 0;
+            border-bottom: 1px solid #cbcbcb;
+        }
+
+        .pure-table-horizontal tbody>tr:last-child>td {
+            border-bottom-width: 0;
+        }
+
+        .card{
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .asidewelcome{
+            font-size: 30px;
+        }
+    </style>
 </head>
 <body>
-<form th:action="@{/before/student/uploadReportFileThree}" method="post" th:Object="${studentGroup}" enctype="multipart/form-data">
-    <input type="file" placeholder="请选择第一次报告" name="studentGroupReportThreeFileName" />
-    <button type="submit">提交</button>
-</form>
+<!--<form th:action="@{/before/student/uploadReportFileThree}" method="post" th:Object="${studentGroup}" enctype="multipart/form-data">-->
+<!--    <input type="file" placeholder="请选择第一次报告" name="studentGroupReportThreeFileName" />-->
+<!--    <button type="submit">提交</button>-->
+<!--</form>-->
+
+
+<div id="app">
+    <el-container class="container">
+        <el-aside width="250px">
+            <div class="asidewelcome">
+                上传文件1
+            </div>
+        </el-aside>
+        <el-container>
+            <el-header class="header">
+                <div><strong>电子科技大学综合课程设计管理系统</strong></div>
+                <el-dropdown class="dropdown">
+                    <div class="el-dropdown-link">
+                        <img class="dropdownimg" src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1542881003,1817911166&fm=26&gp=0.jpg">
+                        <div th:object="${session.student}">
+                            <a th:text="*{studentName}" style="font-size: large"></a>
+                        </div>
+                        <i class="el-icon-arrow-down el-icon--right"></i>
+                    </div>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item><a th:href="@{/before/student/logout}">退出登录</a></el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </el-header>
+            <el-main>
+                <el-card class="card">
+<!--                    <form th:action="@{/before/student/uploadReportFileOne}" method="post" th:Object="${studentGroup}" enctype="multipart/form-data">-->
+<!--                        <input type="file" placeholder="请选择第一次报告" name="studentGroupReportThreeFileName" /><br>-->
+<!--                        <button type="submit" style="float: left; margin-top: 20px">提交</button>-->
+<!--                    </form>-->
+                    <form th:action="@{/before/student/uploadReportFileThree}" method="post" th:Object="${studentGroup}" enctype="multipart/form-data">
+                        <input type="file" placeholder="请选择第三次报告" name="studentGroupReportThreeFileName" /><br>
+                        <button type="submit"  style="float: left; margin-top: 20px">提交</button>
+                    </form>
+                </el-card>
+
+            </el-main>
+        </el-container>
+    </el-container>
+</div>
 </body>
+<script   th:inline="javascript">
+    let mess = [[${message}]]
+    // console.log(mess);
+</script>
+<script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                mess
+            }
+        },
+        created(){
+            if (mess !== null){
+                this.me()
+            }
+        },
+        methods: {
+            me(){
+                this.$message(mess);
+            }
+        }
+    })
+</script>
 </html>
