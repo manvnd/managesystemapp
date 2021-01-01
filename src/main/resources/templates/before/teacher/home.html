@@ -3,12 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <title>教师主页</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <style>
+        *{
+            font-family: 宋体;
+        }
+        a:hover{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:visited{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:link{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:active{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        .container{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+        .el-header, .el-footer {
+            background-color: #B3C0D1;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .el-main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            line-height: 160px;
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        .el-container:nth-child(5) .el-aside,
+        .el-container:nth-child(6) .el-aside {
+            line-height: 260px;
+        }
+
+        .el-container:nth-child(7) .el-aside {
+            line-height: 320px;
+        }
+
+        .el-dropdown-link {
+            cursor: pointer;
+            color: #409EFF;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+        .el-icon-arrow-down {
+            font-size: 12px;
+        }
+        .dropdown{
+            float: right;
+        }
+
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dropdownimg{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+
+        .asidewelcome{
+            font-size: 30px;
+        }
+
+        .box-card {
+            display: block;
+            width: 480px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .leftcard{
+            margin-left: 150px;
+        }
+        .rightcard{
+            float: right;
+            margin-right: 150px;
+        }
+        .centercard{
+            margin: 20px auto;
+        }
+
+        .textcard:hover{
+            background-color: rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .cards{
+            margin-top: 150px;
+        }
+    </style>
 </head>
 <body>
 
-    <a th:href="@{/before/teacher/toDutyAdd}">发布综合设计</a>
-    <a th:href="@{/before/teacher/toDutyInfo(teacherId=*{session.teacher.getTeacherId()}, currentPage=1)}">查看已发布的综设信息</a>
-    <br>
-    <a th:text="${message}"></a>
+    <div id="app">
+        <el-container class="container">
+            <el-aside width="250px">
+                <div class="asidewelcome">
+                    老师，欢迎回来！
+                </div>
+            </el-aside>
+            <el-container>
+                <el-header class="header">
+                    <div><strong>电子科技大学综合课程设计管理系统</strong></div>
+                    <el-dropdown class="dropdown">
+                        <div class="el-dropdown-link">
+                            <img class="dropdownimg" src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1542881003,1817911166&fm=26&gp=0.jpg">
+                            <div th:object="${session.teacher}">
+                                <a th:text="*{teacherName}" style="font-size: large"></a>
+                            </div>
+                            </span><i class="el-icon-arrow-down el-icon--right"></i>
+                        </div>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item><a th:href="@{/before/teacher/logout}">退出登录</a></el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </el-header>
+                <el-main>
+<!--                    <a th:href="@{/before/teacher/toDutyAdd}">发布综合设计</a>-->
+<!--                    <a th:href="@{/before/teacher/toDutyInfo(teacherId=*{session.teacher.getTeacherId()}, currentPage=1)}">查看已发布的综设信息</a>-->
+<!--                    <br>-->
+
+
+                    <div class="cards">
+                        <el-card class="box-card rightcard">
+                            <img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/3/322eaafd48e8f9c0e9823021da4266fe1488526433.png" width="440px" height="160px">
+                        </el-card>
+                        <el-card class="box-card leftcard textcard">
+                            <a th:href="@{/before/teacher/toDutyAdd}">发布综合设计</a>
+                        </el-card>
+                        <el-card class="box-card rightcard textcard">
+                            <a th:href="@{/before/teacher/toDutyInfo(teacherId=*{session.teacher.getTeacherId()}, currentPage=1)}">查看已发布的综设信息</a>
+                        </el-card>
+                        <el-card class="box-card leftcard">
+                            <img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/13/f11e6a1898e5ccab8ac5abec2c146acc1489397318.png" width="440px" height="160px">
+                        </el-card>
+                    </div>
+                    <a th:text="${message}"></a>
+                </el-main>
+            </el-container>
+        </el-container>
+    </div>
+
 </body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script   th:inline="javascript">
+    let mess = [[${message}]]
+    // console.log(mess);
+</script>
+<script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                mess
+            }
+        },
+        created(){
+            if (mess !== null){
+                this.me()
+            }
+        },
+        methods: {
+            me(){
+                this.$message(mess);
+            }
+        }
+    })
+</script>
 </html>

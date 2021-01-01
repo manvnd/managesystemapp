@@ -7,38 +7,29 @@
 	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 	<link rel="stylesheet" href="/static/css/base.css">
 	<style>
+		.container{
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			left: 0;
+		}
 		.el-header, .el-footer {
 			background-color: #B3C0D1;
 			color: #333;
 			text-align: center;
-			line-height: 60px;
+			/*line-height: 60px;*/
 			font-size: larger;
 		}
 		.el-main {
 			background-color: #E9EEF3;
 			color: #333;
 			text-align: center;
-			line-height: 160px;
-		}
-		body > .el-container {
-			margin-bottom: 40px;
-		}
-
-		.el-container:nth-child(5) .el-aside,
-		.el-container:nth-child(6) .el-aside {
-			line-height: 260px;
-		}
-
-		.el-container:nth-child(7) .el-aside {
-			line-height: 320px;
-		}
-
-		.text {
-			font-size: 14px;
-		}
-
-		.item {
-			padding: 18px 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			line-height: 70px;
 		}
 
 		a:hover{
@@ -61,45 +52,146 @@
 		.box-card {
 			display: block;
 			/*position: relative;*/
-			width: 480px;
+			width: 580px;
 			height: 200px;
 			right: 50%;
 			margin: 40px auto;
 		}
+
+		.LogIn{
+			display: flex;
+			margin: 0 auto;
+			width: 350px;
+			height: 100px;
+			justify-content: center;
+			align-items: center;
+		}
+
+		@font-face {
+			font-family: "iconfont";
+			src: url('iconfont.eot?t=1591106386397'); /* IE9 */
+			src: url('iconfont.eot?t=1591106386397#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPkAAsAAAAACCgAAAOVAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqEDIM4ATYCJAMMCwgABCAFhG0HPBsEB1GUDUqS7IckiWBsgSKJ5iIQA3MI4geKAwAAlgIQD19j7f3dvUMtQRJNHn26aJJEYoiEToIQxUIheSdEpnsms/x+7VRC3R1ElWSaNOmT7YvvDbzSSY3SaIQIoTG0rs5YPKzkCKMdmFhnZl8Ihekb28ETv33fz7o4nDbF5zc4pzmmRl2AcUABjb0swQJKkHuIV7u0w15PoF6fKeXl/dOLUktBuwXiMPBUqZVSKTXZoVaolowt4kxdbTpJfpz6349fEyEhqWS078rBni1tfpx/3fAd/w7XLgJ7PAP4SWSMKynEbqlpRzUMjauqV0W1+uSqIqSxvP//+CxNUDX/8EiCqKKZjWCYCNNJsW1WLL5Bzlmzb65zFXW4U/ImqTtRmqq8rTVL84YCiXK964MkBwBChhC37GSmaAaSZCIxivE4l2FIEkKCE4+PJJNjXMSMJhepAICiEKKrGWaMhIBoAYhLZOh2Bu7SzZGtAqIe0SYcGUlQiUgCUTVo/TnJjVvc95HI5Yi3TFFIQg4HkA28Mz+KSzM0xiMcdSST3vj0UzjDecQXy46LKNurEblFc0L3gGbB7yd2/6rYfSSsEoO2lVGueUc76Qd5FBr4XjBRXGr52LLO3SgfmellnsiUfeLOjkZD4cMQHi4vxEFvmweWxo5OZvix0VJYMQTybB2X8TbsGqooxPqHm3j4sdDQ2N6Fh17hMYUVnLuDgqKukpbs4WGWHRlWt5QUdhL9OpNfZny4NlGbb7prFux5BkrDntnR4Yvm72lYnjz7vL23GnzeXB3LWuqPt09ct8c9GsyblVq+Zb7y8lN/4+H2amVv2PFX2y3g/ef9DBVFu3RqJVqzfyG7ZUnRuFSdi8KyWYY7O/KbDAlkCDr/xNbur7+lSyk2hFqBjZDU6IWsVj+yYMehosEUVNWag3pjDiY36MCqotRh1AdAaPUFSbNXyFr9IAv2Fyq6/UNVa/Ch3lbo52wwGJudLkYlaEG/QGCylCytdILsM/QeYsVJro+7QnaBF+Zn5rLRA0yRxxjgHr0FEQLiLIF92AzjOIOcsxCNzPgi+cbsLJW9aMZkSaljCUOKQBbQXoCAkUmRW1l0cp8/gzwPYgrXFFXpryDmBLWDeTPmWiAPRGmromu5xHnkWSAEAYRlEmAfDCg2QxmQl7cKIUPM8HsEchtmSTlqK5qZX5I83yqoR4/JkSJHUXMcuEDH2NoLTJSqBEslAAAA') format('woff2'),
+			url('iconfont.woff?t=1591106386397') format('woff'),
+			url('iconfont.ttf?t=1591106386397') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */ url('iconfont.svg?t=1591106386397#iconfont') format('svg'); /* iOS 4.1- */
+		}
+
+		.iconfont {
+			font-family: "iconfont" !important;
+			font-size: 16px;
+			font-style: normal;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		.icon-visible:before {
+			content: "\e6a2";
+		}
+
+		.icon-nickname:before {
+			content: "\e6a0";
+		}
+
+		#bigBox {
+			margin: 0 auto; /* login框剧中 */
+			margin-bottom: 50px; /* login框与顶部的距离 */
+			padding: 20px 50px; /* login框内部的距离(内部与输入框和按钮的距离) */
+			padding-top: 70px;
+			background-color: #00000090; /* login框背景颜色和透明度 */
+			width: 400px;
+			height: 300px;
+			border-radius: 10px; /* 圆角边 */
+			text-align: center; /* 框内所有内容剧中 */
+		}
+
+		#bigBox h3 {
+			color: white; /* LOGIN字体颜色 */
+		}
+
+		#bigBox .inputBox {
+			margin-top: 10px; /* 输入框顶部与LOGIN标题的间距 */
+		}
+
+		#bigBox .inputBox .inputText {
+			margin-top: 10px; /* 输入框之间的距离 */
+			display: block;
+		}
+
+		#bigBox .inputBox .inputText span {
+			color: white; /* icon颜色 */
+		}
+
+		#bigBox .inputBox .inputText input {
+			border: 0; /* 删除输入框边框 */
+			padding: 10px 10px; /* 输入框内的间距 */
+			border-bottom: 1px solid white; /* 输入框白色下划线 */
+			/*background-color: #00000000; !* 输入框透明 *!*/
+			color: black; /* 输入字体的颜色 */
+			font-size: 14px;
+		}
+
+		#bigBox .btn {
+			margin-top: 30px; /* 按钮顶部与输入框的距离 */
+			margin-left: 10px;
+			margin-right: 10px;
+			width: 100px;
+			height: 25px;
+			color: #6E6E6E; /* 按钮字体颜色 */
+			border: 0; /* 删除按钮边框 */
+			border-radius: 20px; /* 按钮圆角边 */
+			background-color: #E3E4E5; /* 按钮颜色 */
+		}
+
+
+
 	</style>
 <title>登录页面</title>
 <body>
 
 <div id="app">
-	<el-container>
+	<el-container class="container">
 		<el-header>电子科技大学综合课程设计管理系统</el-header>
-		<el-main>
-			<el-card class="box-card">
-				<img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/3/322eaafd48e8f9c0e9823021da4266fe1488526433.png" width="440px" height="160px">
-			</el-card>
+		<el-main class="el-main">
+<!--			<el-card class="box-card">-->
+<!--				<img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/3/322eaafd48e8f9c0e9823021da4266fe1488526433.png" width="540px" height="160px">-->
+<!--			</el-card>-->
 
-			<form th:action="@{/before/student/login}" method="post" th:object="${student}">
-				<label>学号</label>
-				<input type="text" placeholder="请输入用户名" th:field="*{studentNumber}"/>
-				<label>密码</label>
-				<input type="password" placeholder="请输入您的密码" th:field="*{studentPwd}"/>
+			<div id="bigBox">
+				<div class="inputBox">
+					<form th:action="@{/before/student/login}" method="post" th:object="${student}" class="form-horizontal">
+<!--						<label>学号</label>-->
+<!--						<input type="text" placeholder="请输入用户名" th:field="*{studentNumber}"/>-->
+<!--						<label>密码</label>-->
+<!--						<input type="password" placeholder="请输入您的密码" th:field="*{studentPwd}"/>-->
 
-				<button type="submit"class="btn btn-success" >登录</button>
-				<button type="reset" class="btn btn-primary" >重置</button>
+						<div class="inputText">
+							<span class="iconfont icon-nickname"></span>
+							<input type="text" class="form-control" placeholder="请输入用户名" th:field="*{studentNumber}"/>
+						</div>
+						<!--密码输入-->
+						<div class="inputText">
+							<span class="iconfont icon-visible"></span>
+							<input type="password" class="form-control" placeholder="请输入您的密码" th:field="*{studentPwd}"/>
+						</div>
 
-				<font size="6" color="red">
-					<span th:text="${loginMessage}"></span>
-				</font>
-			</form>
+						<button type="submit"class="btn btn-success" >登录</button>
+						<button type="reset" class="btn btn-primary" >重置</button>
 
-			<div class="LogIn"><a th:href="@{/before/student/toRegister}">没有账号？点此注册</a></div>
+						<font size="6" color="red">
+							<span th:text="${loginMessage}"></span>
+						</font>
+					</form>
+				</div>
+			</div>
+			<div class="LogIn" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.1)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';"
+			><a th:href="@{/before/student/toRegister}" >没有账号？点此注册</a></div>
 		</el-main>
 	</el-container>
 </div>
-<script   th:inline="javascript">
-</script>
+
 
 </body>
+<script   th:inline="javascript">
+</script>
 <script>
 	new Vue({
 		el: "#app"
