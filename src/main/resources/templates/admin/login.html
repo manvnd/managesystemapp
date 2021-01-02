@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>管理员登录页面</title>
     <link href="../../static/css/login.css" rel="stylesheet"/>
+    <style>
+        input {
+            width: 276px;
+            height: 15px;
+        }
+    </style>
 </head>
 <body>
 <div id="bigBox">
@@ -30,8 +36,35 @@
         </form>
     </div>
 </div>
-<font size="6" color="red">
-    <span th:text="${loginMessage}"></span> <!-- 弹出一个错误界面 -->
-</font>
+<!--<font size="6" color="red">-->
+<!--    <span th:text="${loginMessage}"></span> &lt;!&ndash; 弹出一个错误界面 &ndash;&gt;-->
+<!--</font>-->
 </body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+<script th:inline="javascript">
+    let mess = [[${loginMessage}]]
+    // console.log(mess);
+</script>
+<script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                mess
+            }
+        },
+        created() {
+            if (mess !== null) {
+                this.me()
+            }
+        },
+        methods: {
+            me() {
+                this.$message(mess);
+            }
+        }
+    })
+</script>
 </html>

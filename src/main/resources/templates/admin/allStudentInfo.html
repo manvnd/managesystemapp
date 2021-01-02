@@ -151,10 +151,12 @@
         }
         li{
             background-color: #e0e0e0;
-
+            list-style: none;
         }
         .mybutton a{
             /*font-family: "Microsoft YaHei UI";*/
+            margin-bottom: 10px;
+            width: 17px;
         }
     </style>
 </head>
@@ -222,9 +224,20 @@
                         </tr>
                         </tbody>
                     </table>
-                    <li><a>第<span th:text="${currentPage}"></span>页</a></li>
-                    <li><a>共<span th:text="${totalPage}"></span>页</a></li>
-                    <li>
+                    <div class="mybutton">
+                        <button>
+                            <a th:href="@{/admin/toStudentAdd}">添加</a>
+                        </button>
+                        <button>
+                            <a  th:href="@{/admin/home}">返回</a>
+                        </button>
+                    </div>
+                    <br>
+
+
+                    <span><a>第<span th:text="${currentPage}"></span>页</a></span>
+                    <span><a>共<span th:text="${totalPage}"></span>页</a></span>
+                    <span>
         <span th:if="${currentPage} != 1">
             <a onmouseover="this.style.backgroundColor='rgba(66,0,133,0.21)';"
                onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';"
@@ -235,15 +248,9 @@
                onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';"
                th:href="'/admin/allStudentInfo?currentPage=' + ${currentPage + 1}">下一页</a>
         </span>
-                    </li>
+                    </span>
                 </div>
-                <div class="mybutton">
-                    <a  onmouseover="this.style.backgroundColor='rgba(66,0,133,0.21)';"
-                       onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';"
-                       th:href="@{/admin/toStudentAdd}">添加</a>
-                    <a  onmouseover="this.style.backgroundColor='rgba(66,0,133,0.21)';"
-                       onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';" th:href="@{/admin/home}">返回</a>
-                </div>
+
 
 
             </el-main>

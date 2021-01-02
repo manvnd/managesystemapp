@@ -100,13 +100,25 @@
             align-items: center;
         }
         .link{
+            display: block;
             font-family: "Microsoft YaHei UI";
             font-size: 22px;
             font-weight: bold;
-
+            width: 480px;
+            height: 200px;
+            margin: 0 auto;
+            line-height: 200px;
+            background-color: whitesmoke;
+            border-radius: 20px;
+            box-shadow: #E3E4E5 5px 5px;
+            border: #e0e0e0 solid 1px;
         }
         .firstlink{
-            margin: 20px auto;
+            /*margin: 100px auto;*/
+        }
+        .welcom{
+            font-size: 27px;
+            font-family: Cambria;
         }
     </style>
 </head>
@@ -115,39 +127,42 @@
     <el-container class="container">
         <el-aside width="250px">
             <div class="asidewelcome">
-
-
                 管理员主页
+                <div>
+                    <p class="welcom">
+                        管理员,欢迎你!
+                    </p>
+                </div>
 
             </div>
         </el-aside>
         <el-container>
             <el-header class="header">
                 <div><strong>电子科技大学综合课程设计管理系统</strong></div>
-                <!--                <el-dropdown class="dropdown">-->
-                <!--                    <div class="el-dropdown-link">-->
-                <!--                        <img class="dropdownimg"-->
-                <!--                             src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1542881003,1817911166&fm=26&gp=0.jpg">-->
-                <!--&lt;!&ndash;                        <div th:object="${session.student}">&ndash;&gt;-->
-                <!--&lt;!&ndash;                            <a th:text="*{studentName}" style="font-size: large"></a>&ndash;&gt;-->
-                <!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-                <!--                        <i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
-                <!--                    </div>-->
-                <!--                    <el-dropdown-menu slot="dropdown">-->
-                <!--&lt;!&ndash;                        <el-dropdown-item><a th:href="@{/before/student/logout}">退出登录</a></el-dropdown-item>&ndash;&gt;-->
-                <!--                    </el-dropdown-menu>-->
-                <!--                </el-dropdown>-->
+                                <el-dropdown class="dropdown">
+                                    <div class="el-dropdown-link">
+                                        <img class="dropdownimg"
+                                             src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1542881003,1817911166&fm=26&gp=0.jpg">
+                                        <div th:object="${session.admin}">
+                                            <a th:text="*{adminName}" style="font-size: large"></a>
+                                        </div>
+                                        <i class="el-icon-arrow-down el-icon--right"></i>
+                                    </div>
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item><a th:href="@{/admin/logout}">退出登录</a></el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
             </el-header>
             <el-main>
 
-                <div class="firstlink">
-                    <a class="link" th:href="'/admin/allStudentInfo?currentPage=1'">管理学生信息</a>
+                <div class="firstlink ">
+                    <a class="link " th:href="'/admin/allStudentInfo?currentPage=1'">管理学生信息</a>
                 </div>
                 <!-- http://localhost:8080/admin/login -->
 
                 <br>
-                <div>
-                    <a class="link" th:href="'/admin/allTeacherInfo?currentPage=1'">管理老师信息</a>
+                <div class="">
+                    <a class="link " th:href="'/admin/allTeacherInfo?currentPage=1'">管理老师信息</a>
                 </div>
 <!--                <img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/3/322eaafd48e8f9c0e9823021da4266fe1488526433.png"-->
 <!--                width= 100%-->
