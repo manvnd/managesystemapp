@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>管理员登录页面</title>
     <link href="../../static/css/login.css" rel="stylesheet"/>
+    <!--    <script src="../../static/css/login.js"></script>-->
     <style>
         input {
             width: 276px;
@@ -12,37 +13,41 @@
     </style>
 </head>
 <body>
-<div id="bigBox">
-    <!--http://localhost:8080/admin/toLogin-->
-    <h3 align="center">管理员登录</h3>
-    <br>
-    <br>
-    <div class="inputBox">
-        <form th:action="@{/admin/login}" name="myform" method="post" th:object="${admin}" class="form-horizontal"
-              role="form">
-            <!--用户名输入-->
-            <div class="inputText">
-                <span class="iconfont icon-nickname"></span>
-                <input type="text" class="form-control" placeholder="请输入管理员名" th:field="*{adminName}"/>
-            </div>
-            <!--密码输入-->
-            <div class="inputText">
-                <span class="iconfont icon-visible"></span>
-                <input type="password" class="form-control" placeholder="请输入您的密码" th:field="*{adminPwd}"/>
-            </div>
 
-            <button type="submit" class="btn btn-success">登录</button>
-            <button type="reset" class="btn btn-primary">重置</button>
-        </form>
+<div id="app">
+    <div id="bigBox">
+        <!--http://localhost:8080/admin/toLogin-->
+        <h3 align="center">管理员登录</h3>
+        <br>
+        <br>
+        <div class="inputBox">
+            <form th:action="@{/admin/login}" name="myform" method="post" th:object="${admin}" class="form-horizontal"
+                  role="form">
+                <!--用户名输入-->
+                <div class="inputText">
+                    <span class="iconfont icon-nickname"></span>
+                    <input type="text" class="form-control" placeholder="请输入管理员名" th:field="*{adminName}"/>
+                </div>
+                <!--密码输入-->
+                <div class="inputText">
+                    <span class="iconfont icon-visible"></span>
+                    <input id="passwd" type="password" class="form-control" placeholder="请输入您的密码"
+                           th:field="*{adminPwd}"/>
+                </div>
+
+                <button type="submit" class="btn btn-success">登录</button>
+                <button type="reset" class="btn btn-primary">重置</button>
+            </form>
+        </div>
     </div>
 </div>
 <!--<font size="6" color="red">-->
 <!--    <span th:text="${loginMessage}"></span> &lt;!&ndash; 弹出一个错误界面 &ndash;&gt;-->
 <!--</font>-->
 </body>
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
 <script th:inline="javascript">
     let mess = [[${loginMessage}]]
     // console.log(mess);

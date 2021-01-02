@@ -3,13 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <title>教师添加</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        *{
+            font-family: 宋体;
+        }
+        a:hover{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:visited{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:link{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:active{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        .container{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .el-header, .el-footer {
+            background-color: #B3C0D1;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .el-main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            /*line-height: 160px;*/
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        /*.el-container:nth-child(5) .el-aside,*/
+        /*.el-container:nth-child(6) .el-aside {*/
+        /*    line-height: 260px;*/
+        /*}*/
+
+        /*.el-container:nth-child(7) .el-aside {*/
+        /*    line-height: 320px;*/
+        /*}*/
+
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .el-dropdown-link {
+            cursor: pointer;
+            color: #409EFF;
+        }
+        .el-icon-arrow-down {
+            font-size: 12px;
+        }
+        .dropdownimg{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+        .el-dropdown-link{
+            display: flex;
+            align-items: center;
+        }
+        .myform{
+            margin-top: 68px;
+        }
+    </style>
 </head>
 <body>
-<form th:action="@{/admin/teacherAdd}" th:object="${teacher}">
-    教师姓名: <input type="text" placeholder="请输入教师姓名" th:field="*{teacherName}">
-    教职工号: <input type="text" placeholder="请输入教师教职工号" th:field="*{teacherNumber}">
-    <button type="submit">添加</button>
-    <button type="reset">重置</button>
-</form>
+<div id="app">
+    <el-container class="container">
+        <el-aside width="250px">
+            <div class="asidewelcome">
+
+
+
+                教师添加
+
+
+            </div>
+        </el-aside>
+        <el-container>
+            <el-header class="header">
+                <div><strong>电子科技大学综合课程设计管理系统</strong></div>
+                <el-dropdown class="dropdown">
+                    <div class="el-dropdown-link">
+                        <img class="dropdownimg" src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1542881003,1817911166&fm=26&gp=0.jpg">
+                        <div th:object="${session.admin}">
+                            <a th:text="*{adminName}" style="font-size: large"></a>
+                        </div>
+                        <i class="el-icon-arrow-down el-icon--right"></i>
+                    </div>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item><a th:href="@{/admin/logout}">退出登录</a></el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </el-header>
+            <el-main>
+                <form class="myform" th:action="@{/admin/teacherAdd}" th:object="${teacher}">
+                    教师姓名: <input type="text" placeholder="请输入教师姓名" th:field="*{teacherName}">
+                    <br>
+                    <br>
+                    教职工号: <input type="text" placeholder="请输入教师教职工号" th:field="*{teacherNumber}">
+                    <br>
+                    <br>
+                    <button type="submit">添加</button>
+                    <button type="reset">重置</button>
+                </form>
+            </el-main>
+        </el-container>
+    </el-container>
+</div>
+
 </body>
+<script th:inline="javascript">
+    let studentGroupInfo = [[${studentGroupInfo}]];
+    // let
+    // console.log(studentGroupInfo);
+</script>
+<script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                studentGroupInfo
+            }
+        },
+        methods: {}
+    })
+</script>
+
 </html>
