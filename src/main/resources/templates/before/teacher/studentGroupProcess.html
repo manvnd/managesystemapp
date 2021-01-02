@@ -171,6 +171,21 @@
             position: absolute;
             right: 50px;
         }
+
+        .back{
+            display: flex;
+            width: 100px;
+            height: 50px;
+            margin: 30px auto;
+            justify-content: center;
+            align-items: center;
+            float: right;
+        }
+
+        .back:hover{
+            background-color: rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -364,7 +379,7 @@
                     <br>
                     <div class="back"><a th:href="@{/before/teacher/home}">返回</a></div>
                     <div style="clear: both"></div>
-                </el-card>
+                </el-card><div class="back"><a th:href="@{/before/student/home}">返回</a></div>
 
             </el-main>
         </el-container>

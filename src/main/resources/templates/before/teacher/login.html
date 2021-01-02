@@ -9,6 +9,7 @@
 	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 	<link rel="stylesheet" href="/static/css/base.css">
 	<style>
+
 		.container{
 			position: fixed;
 			top: 0;
@@ -152,13 +153,32 @@
 			background-color: rgba(0,0,0,0.1);
 		}
 
+		.header{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+
+		.returnmain{
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		.returnmain:hover{
+			background-color: rgba(0,0,0,0.2);
+			cursor: pointer;
+		}
 	</style>
 <body>
-
-
 	<div id="app">
 		<el-container class="container">
-			<el-header>电子科技大学综合课程设计管理系统</el-header>
+			<el-header class="header">
+				<div><strong>电子科技大学综合课程设计管理系统</strong></div>
+
+				<div class="returnmain">
+					<a style="font-size: large"  th:href="@{/}">返回主页</a>
+				</div>
+
+			</el-header>
 			<el-main>
 <!--				<el-card class="box-card">-->
 <!--					<img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/3/322eaafd48e8f9c0e9823021da4266fe1488526433.png" width="640px" height="260px">-->
@@ -259,15 +279,15 @@
 								<button type="submit"class="btn btn-success" >登录</button>
 								<button type="reset" class="btn btn-primary" >重置</button>
 
-								<font size="6" color="red">
-									<span th:text="${loginMessage}"></span>
-								</font>
+<!--								<font size="6" color="red">-->
+<!--									<span th:text="${loginMessage}"></span>-->
+<!--								</font>-->
 
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
-										<font size="6" color="red">
-											<span th:text="${loginMessage}"></span>
-										</font>
+<!--										<font size="6" color="red">-->
+<!--											<span th:text="${loginMessage}"></span>-->
+<!--										</font>-->
 									</div>
 								</div>
 							</form>

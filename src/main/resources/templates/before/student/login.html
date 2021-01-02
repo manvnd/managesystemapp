@@ -141,7 +141,20 @@
 			background-color: #E3E4E5; /* 按钮颜色 */
 		}
 
+		.header{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
 
+		.returnmain{
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		.returnmain:hover{
+			background-color: rgba(0,0,0,0.2);
+			cursor: pointer;
+		}
 
 	</style>
 <title>登录页面</title>
@@ -149,7 +162,14 @@
 
 <div id="app">
 	<el-container class="container">
-		<el-header>电子科技大学综合课程设计管理系统</el-header>
+		<el-header class="header">
+			<div><strong>电子科技大学综合课程设计管理系统</strong></div>
+
+			<div class="returnmain">
+				<a style="font-size: large"  th:href="@{/}">返回主页</a>
+			</div>
+
+		</el-header>
 		<el-main class="el-main">
 <!--			<el-card class="box-card">-->
 <!--				<img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/3/322eaafd48e8f9c0e9823021da4266fe1488526433.png" width="540px" height="160px">-->
@@ -176,9 +196,9 @@
 						<button type="submit"class="btn btn-success" >登录</button>
 						<button type="reset" class="btn btn-primary" >重置</button>
 
-						<font size="6" color="red">
-							<span th:text="${loginMessage}"></span>
-						</font>
+<!--						<font size="6" color="red">-->
+<!--							<span th:text="${loginMessage}"></span>-->
+<!--						</font>-->
 					</form>
 				</div>
 			</div>

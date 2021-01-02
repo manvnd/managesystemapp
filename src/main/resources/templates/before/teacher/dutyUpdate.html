@@ -149,6 +149,28 @@
             background-color: rgba(0,0,0,0.1);
             cursor: pointer;
         }
+
+        .back{
+            display: flex;
+            width: 100px;
+            height: 50px;
+            margin: 30px auto;
+            justify-content: center;
+            align-items: center;
+            float: right;
+        }
+
+        .back:hover{
+            background-color: rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .form-horizontal{
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+        }
     </style>
 </head>
 <body>
@@ -221,7 +243,7 @@
                         <button type="reset" class="btn btn-primary">重置</button>
                     </form>
                     <div class="zhuce"><a th:href="@{/before/teacher/toDutyInfo(teacherId=*{session.teacher.getTeacherId()}, currentPage=1)}">取消更新</a></div>
-                </el-card>
+                </el-card><div class="back"><a th:href="@{/before/student/home}">返回</a></div>
             </el-main>
         </el-container>
     </el-container>

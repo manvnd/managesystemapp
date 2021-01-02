@@ -166,6 +166,21 @@
             background-color: #E3E4E5; /* 按钮颜色 */
             cursor: pointer;
         }
+
+        .back{
+            display: flex;
+            width: 100px;
+            height: 50px;
+            margin: 30px auto;
+            justify-content: center;
+            align-items: center;
+            float: right;
+        }
+
+        .back:hover{
+            background-color: rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -216,7 +231,8 @@
                                 <button type="submit" class="btn btn-success">确定</button>
                                 <button type="reset" class="btn btn-primary">重置</button>
                             </form>
-                </el-card>
+
+                </el-card></el-card><div class="back"><a th:href="@{/before/student/home}">返回</a></div>
 
             </el-main>
         </el-container>

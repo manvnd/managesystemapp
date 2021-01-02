@@ -232,8 +232,11 @@
                             <th>小组序号</th>
                             <th>项目序号</th>
                             <th>第一次报告</th>
+                            <th>操作</th>
                             <th>第二次报告</th>
+                            <th>操作</th>
                             <th>第三次报告</th>
+                            <th>操作</th>
                             <th>最终分数</th>
                             <th>操作</th>
                         </tr>
@@ -242,73 +245,108 @@
                         <th scope="row" th:text="${studentGroupDutyInfo.studentGroupNumber}"></th>
                         <td th:text="${studentGroupDutyInfo.dutyId}"></td>
                         <td onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
-            <span th:if="${studentGroupDutyInfo.studentGroupReportOneFile} != null">
-                <a th:href="@{/before/student/fileDownload(fileName = ${studentGroupDutyInfo.studentGroupReportOneFile})}">
-                    <b th:text="${studentGroupDutyInfo.studentGroupReportOneFile}"></b>
-                    <span th:if="${isLeader} == true">
-                        <b th:href="@{/before/student/toUploadReportFile(fileName = one)}">更新</b>
-                    </span>
-                    <span th:unless="${isLeader} == true">
-                        <b>更新</b>
-                    </span>
-                </a>
-            </span>
-                            <span th:unless="${studentGroupDutyInfo.studentGroupReportOneFile} != null">
-                <span th:if="${isLeader} == true">
-                    <a th:href="@{/before/student/toUploadReportFile(studentGroupNumber = ${studentGroupDutyInfo.studentGroupNumber}, fileName = one)}">上传</a>
-                </span>
-                <span th:unless="${isLeader} == true">
-                    <b>上传</b>
-                </span>
+                            <span th:if="${studentGroupDutyInfo.studentGroupReportOneFile} != null">
+                                <a th:href="@{/before/student/fileDownload(fileName = ${studentGroupDutyInfo.studentGroupReportOneFile})}">
+                                    <b th:text="${studentGroupDutyInfo.studentGroupReportOneFile}"></b>
+                                </a>
+                            </span>
 
-            </span>
+                            <span th:unless="${studentGroupDutyInfo.studentGroupReportOneFile} != null">
+                                暂未上传
+                            </span>
+
                         </td>
+
                         <td onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
-            <span th:if="${studentGroupDutyInfo.studentGroupReportTwoFile} != null">
-                <a th:href="@{/before/student/fileDownload(fileName = ${studentGroupDutyInfo.studentGroupReportTwoFile})}">
-                    <b th:text="${studentGroupDutyInfo.studentGroupReportTwoFile}"></b>
-                    <span th:if="${isLeader} == true">
-                        <b th:href="@{/before/student/toUploadReportFile(fileName = two)}">更新</b>
-                    </span>
-                    <span th:unless="${isLeader} == true">
-                        <b>更新</b>
-                    </span>
-                </a>
-            </span>
+                            <span th:if="${studentGroupDutyInfo.studentGroupReportOneFile} != null">
+                                <span th:if="${isLeader} == true">
+                                    <a th:href="@{/before/student/toUploadReportFile(fileName = one)}">更新</a>
+                                </span>
+                                <span th:unless="${isLeader} == true">
+                                    <b>更新</b>
+                                </span>
+                            </span>
+
+                            <span th:unless="${studentGroupDutyInfo.studentGroupReportOneFile} != null">
+                                <span th:if="${isLeader} == true">
+                                    <a th:href="@{/before/student/toUploadReportFile(studentGroupNumber = ${studentGroupDutyInfo.studentGroupNumber}, fileName = one)}">上传</a>
+                                </span>
+                                <span th:unless="${isLeader} == true">
+                                    <b>上传</b>
+                                </span>
+                            </span>
+
+                        </td>
+
+                        <td onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
+                            <span th:if="${studentGroupDutyInfo.studentGroupReportTwoFile} != null">
+                                <a th:href="@{/before/student/fileDownload(fileName = ${studentGroupDutyInfo.studentGroupReportTwoFile})}">
+                                    <b th:text="${studentGroupDutyInfo.studentGroupReportTwoFile}"></b>
+                                </a>
+                            </span>
+
+                            <span th:unless="${studentGroupDutyInfo.studentGroupReportOneFile} != null">
+                                暂未上传
+                            </span>
+
+
+                        </td>
+
+                        <td onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
+                            <span th:if="${studentGroupDutyInfo.studentGroupReportTwoFile} != null">
+                                <span th:if="${isLeader} == true">
+                                    <a th:href="@{/before/student/toUploadReportFile(fileName = two)}">更新</a>
+                                </span>
+                                <span th:unless="${isLeader} == true">
+                                    <b>更新</b>
+                                </span>
+                            </span>
+
                             <span th:unless="${studentGroupDutyInfo.studentGroupReportTwoFile} != null">
-                <span th:if="${isLeader} == true">
-                    <a th:href="@{/before/student/toUploadReportFile(studentGroupNumber = ${studentGroupDutyInfo.studentGroupNumber}, fileName = two)}">上传</a>
-                </span>
-                <span th:unless="${isLeader} == true">
-                    <b>上传</b>
-                </span>
-            </span>
+                                <span th:if="${isLeader} == true">
+                                    <a th:href="@{/before/student/toUploadReportFile(studentGroupNumber = ${studentGroupDutyInfo.studentGroupNumber}, fileName = two)}">上传</a>
+                                </span>
+                                <span th:unless="${isLeader} == true">
+                                    <b>上传</b>
+                                </span>
+                            </span>
+
                         </td>
-                        <!--        <td>-->
-                        <!--            <a th:href="@{/before/teacher/fileDownload(fileName = ${duty.dutyDescriptionFile})}">-->
-                        <!--                <span th:text="${duty.dutyDescriptionFile}"></span></a>-->
-                        <!--        </td>-->
+
                         <td onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
-            <span th:if="${studentGroupDutyInfo.studentGroupReportThreeFile} != null">
-                <a th:href="@{/before/student/fileDownload(fileName = ${studentGroupDutyInfo.studentGroupReportThreeFile})}">
-                    <b th:text="${studentGroupDutyInfo.studentGroupReportThreeFile}"></b>
-                    <span th:if="${isLeader} == true">
-                        <b th:href="@{/before/student/toUploadReportFile(fileName = three)}">更新</b>
-                    </span>
-                    <span th:unless="${isLeader} == true">
-                        <b>更新</b>
-                    </span>
-                </a>
-            </span>
+                            <span th:if="${studentGroupDutyInfo.studentGroupReportThreeFile} != null">
+                                <a th:href="@{/before/student/fileDownload(fileName = ${studentGroupDutyInfo.studentGroupReportThreeFile})}">
+                                    <b th:text="${studentGroupDutyInfo.studentGroupReportThreeFile}"></b>
+                                </a>
+                            </span>
+
                             <span th:unless="${studentGroupDutyInfo.studentGroupReportThreeFile} != null">
-                <span th:if="${isLeader} == true">
-                    <a th:href="@{/before/student/toUploadReportFile(studentGroupNumber = ${studentGroupDutyInfo.studentGroupNumber}, fileName = three)}">上传</a>
-                </span>
-                <span th:unless="${isLeader} == true">
-                    <b>上传</b>
-                </span>
-            </span>
+                                暂未发布
+                            </span>
+
                         </td>
+
+                        <td onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
+                            <span th:if="${studentGroupDutyInfo.studentGroupReportThreeFile} != null">
+                                <span th:if="${isLeader} == true">
+                                    <a th:href="@{/before/student/toUploadReportFile(fileName = three)}">更新</a>
+                                </span>
+                                <span th:unless="${isLeader} == true">
+                                    <b>更新</b>
+                                </span>
+                            </span>
+
+                            <span th:unless="${studentGroupDutyInfo.studentGroupReportThreeFile} != null">
+                                <span th:if="${isLeader} == true">
+                                    <a th:href="@{/before/student/toUploadReportFile(studentGroupNumber = ${studentGroupDutyInfo.studentGroupNumber}, fileName = three)}">上传</a>
+                                </span>
+                                <span th:unless="${isLeader} == true">
+                                    <b>上传</b>
+                                </span>
+                            </span>
+
+                        </td>
+
                         <td th:text="${studentGroupDutyInfo.studentGroupScore}"></td>
                         <td onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
             <span th:if="${studentGroupDutyInfo.studentGroupCommons} == null">

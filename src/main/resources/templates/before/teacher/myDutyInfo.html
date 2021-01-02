@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>可选任务列表</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
@@ -152,6 +152,21 @@
         .asidewelcome{
             font-size: 30px;
         }
+
+        .back{
+            display: flex;
+            width: 100px;
+            height: 50px;
+            margin: 30px auto;
+            justify-content: center;
+            align-items: center;
+            float: right;
+        }
+
+        .back:hover{
+            background-color: rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
     </style>
 
 </head>
@@ -277,7 +292,7 @@
             <a th:href="'before/teacher/myDutyInfo?currentPage=' + ${currentPage + 1}">下一页</a>
         </span>
                     </span>
-                </el-card>
+                </el-card><div class="back"><a th:href="@{/before/student/home}">返回</a></div>
 
             </el-main>
         </el-container>

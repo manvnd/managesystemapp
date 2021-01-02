@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>选择综设</title>
+    <title>Title</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
@@ -152,6 +152,21 @@
         .asidewelcome{
             font-size: 30px;
         }
+
+        .back{
+            display: flex;
+            width: 100px;
+            height: 50px;
+            margin: 30px auto;
+            justify-content: center;
+            align-items: center;
+            float: right;
+        }
+
+        .back:hover{
+            background-color: rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -270,7 +285,7 @@
                     <a th:href="@{/before/student/dutyChoose(dutyId = ${duty.dutyId})}">选课</a>
                 </span>
                                 <span th:unless="${studentSelected} != true">
-                    <a>你已选择课程</a>
+                    <a>你已选择过课程，不能继续选择课程</a>
                 </span>
                             </td>
                             <!--            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>-->
@@ -292,7 +307,9 @@
                th:href="'/before/student/toDutyInfo?currentPage=' + ${currentPage + 1}">下一页</a>
         </span>
                 </span>
-                </el-card>
+
+
+                </el-card><div class="back"><a th:href="@{/before/student/home}">返回</a></div>
 
             </el-main>
         </el-container>

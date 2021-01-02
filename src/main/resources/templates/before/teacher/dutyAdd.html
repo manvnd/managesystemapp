@@ -149,6 +149,28 @@
             background-color: rgba(0,0,0,0.1);
             cursor: pointer;
         }
+
+        .back{
+            display: flex;
+            width: 100px;
+            height: 50px;
+            margin: 30px auto;
+            justify-content: center;
+            align-items: center;
+            float: right;
+        }
+
+        .back:hover{
+            background-color: rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .form-horizontal{
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+        }
     </style>
 </head>
 <body>
@@ -179,20 +201,20 @@
                 <el-main class="main">
                     <el-card class="box-card">
                         <form class="form-horizontal" th:action="@{/before/teacher/dutyAdd}" method="post" th:Object="${duty}" enctype="multipart/form-data">
-                            <label>名称</label>
-                            <input class="form-control" type="text" placeholder="请输入综设名称" th:field="*{dutyName}"/><br>
-                            <label>简介</label>
-                            <input type="text" placeholder="请输入综设简介" th:field="*{dutySummary}"/><br>
-                            <label>最多选课人数</label>
-                            <input type="text" placeholder="最多选择此综设的人数" th:field="*{dutySize}"/><br>
-                            <label>上传描述文件</label>
-                            <input type="file" placeholder="请选择综设描述文件" name="dutyFileName" /><br>
+                            <div><label>名称</label>
+                                <input class="form-control" type="text" placeholder="请输入综设名称" th:field="*{dutyName}"/></div>
+                            <div><label>简介</label>
+                                <input type="text" placeholder="请输入综设简介" th:field="*{dutySummary}"/></div>
+                            <div><label>最多选课人数</label>
+                                <input type="text" placeholder="最多选择此综设的人数" th:field="*{dutySize}"/></div>
+                            <div><label>上传描述文件</label>
+                                <input type="file" placeholder="请选择综设描述文件" name="dutyFileName" /></div>
                             <br>
-                            <button type="submit"class="btn btn-success" >添加</button>
-                            <button type="reset" class="btn btn-primary" >重置</button>
-                        </form>
+                            <div><button type="submit"class="btn btn-success" >添加</button>
+                                <button type="reset" class="btn btn-primary" >重置</button></div>
+                        </form><el-divider></el-divider>
                         <div class="zhuce"><a th:href="@{/before/teacher/home}">取消发布</a></div>
-                    </el-card>
+                    </el-card><div class="back"><a th:href="@{/before/student/home}">返回</a></div>
                 </el-main>
             </el-container>
         </el-container>

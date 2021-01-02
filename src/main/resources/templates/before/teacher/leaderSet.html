@@ -159,6 +159,20 @@
         .asidewelcome{
             font-size: 30px;
         }
+
+        .back{
+            display: flex;
+            width: 100px;
+            height: 50px;
+            margin: 30px auto;
+            justify-content: center;
+            align-items: center;
+            float: right;
+        }
+
+        .back:hover{
+            background-color: rgba(0,0,0,0.1);
+
     </style>
 </head>
 <body>
@@ -258,7 +272,7 @@
 <!--            <a th:href="'before/teacher/myDutyInfo?currentPage=' + ${currentPage + 1}">下一页</a>-->
 <!--        </span>-->
 <!--                    </span>-->
-                </el-card>
+                </el-card><div class="back"><a th:href="@{/before/student/home}">返回</a></div>
 
             </el-main>
         </el-container>
