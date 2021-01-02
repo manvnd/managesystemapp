@@ -336,21 +336,28 @@
 
 
 <script   th:inline="javascript">
-    // let studentGroupDutyInfo = [[${studentGroupDutyInfo}]];
-    // console.log(studentGroupDutyInfo);
-    // let
-    // console.log(studentGroupInfo);
+    let mess = [[${message}]];
+    let studentGroupInfo = [[${studentGroupInfo}]];
+    // console.log(mess);
 </script>
 <script>
     new Vue({
         el: "#app",
-        data(){
-            return{
-                // studentGroupDutyInfo
+        data() {
+            return {
+                mess,
+                studentGroupInfo
+            }
+        },
+        created(){
+            if (mess !== null){
+                this.me()
             }
         },
         methods: {
-
+            me(){
+                this.$message(mess);
+            }
         }
     })
 </script>
