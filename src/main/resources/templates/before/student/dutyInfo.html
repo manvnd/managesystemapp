@@ -3,61 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        *{
+            font-family: 宋体;
+        }
+        a:hover{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:visited{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:link{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:active{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        .container{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .el-header, .el-footer {
+            background-color: #B3C0D1;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .el-main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            /*line-height: 160px;*/
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        /*.el-container:nth-child(5) .el-aside,*/
+        /*.el-container:nth-child(6) .el-aside {*/
+        /*    line-height: 260px;*/
+        /*}*/
+
+        /*.el-container:nth-child(7) .el-aside {*/
+        /*    line-height: 320px;*/
+        /*}*/
+
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .el-dropdown-link {
+            cursor: pointer;
+            color: #409EFF;
+        }
+        .el-icon-arrow-down {
+            font-size: 12px;
+        }
+        .dropdownimg{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+        .el-dropdown-link{
+            display: flex;
+            align-items: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 30px;
+        }
+
+        td,th {
+            padding: 0;
+        }
+
+        .pure-table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            empty-cells: show;
+            border: 1px solid #cbcbcb;
+        }
+
+        .pure-table caption {
+            color: #000;
+            font: italic 85%/1 arial,sans-serif;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        .pure-table td,.pure-table th {
+            border-left: 1px solid #cbcbcb;
+            border-width: 0 0 0 1px;
+            font-size: inherit;
+            margin: 0;
+            overflow: visible;
+            padding: .5em 1em;
+        }
+
+        .pure-table thead {
+            background-color: #e0e0e0;
+            color: #000;
+            text-align: left;
+            vertical-align: bottom;
+            text-align: center;
+        }
+
+        .pure-table td {
+            background-color: transparent;
+            text-align: center;
+        }
+        .pure-table-horizontal td,.pure-table-horizontal th {
+            border-width: 0 0 1px 0;
+            border-bottom: 1px solid #cbcbcb;
+        }
+
+        .pure-table-horizontal tbody>tr:last-child>td {
+            border-bottom-width: 0;
+        }
+
+        .card{
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .asidewelcome{
+            font-size: 30px;
+        }
+    </style>
 </head>
 <body>
 <br/>
 <h1>可选任务列表</h1>
 <br/><br/>
+
+
+
+
 <div>
-    <table>
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>综设名称</th>
-            <th>简介</th>
-            <th>描述文件</th>
-            <th>最多选择人数</th>
-            <th>已选人数</th>
-            <th>指导老师</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr  th:each="duty : ${duties}">
-            <th scope="row" th:text="${duty.dutyId}"></th>
-            <td th:text="${duty.dutyName}"></td>
-            <td th:text="${duty.dutySummary}"></td>
-            <td>
-                <a th:href="@{/before/teacher/fileDownload(fileName = ${duty.dutyDescriptionFile})}">
-                    <span th:text="${duty.dutyDescriptionFile}"></span></a>
-            </td>
-            <td th:text="${duty.dutySize}"></td>
-            <td th:text="${duty.dutySelectedNumber}"></td>
-            <td th:text="${duty.teacher.teacherName}"></td>
-            <td>
+<!--    <table>-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>#</th>-->
+<!--            <th>综设名称</th>-->
+<!--            <th>简介</th>-->
+<!--            <th>描述文件</th>-->
+<!--            <th>最多选择人数</th>-->
+<!--            <th>已选人数</th>-->
+<!--            <th>指导老师</th>-->
+<!--            <th>操作</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr  th:each="duty : ${duties}">-->
+<!--            <th scope="row" th:text="${duty.dutyId}"></th>-->
+<!--            <td th:text="${duty.dutyName}"></td>-->
+<!--            <td th:text="${duty.dutySummary}"></td>-->
+<!--            <td>-->
+<!--                <a th:href="@{/before/teacher/fileDownload(fileName = ${duty.dutyDescriptionFile})}">-->
+<!--                    <span th:text="${duty.dutyDescriptionFile}"></span></a>-->
+<!--            </td>-->
+<!--            <td th:text="${duty.dutySize}"></td>-->
+<!--            <td th:text="${duty.dutySelectedNumber}"></td>-->
+<!--            <td th:text="${duty.teacher.teacherName}"></td>-->
+<!--            <td>-->
+<!--                <span th:if="${studentSelected} != true">-->
+<!--                    <a th:href="@{/before/student/dutyChoose(dutyId = ${duty.dutyId})}">选课</a>-->
+<!--                </span>-->
+<!--                <span th:unless="${studentSelected} != true">-->
+<!--                    <a>你已选择课程</a>-->
+<!--                </span>-->
+<!--            </td>-->
+<!--            &lt;!&ndash;            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>&ndash;&gt;-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--    <li><a>第<span th:text="${currentPage}"></span>页</a></li>-->
+<!--    <li><a>共<span th:text="${totalPage}"></span>页</a></li>-->
+<!--    <li>-->
+<!--        <span th:if="${currentPage} != 1">-->
+<!--            <a th:href="'before/student/toDutyInfo?currentPage=' + ${currentPage - 1}">上一页</a>-->
+<!--        </span>-->
+<!--        <span th:if="${currentPage} != ${totalPage}">-->
+<!--            <a th:href="'before/student/toDutyInfo?currentPage=' + ${currentPage + 1}">下一页</a>-->
+<!--        </span>-->
+<!--    </li>-->
+<!--</div>-->
+
+<!--<a th:href="@{/before/student/home}">返回</a>-->
+
+
+<div id="app">
+    <el-container class="container">
+        <el-aside width="250px">
+            <div class="asidewelcome">
+                可选任务列表
+            </div>
+        </el-aside>
+        <el-container>
+            <el-header class="header">
+                <div><strong>电子科技大学综合课程设计管理系统</strong></div>
+                <el-dropdown class="dropdown">
+                    <div class="el-dropdown-link">
+                        <img class="dropdownimg" src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1542881003,1817911166&fm=26&gp=0.jpg">
+                        <div th:object="${session.student}">
+                            <a th:text="*{studentName}" style="font-size: large"></a>
+                        </div>
+                        <i class="el-icon-arrow-down el-icon--right"></i>
+                    </div>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item><a th:href="@{/before/student/logout}">退出登录</a></el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </el-header>
+            <el-main>
+                <el-card class="card">
+                    <table  class="pure-table pure-table-horizontal">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>综设名称</th>
+                            <th>简介</th>
+                            <th>描述文件</th>
+                            <th>最多选择人数</th>
+                            <th>已选人数</th>
+                            <th>指导老师</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr  th:each="duty : ${duties}" onmouseover="this.style.backgroundColor='rgba(67,61,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
+                            <th scope="row" th:text="${duty.dutyId}"></th>
+                            <td th:text="${duty.dutyName}"></td>
+                            <td th:text="${duty.dutySummary}"></td>
+                            <td onmouseover="this.style.backgroundColor='rgba(66,0,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
+                                <a style="font-weight: bold" th:href="@{/before/teacher/fileDownload(fileName = ${duty.dutyDescriptionFile})}">
+                                    <span th:text="${duty.dutyDescriptionFile}"></span></a>
+                            </td>
+                            <td th:text="${duty.dutySize}"></td>
+                            <td th:text="${duty.dutySelectedNumber}"></td>
+                            <td th:text="${duty.teacher.teacherName}"></td>
+                            <td>
                 <span th:if="${studentSelected} != true">
                     <a th:href="@{/before/student/dutyChoose(dutyId = ${duty.dutyId})}">选课</a>
                 </span>
-                <span th:unless="${studentSelected} != true">
+                                <span th:unless="${studentSelected} != true">
                     <a>你已选择课程</a>
                 </span>
-            </td>
-            <!--            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>-->
-        </tr>
-        </tbody>
-    </table>
-    <li><a>第<span th:text="${currentPage}"></span>页</a></li>
-    <li><a>共<span th:text="${totalPage}"></span>页</a></li>
-    <li>
-        <span th:if="${currentPage} != 1">
-            <a th:href="'before/student/toDutyInfo?currentPage=' + ${currentPage - 1}">上一页</a>
-        </span>
-        <span th:if="${currentPage} != ${totalPage}">
-            <a th:href="'before/student/toDutyInfo?currentPage=' + ${currentPage + 1}">下一页</a>
-        </span>
-    </li>
-</div>
+                            </td>
+                            <!--            <td><a th:href="@{/admin/teacherDelete(id=${teacher.getId()})}">删除</a></td>-->
+                        </tr>
+                        </tbody>
+                    </table>
 
-<a th:href="@{/before/student/home}">返回</a>
+                    <span><a>第<span th:text="${currentPage}" style="font-weight: bold"></span>页</a></span>
+                    <span><a>共<span th:text="${totalPage}" style="font-weight: bold"></span>页</a></span>
+                    <span>
+        <span th:if="${currentPage} != 1">
+            <a onmouseover="this.style.backgroundColor='rgba(66,0,133,0.21)';"
+               onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';"
+               th:href="'/admin/allStudentInfo?currentPage=' + ${currentPage - 1}">上一页</a>
+        </span>
+                    <span th:if="${currentPage} != ${totalPage}">
+            <a onmouseover="this.style.backgroundColor='rgba(66,0,133,0.21)';"
+               onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';"
+               th:href="'/admin/allStudentInfo?currentPage=' + ${currentPage + 1}">下一页</a>
+        </span>
+                </span>
+                </el-card>
+
+            </el-main>
+        </el-container>
+    </el-container>
+</div>
+</div>
 </body>
+
+<script   th:inline="javascript">
+    let studentGroupInfo = [[${studentGroupInfo}]];
+    // let
+    // console.log(studentGroupInfo);
+</script>
+<script>
+    new Vue({
+        el: "#app",
+        data(){
+            return{
+                studentGroupInfo
+            }
+        },
+        methods: {
+
+        }
+    })
+</script>
 </html>

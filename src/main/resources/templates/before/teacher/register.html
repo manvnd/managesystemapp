@@ -3,13 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <title>注册</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="/static/css/base.css">
+    <style>
+        .container{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+        .el-header, .el-footer {
+            background-color: #B3C0D1;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+            font-size: larger;
+        }
+        .el-main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            line-height: 160px;
+        }
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        .el-container:nth-child(5) .el-aside,
+        .el-container:nth-child(6) .el-aside {
+            line-height: 260px;
+        }
+
+        .el-container:nth-child(7) .el-aside {
+            line-height: 320px;
+        }
+
+        .text {
+            font-size: 14px;
+        }
+
+        .item {
+            padding: 18px 0;
+        }
+
+        a:hover{
+            text-decoration: none;
+            color: #B3C0D1;
+        }
+        a:visited{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:link{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:active{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+
+        .box-card {
+            display: block;
+            /*position: relative;*/
+            width: 580px;
+            height: 200px;
+            right: 50%;
+            margin: 40px auto;
+            line-height: 20px;
+        }
+
+        .box-card1{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 800px;
+            height: 400px;
+            margin: 0 auto;
+            line-height: 20px;
+            font: 19px Georgia, "Times New Roman", Times, serif;
+            color: #888;
+        }
+
+        .box-card1 div{
+            margin-bottom: 10px;
+        }
+
+        .LogIn{
+            display: flex;
+            margin: 0 auto;
+            width: 350px;
+            height: 100px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #sub{
+            margin: 10px auto;
+            cursor: pointer;
+        }
+
+        .teacher{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 350px;
+            height: 50px;
+        }
+    </style>
 </head>
 <body>
-<form action="/before/teacher/register" method="post" th:object="${teacher}">
-    用户名：<input type="text" th:field="*{teacherName}"><br>
-    教职工号: <input type="text" th:field="*{teacherNumber}"><br>
-    密码：<input type="password" th:field="*{teacherPwd}"><br>
-    <input type="submit" value="注册">
-</form>
+
+
+    <div id="app">
+        <el-container class="container">
+            <el-header>电子科技大学综合课程设计管理系统</el-header>
+            <el-main>
+                <el-card class="box-card">
+                    <img src="http://www.photo.uestc.edu.cn/upload/public/uploadimg//2017/3/3/322eaafd48e8f9c0e9823021da4266fe1488526433.png" width="540px" height="160px">
+                </el-card>
+
+                <el-card  class="box-card1">
+                    <form action="/before/teacher/register" method="post" th:object="${teacher}">
+                        <div>用户名：<input type="text" th:field="*{teacherName}"><br></div>
+                        <div>教职工号: <input type="text" th:field="*{teacherNumber}"><br></div>
+                        <div>密码：<input type="password" th:field="*{teacherPwd}"><br></div>
+                        <div><input type="submit" value="注册"></div>
+                    </form>
+                </el-card>
+
+            </el-main>
+        </el-container>
+    </div>
 </body>
+<script   th:inline="javascript">
+</script>
+<script>
+    new Vue({
+        el: "#app"
+    })
+</script>
 </html>

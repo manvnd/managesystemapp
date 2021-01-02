@@ -1,6 +1,5 @@
 *{
-    padding: 0;
-    margin: 0;
+    font-family: 宋体;
 }
 a:hover{
     text-decoration: none;
@@ -51,10 +50,68 @@ body > .el-container {
 .el-container:nth-child(7) .el-aside {
     line-height: 320px;
 }
+
+.el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.el-icon-arrow-down {
+    font-size: 12px;
+}
+.dropdown{
+    float: right;
+
+}
+
+.dropdownimg{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 30px;
+}
+
+.asidewelcome{
+    font-size: 30px;
+}
+
+.box-card {
+    display: block;
+    width: 480px;
+    height: 200px;
+    margin-bottom: 70px;
+}
+
+.leftcard{
+    margin-left: 150px;
+}
+.rightcard{
+    float: right;
+    margin-right: 150px;
+}
+.centercard{
+    margin: 20px auto;
+}
+
+.textcard:hover{
+    background-color: rgba(0,0,0,0.2);
+    cursor: pointer;
+}
 .text {
-	font-size: 14px;
+    font-size: 14px;
 }
 
 .item {
-	padding: 18px 0;
+    margin-bottom: 18px;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+.clearfix:after {
+    clear: both
 }

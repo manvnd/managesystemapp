@@ -3,21 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <title>综设添加</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <style>
+        *{
+            font-family: 宋体;
+        }
+        a:hover{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:visited{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:link{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        a:active{
+            text-decoration: none;
+            color: rgba(38,43,21,0.87);
+        }
+        .container{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+        .el-header, .el-footer {
+            background-color: #B3C0D1;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        .el-container:nth-child(5) .el-aside,
+        .el-container:nth-child(6) .el-aside {
+            line-height: 260px;
+        }
+
+        .el-container:nth-child(7) .el-aside {
+            line-height: 320px;
+        }
+
+        .el-dropdown-link {
+            cursor: pointer;
+            color: #409EFF;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+        .el-icon-arrow-down {
+            font-size: 12px;
+        }
+        .dropdown{
+            float: right;
+        }
+
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dropdownimg{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+
+        .asidewelcome{
+            margin-top: 100px;
+            font-size: 30px;
+            line-height: 40px;
+        }
+
+        .box-card {
+            padding-top: 40px;
+            padding-left: 25px;
+            display: flex;
+            width: 700px;
+            height: 400px;
+            margin-bottom: 20px;
+            margin-top: 65px;
+            margin-left: 60px;
+            justify-content: flex-start;
+            align-items: flex-start;
+            line-height: 40px;
+        }
+
+        .leftcard{
+            margin-left: 150px;
+        }
+        .rightcard{
+            float: right;
+            margin-right: 150px;
+        }
+        .centercard{
+            margin: 20px auto;
+        }
+
+        .textcard:hover{
+            background-color: rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .cards{
+            margin-top: 150px;
+        }
+
+        .zhuce{
+            width: 200px;
+            height: 50px;
+            margin-top: 30px;
+            margin-left: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .zhuce:hover{
+            background-color: rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <form th:action="@{/before/teacher/dutyAdd}" method="post" th:Object="${duty}" enctype="multipart/form-data">
-        <label>名称</label>
-        <input type="text" placeholder="请输入综设名称" th:field="*{dutyName}"/>
-        <label>简介</label>
-        <input type="text" placeholder="请输入综设简介" th:field="*{dutySummary}"/>
-        <label>最多选课人数</label>
-        <input type="text" placeholder="最多选择此综设的人数" th:field="*{dutySize}"/>
-        <label>上传描述文件</label>
-        <input type="file" placeholder="请选择综设描述文件" name="dutyFileName" />
-        <br>
-        <button type="submit"class="btn btn-success" >添加</button>
-        <button type="reset" class="btn btn-primary" >重置</button>
-    </form>
-    <a th:href="@{/before/teacher/home}">取消发布</a>
+
+    <div id="app">
+        <el-container class="container">
+            <el-aside width="250px">
+                <div class="asidewelcome">
+                    老师，您好！请您添加任务
+                </div>
+            </el-aside>
+            <el-container>
+                <el-header class="header">
+                    <div><strong>电子科技大学综合课程设计管理系统</strong></div>
+                    <el-dropdown class="dropdown">
+                        <div class="el-dropdown-link">
+                            <img class="dropdownimg" src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1542881003,1817911166&fm=26&gp=0.jpg">
+                            <div th:object="${session.teacher}">
+                                <a th:text="*{teacherName}" style="font-size: large"></a>
+                            </div>
+                            </span><i class="el-icon-arrow-down el-icon--right"></i>
+                        </div>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item><a th:href="@{/before/teacher/logout}">退出登录</a></el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </el-header>
+                <el-main class="main">
+                    <el-card class="box-card">
+                        <form class="form-horizontal" th:action="@{/before/teacher/dutyAdd}" method="post" th:Object="${duty}" enctype="multipart/form-data">
+                            <label>名称</label>
+                            <input class="form-control" type="text" placeholder="请输入综设名称" th:field="*{dutyName}"/><br>
+                            <label>简介</label>
+                            <input type="text" placeholder="请输入综设简介" th:field="*{dutySummary}"/><br>
+                            <label>最多选课人数</label>
+                            <input type="text" placeholder="最多选择此综设的人数" th:field="*{dutySize}"/><br>
+                            <label>上传描述文件</label>
+                            <input type="file" placeholder="请选择综设描述文件" name="dutyFileName" /><br>
+                            <br>
+                            <button type="submit"class="btn btn-success" >添加</button>
+                            <button type="reset" class="btn btn-primary" >重置</button>
+                        </form>
+                        <div class="zhuce"><a th:href="@{/before/teacher/home}">取消发布</a></div>
+                    </el-card>
+                </el-main>
+            </el-container>
+        </el-container>
+    </div>
 </body>
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+<script   th:inline="javascript">
+    let mess = [[${message}]]
+    // console.log(mess);
+</script>
+<script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                mess
+            }
+        },
+        created(){
+            if (mess !== null){
+                this.me()
+            }
+        },
+        methods: {
+            me(){
+                this.$message(mess);
+            }
+        }
+    })
+</script>
 </html>
