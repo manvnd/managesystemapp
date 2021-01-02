@@ -173,20 +173,28 @@
 
 </body>
 <script   th:inline="javascript">
+    let mess = [[${message}]];
     let studentGroupInfo = [[${studentGroupInfo}]];
-    // let
-    // console.log(studentGroupInfo);
+    // console.log(mess);
 </script>
 <script>
     new Vue({
         el: "#app",
-        data(){
-            return{
+        data() {
+            return {
+                mess,
                 studentGroupInfo
             }
         },
+        created(){
+            if (mess !== null){
+                this.me()
+            }
+        },
         methods: {
-
+            me(){
+                this.$message(mess);
+            }
         }
     })
 </script>
