@@ -154,10 +154,27 @@
 </div>
 </body>
 <script   th:inline="javascript">
+    let mess = [[${message}]]
+    // console.log(mess);
 </script>
 <script>
     new Vue({
-        el: "#app"
+        el: "#app",
+        data() {
+            return {
+                mess
+            }
+        },
+        created(){
+            if (mess !== null){
+                this.me()
+            }
+        },
+        methods: {
+            me(){
+                this.$message(mess);
+            }
+        }
     })
 </script>
 </html>

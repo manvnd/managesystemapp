@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>选择综设</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
@@ -259,7 +259,7 @@
                             <td th:text="${duty.dutyName}"></td>
                             <td th:text="${duty.dutySummary}"></td>
                             <td onmouseover="this.style.backgroundColor='rgba(66,0,133,0.21)';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';">
-                                <a style="font-weight: bold" th:href="@{/before/teacher/fileDownload(fileName = ${duty.dutyDescriptionFile})}">
+                                <a style="font-weight: bold" th:href="@{/before/student/fileDownload(fileName = ${duty.dutyDescriptionFile})}">
                                     <span th:text="${duty.dutyDescriptionFile}"></span></a>
                             </td>
                             <td th:text="${duty.dutySize}"></td>
@@ -284,12 +284,12 @@
         <span th:if="${currentPage} != 1">
             <a onmouseover="this.style.backgroundColor='rgba(66,0,133,0.21)';"
                onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';"
-               th:href="'/admin/allStudentInfo?currentPage=' + ${currentPage - 1}">上一页</a>
+               th:href="'/before/student/toDutyInfo?currentPage=' + ${currentPage - 1}">上一页</a>
         </span>
                     <span th:if="${currentPage} != ${totalPage}">
             <a onmouseover="this.style.backgroundColor='rgba(66,0,133,0.21)';"
                onmouseout="this.style.backgroundColor='rgba(255,255,255,0)';"
-               th:href="'/admin/allStudentInfo?currentPage=' + ${currentPage + 1}">下一页</a>
+               th:href="'/before/student/toDutyInfo?currentPage=' + ${currentPage + 1}">下一页</a>
         </span>
                 </span>
                 </el-card>
@@ -302,20 +302,28 @@
 </body>
 
 <script   th:inline="javascript">
+    let mess = [[${message}]];
     let studentGroupInfo = [[${studentGroupInfo}]];
-    // let
-    // console.log(studentGroupInfo);
+    // console.log(mess);
 </script>
 <script>
     new Vue({
         el: "#app",
-        data(){
-            return{
+        data() {
+            return {
+                mess,
                 studentGroupInfo
             }
         },
+        created(){
+            if (mess !== null){
+                this.me()
+            }
+        },
         methods: {
-
+            me(){
+                this.$message(mess);
+            }
         }
     })
 </script>
