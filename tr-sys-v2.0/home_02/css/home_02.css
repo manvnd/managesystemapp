@@ -1,0 +1,349 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+}
+ol,ul{
+	list-style-type: none;
+}
+a{
+	color: #666;
+	text-decoration: none;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+
+.fade{
+	opacity: 0;
+}
+.show{
+	opacity: 1;
+}
+#top,#header,#nav,#banner,#journal,#department,#newsspace,#serve,#additional,#footer{
+	height: 100px;
+	width: 100%;
+}
+
+.container{
+	width: 1280px;
+	margin: 0px auto;
+}
+#top{
+	height: 5px;
+	background-color: #e5e5e5;
+}
+#header{
+	height: 30px;
+	background-color: #2C2C2C;
+}
+#header .xlwb{
+	width: 20px;
+	height: 17px;
+	background: url("../img/xlwb&txwb.png") no-repeat -28px -9px;
+}
+#header .txwb{
+	width: 20px;
+	height: 20px;
+	background: url("../img/xlwb&txwb.png") no-repeat -7px -7px;
+}
+#header .tel{
+	color: #eee;
+}
+#header .header_left div{
+	float: left;
+	margin: 5px 10px 0px;
+}
+#header ul li{
+	float: left;
+	line-height: 30px;
+}
+#header li a{
+	color: #B2B2B2;
+	font-size: 14px;
+	border-right: 1px solid #B2B2B2;
+	padding: 0px 15px;
+}
+#header li a:hover{
+	color: #777;
+}
+#nav{
+	height: 90px;
+	background-color: #eee;
+}
+#nav li{
+	float: left;
+	margin: 0px 15px;
+	line-height: 90px;
+}
+#nav li a{
+	color: #666666;
+	font-weight: bold;
+}
+#nav li a:hover{
+	color: #eee;
+	text-shadow: 0 0 5px #333;
+}
+.logo_left{
+	height:90px;
+	font-family:隶书;
+	font-size:40px;
+	float:left;
+	display: flex;
+	align-items: center;
+	font-weight: bold;
+	text-shadow: 0 0 3px #333;
+	color:white;
+}
+#journal{
+	height: 700px;
+	background-color: #eee;
+}
+#journal .journal_top{
+	text-align: center;
+	margin: 20px;
+	font-family:隶书;
+	font-size:40px;
+	font-weight: bold;
+	text-shadow: 0 0 6px #333;
+	color:white;
+}
+#journal ul{
+	width: 1263px;
+	margin: 10px auto;
+}
+#journal li{
+	width: 300px;
+	float: left;
+	border-bottom: 4px solid #DFDFDF;
+	transition: all .3s;
+}
+#journal li:hover{
+	border-bottom: 4px solid #333;
+	transform: translateY(-10px);
+}
+#journal li img{
+	width: 300px;
+}
+#journal li h2{
+	text-align: center;
+	margin-top: 10px;
+}
+#journal li p{
+	text-align: center;
+	margin: 10px 0px; 
+	font-size: 13px;
+	color: #939393;
+}
+#journal .author{
+	color: #777;
+	font-size: 14px;
+}
+#journal .line{
+	width: 0px;
+	height: 450px;
+	border-left: 1px solid #EAEAEA;
+	margin: 0px 10px;
+}
+#newsspace{
+	height: 700px;
+	overflow: hidden;
+	background-color: #e3e3e3;
+}
+#newsspace .newsspace_top{
+	text-align: center;
+	margin: 20px;
+	font-family:隶书;
+	font-size:40px;
+	font-weight: bold;
+	text-shadow: 0 0 6px #333;
+	color:white;
+}
+#newsspace .newsspace_main{
+	width: 1214px;
+	margin: 10px auto;
+}
+#newsspace .newsspace_left{
+	width: 800px;
+}
+#newsspace .newsspace_left>div{
+	float: left;
+	margin: 7px;
+}
+#newsspace .newsspace_left>div>div{
+	border-bottom: 3px solid #EAEAEA;
+	transition: all .3s;
+}
+#newsspace .newsspace_left>div:hover div{
+	border-bottom: 3px solid #999;
+	transform: translateY(-10px);
+}
+#newsspace .newsspace_right{
+	width: 400px;
+	height: 566px;
+	background-color: #fff;
+	margin-top: 10px;
+}
+#newsspace .newsspace_right img{
+	height: 100px;
+}
+#newsspace .newsspace_right .newsspace_title{
+	height: 60px;
+}
+#newsspace .newsspace_right .newsspace_title div{
+	width: 200px;
+	height: 60px;
+	background-color: #F5F5F5;
+	text-align: center;
+	line-height: 60px;
+	float: left;
+	border-top: 3px solid #F5F5F5;
+}
+#newsspace .newsspace_right .newsspace_title div:first-child{
+	border-top: 3px solid #999;
+	background-color: #fff;
+}
+#newsspace .newsspace_right  ul li{
+	background-color: #F5F5F5;
+	margin: 20px 10px;
+}
+#newsspace .newsspace_right dl{
+	width: 380px;
+	height: 100px;
+	position: relative;
+	box-sizing: border-box;
+}
+#newsspace .newsspace_right dl dt{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+#newsspace .newsspace_right dl dd{
+	position: absolute;
+	top: 20px;
+	left: 140px;
+}
+#serve{
+	height: 100px;
+	background-color: #eee;
+}
+#serve dl{
+	width: 200px;
+	height: 100px;
+	position: relative;
+}
+#serve dt{
+	width: 49px;
+	height: 49px;
+	background: url("../img/p0.png") no-repeat 0px 0px;
+	position: absolute;
+	top: 24px;
+	left: 7px;
+}
+#serve dl .dd1{
+	position: absolute;
+	top: 30px;
+	left: 60px;
+	font-weight: bold;
+}
+#serve dl .dd2{
+	position: absolute;
+	top: 50px;
+	left: 60px;
+	color: #aaa;
+	font-size: 12px;
+}
+#serve li{
+	float: left;
+	margin: 0px 10px;
+	transition: all .3s;
+}
+#serve li:hover{
+	transform: translateY(-10px);
+}
+#serve ul{
+	width: 1110px;
+	margin: 0px auto;
+	height: 98px;
+	border-bottom: 1px solid #333;
+}
+#additional{
+	height: 155px;
+	background-color: #eee;
+}
+#additional ul{
+	width: 1110px;
+	margin: 0px auto;
+	padding-top: 20px;
+}
+#additional ul li{
+	width: 140px;
+	float: left;
+	text-align: center;
+	margin: 0px 20px;
+}
+#additional ol>li{
+	line-height: 30px;
+}
+#additional ol>li:first-child a{
+	font-weight: bold;
+}
+#footer{
+	height: 50px;
+	background-color: #888;
+}
+#footer p{
+	line-height: 50px;
+}
+#footer img{
+	margin-left: 20px;
+}
+#footer p span{
+	color: #fff;
+	margin: 0px 410px 0px 40px;
+
+}
+#footer p a{
+	color: #fff;
+	margin: 0px 10px;
+}
+#footer p a:hover{
+	color: #C1E9F2;
+}
+body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        #banner{
+        	height:632px;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 632px;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+}

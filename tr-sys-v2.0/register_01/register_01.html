@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/register_01.css">
+    <title>综合设计课程管理系统-学生注册</title>
+</head>
+<body>
+    <form action="/before/register_01" method="post" th:object="${b_01User}">
+    <div id="div_login">
+        <div id="div_title"><h1>综合设计课程管理系统-学生注册</h1></div>
+        <div id="midden">
+        	<p> 用户名：</p>
+            <p><input class="inputinfo" type="text" id="UserName" placeholder="请输入用户名" th:field="*{b_01name}"></p>
+            <p> 密码：</p>
+            <p><input class="inputinfo" type="password" id="PassWord" placeholder="请输入密码"></p>
+            <p> 重复密码：</p>
+            <p><input class="inputinfo" type="password" id="PassWord2" placeholder="请再次输入密码" th:field="*{b_01pwd}"></p>
+            <p> 学号：</p>
+            <p><input class="inputinfo" type="text" id="StuNum" placeholder="请输入学号" th:field="*{b_01cod}"></p>
+            <p> 邮箱：</p>
+            <p><input class="inputinfo" type="text" id="Mailbox" placeholder="请输入邮箱" th:field="*{b_01mbox}"></p>
+            <button type="button" class="submitbutton" name="chkBtn" id="chkBtn">注册</button>
+            <div id="info">
+                <p>已经注册？<span id="chkBtn2">点此登录</span></p>
+            </div>
+        </div>
+    </form>    
+    </div>
+</body>
+<script>
+    document.getElementById('chkBtn').addEventListener('click',function(){
+        var username=document.getElementById("UserName").value;
+        var password=document.getElementById("PassWord").value;
+        var password2=document.getElementById("PassWord2").value;
+        var stunum=document.getElementById("StuNum").value;
+        var mailbox=document.getElementById("Mailbox").value;
+        if(username!="" && password!="" && password2!="" && stunum!="" && mailbox!=""){
+            alert('注册成功！请返回登录页面登录');
+        }else{
+            alert('请检查信息完整！');
+        }
+
+    })
+    document.getElementById('chkBtn2').addEventListener('click',function(){
+        window.location.href='../login_01/login_01.html';
+
+    })
+</script>
+</html>

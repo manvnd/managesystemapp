@@ -1,0 +1,59 @@
+html,body{
+            width:100%;
+            height:100%
+        }
+        body{
+            font-family: "华文细黑";
+            background:url("../img/bg2.png") no-repeat;
+            background-size: 100%;
+        }
+        #div_login{
+            width:530px;
+            height: 535px;
+            background-color:rgba(190,190,190,0.5);
+            position: absolute;
+            left: 650px;
+            top: 100px;
+            margin:50px 50px;
+            padding: 0px;
+        }
+        #div_title{
+            width: 530px;
+            height: 60px;
+            font-family:"楷体";
+            font-size:12px;
+            background-color:rgba(0,0,0,0.5);
+            text-align: center;
+            line-height: 60px;
+            color:#fff;
+        }
+        *{
+            margin:0px;
+            padding: 0px;
+        }
+        #midden{
+            width:530px;
+            height: 475px;
+            background-color: rgba(100, 100, 100, 0.5);
+        }
+        .inputinfo{
+            width: 480px;
+            height:30px;
+            margin:10px 10px 10px 20px;
+        }
+        .submitbutton{
+            width: 480px;
+            height:40px;
+            margin:10px 10px 10px 21px;
+            color:rgb(255,255,255);
+            background-color: rgba(89, 89, 89, 0.5)
+        }
+        #info{
+            width:500px;
+            text-align: center;
+            margin: 0 auto;
+            color:rgb(255,255,255) ;
+        }
+        #info span:hover{
+            color:rgb(25,25,25) ;
+        }
